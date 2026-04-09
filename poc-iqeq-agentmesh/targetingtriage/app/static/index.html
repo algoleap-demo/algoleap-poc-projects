@@ -127,7 +127,9 @@
             <div class="modal-nba-box">
                 <div class="modal-label">Next Best Action</div>
                 <div id="m-nba-type" class="modal-val" style="color:var(--brand-primary)"></div>
-                <div id="m-nba-desc" style="font-size:13px;color:#374151"></div>
+                <div id="m-nba-desc" style="font-size:13px;color:#374151;margin-bottom:12px"></div>
+                <div class="modal-label">Why this action?</div>
+                <div id="m-nba-reason" style="font-size:12px;color:#6B7280;font-style:italic"></div>
             </div>
             <div class="modal-label">Contact Person</div>
             <div id="m-contact" class="modal-val"></div>
@@ -321,6 +323,7 @@
         document.getElementById('m-id').innerText=`${a.account_id} | ${a.priority_bucket} Priority`;
         document.getElementById('m-nba-type').innerText=nba.action_type.toUpperCase().replace('_',' ');
         document.getElementById('m-nba-desc').innerText=nba.description;
+        document.getElementById('m-nba-reason').innerText=nba.reasoning;
         document.getElementById('m-contact').innerText=a.contact_person;
         document.getElementById('m-score').innerText=`${(a.ml_score*100).toFixed(1)}% Propensity`;
         modal.style.display='flex';

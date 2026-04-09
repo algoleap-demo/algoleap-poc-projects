@@ -7,6 +7,7 @@ from datetime import datetime
 class NBAAction(BaseModel):
     action_type: str
     description: str
+    reasoning: str
     due_in_days: int
 
 # Single Account Result Schema

@@ -29,6 +29,7 @@ def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw:
         nba = NBAAction(
             action_type=nba_data["action_type"],
             description=nba_data["description"],
+            reasoning=nba_data["reasoning"],
             due_in_days=nba_data["due_in_days"]
         )
         
