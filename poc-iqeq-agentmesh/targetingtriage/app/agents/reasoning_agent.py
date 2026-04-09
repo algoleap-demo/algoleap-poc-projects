@@ -14,15 +14,25 @@ Given an account with:
 - tier_1_conf_count: {tier_1_count}
 - segment: {segment}, country: {country}
 
-Assign a priority bucket (A, B, or C) and write a one-sentence rationale.
+Assign a priority bucket (A, B, or C), write a one-sentence rationale, and suggest the Next Best Action (NBA).
 
-Rules:
-- Bucket A: strong commercial signal AND contextual catalyst (high ML score + high context)
-- Bucket B: moderate signal OR mixed context (medium ML score or some context)
-- Bucket C: weak signal AND no contextual catalyst (low ML score + low context)
-- Rationale must reference at least one specific signal.
+NBA Rules:
+- action_type: one of ["call", "email", "meeting", "send_link", "schedule"]
+- description: concise action summary (e.g., "Schedule Q3 Strategy Review")
+- reasoning: why this specific action for this specific client signal?
+- due_in_days: integer (priority A: 1-5, B: 7-21, C: 30-90)
 
-Return strict JSON: {{"priority_bucket": "A|B|C", "rationale_text": "..."}}"""
+Return strict JSON: 
+{{
+  "priority_bucket": "A|B|C", 
+  "rationale_text": "...",
+  "suggested_nba": {{
+    "action_type": "...",
+    "description": "...",
+    "reasoning": "...",
+    "due_in_days": 10
+  }}
+}}"""
 
 async def process_account_reasoning(acc_id, s_res, raw_data, i, total):
     accounts_df = raw_data["accounts"]
@@ -42,17 +52,30 @@ async def process_account_reasoning(acc_id, s_res, raw_data, i, total):
     
     try:
         res = await call_router(prompt)
+        default_nba = {
+            "action_type": "email",
+            "description": "Follow up on automated scoring",
+            "reasoning": "Standard follow-up based on propensity signals.",
+            "due_in_days": 7
+        }
         return {
             "account_id": acc_id,
             "priority_bucket": res.get("priority_bucket", "B"),
-            "rationale_text": res.get("rationale_text", "Processing complete.")
+            "rationale_text": res.get("rationale_text", "Processing complete."),
+            "suggested_nba": res.get("suggested_nba", default_nba)
         }
     except Exception as e:
         # Fallback in case of LLM failure
         return {
             "account_id": acc_id,
             "priority_bucket": "B",
-            "rationale_text": f"Contextual reasoning fallback due to connection error."
+            "rationale_text": f"Contextual reasoning fallback due to connection error.",
+            "suggested_nba": {
+                "action_type": "email",
+                "description": "Manual review required",
+                "reasoning": "LLM connection error during dynamic NBA synthesis.",
+                "due_in_days": 1
+            }
         }
 
 async def run_reasoning_agent(scoring_results: list, raw_data: dict):

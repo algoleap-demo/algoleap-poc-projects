@@ -36,11 +36,15 @@ def run_scoring_agent(raw_data: dict):
     tracker.emit("ag-ml", "processing", message=f"Running model scoring on {len(X)} records...")
     probs = clf.predict_proba(X)[:, 1]
     
-    for i, acc_id in enumerate(accounts):
+        # Calculate dynamic confidence based on distance from decision boundary (0.5)
+        # Prob close to 0 or 1 = High Confidence; Prob close to 0.5 = Low Confidence
+        raw_prob = float(probs[i])
+        confidence = min(0.98, (abs(raw_prob - 0.5) / 0.5) * 0.4 + 0.55) 
+        
         results.append({
             "account_id": acc_id,
-            "propensity_score": float(probs[i]),
-            "confidence_level": 0.95 # Mock confidence for POC1
+            "propensity_score": raw_prob,
+            "confidence_level": confidence
         })
         
     avg_score = np.mean(probs)

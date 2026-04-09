@@ -42,6 +42,7 @@ class ReasoningOutput(BaseModel):
     account_id: str
     priority_bucket: str
     rationale_text: str
+    suggested_nba: NBAAction
 
 # Validation Agent Output (Per Account)
 class ValidationOutput(BaseModel):

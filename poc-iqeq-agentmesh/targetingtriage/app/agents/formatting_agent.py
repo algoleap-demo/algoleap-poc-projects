@@ -24,13 +24,13 @@ def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw:
         v = validation_map[acc_id]
         meta = accounts_map.get(acc_id, {"account_name": acc_id, "contact_person": "Unknown"})
         
-        # Rule-based NBA resolution
-        nba_data = NBA_RESOLUTION[r["priority_bucket"]]
+        # Bespoke NBA resolution from LLM
+        res_nba = r["suggested_nba"]
         nba = NBAAction(
-            action_type=nba_data["action_type"],
-            description=nba_data["description"],
-            reasoning=nba_data["reasoning"],
-            due_in_days=nba_data["due_in_days"]
+            action_type=res_nba["action_type"],
+            description=res_nba["description"],
+            reasoning=res_nba["reasoning"],
+            due_in_days=res_nba["due_in_days"]
         )
         
         # Assemble AccountResult
