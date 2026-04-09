@@ -45,13 +45,13 @@ async def run_pipeline():
     start_time = time.time()
     
     # 0. Orchestrator START
-    tracker.emit("ag-orch", "START", trace_id, "", "RULE", "PLAN", message=f"Pipeline initiated. Trace: {trace_id}")
+    tracker.emit("ag-orch", "START", f"Pipeline initiated. Trace: {trace_id}", trace_id=trace_id, agent_type="RULE", stage="PLAN")
     await asyncio.sleep(5.0) # Show Orchestrator active
     
     try:
         # --- 1. Data Agent ---
         span_id = str(uuid.uuid4())
-        tracker.emit("ag-data", "START", trace_id, span_id, "API", "PLAN", message="Ingesting synthetic account data...")
+        tracker.emit("ag-data", "START", "Ingesting synthetic account data...", trace_id=trace_id, span_id=span_id, agent_type="API", stage="PLAN")
         await asyncio.sleep(5.0) # STAY YELLOW for 5s
         
         t0 = time.time()
@@ -59,11 +59,11 @@ async def run_pipeline():
         duration = time.time() - t0
         
         log_audit(trace_id, "data_agent", duration, None, raw_data)
-        tracker.emit("ag-data", "END", trace_id, span_id, "API", "OUTPUT", message=f"Data ingestion complete. {len(raw_data)} accounts loaded.")
+        tracker.emit("ag-data", "END", f"Data ingestion complete. {len(raw_data)} accounts loaded.", trace_id=trace_id, span_id=span_id, agent_type="API", stage="OUTPUT")
 
         # --- 2. Scoring Agent ---
         span_id = str(uuid.uuid4())
-        tracker.emit("ag-ml", "START", trace_id, span_id, "ML", "ACTION", message="Executing XGBoost propensity scoring...")
+        tracker.emit("ag-ml", "START", "Executing XGBoost propensity scoring...", trace_id=trace_id, span_id=span_id, agent_type="ML", stage="ACTION")
         await asyncio.sleep(5.0) # STAY YELLOW for 5s
         
         t0 = time.time()
@@ -71,11 +71,11 @@ async def run_pipeline():
         duration = time.time() - t0
         
         log_audit(trace_id, "scoring_agent", duration, raw_data, scoring_results)
-        tracker.emit("ag-ml", "END", trace_id, span_id, "ML", "OUTPUT", message="Machine learning inference complete.")
+        tracker.emit("ag-ml", "END", "Machine learning inference complete.", trace_id=trace_id, span_id=span_id, agent_type="ML", stage="OUTPUT")
 
         # --- 3. Reasoning Agent ---
         span_id = str(uuid.uuid4())
-        tracker.emit("ag-reason", "START", trace_id, span_id, "LLM", "DECISION", message="Analyzing contextual catalysts via LLM...")
+        tracker.emit("ag-reason", "START", "Analyzing contextual catalysts via LLM...", trace_id=trace_id, span_id=span_id, agent_type="LLM", stage="DECISION")
         await asyncio.sleep(5.0) # STAY YELLOW for 5s
         
         t0 = time.time()
@@ -83,11 +83,11 @@ async def run_pipeline():
         duration = time.time() - t0
         
         log_audit(trace_id, "reasoning_agent", duration, {"scores": scoring_results}, reasoning_results)
-        tracker.emit("ag-reason", "END", trace_id, span_id, "LLM", "OUTPUT", message="Contextual reasoning generated.")
+        tracker.emit("ag-reason", "END", "Contextual reasoning generated.", trace_id=trace_id, span_id=span_id, agent_type="LLM", stage="OUTPUT")
 
         # --- 4. Validation Agent ---
         span_id = str(uuid.uuid4())
-        tracker.emit("ag-valid", "START", trace_id, span_id, "RULE", "PLAN", message="Performing cross-agent conflict audits...")
+        tracker.emit("ag-valid", "START", "Performing cross-agent conflict audits...", trace_id=trace_id, span_id=span_id, agent_type="RULE", stage="PLAN")
         await asyncio.sleep(5.0) # STAY YELLOW for 5s
         
         t0 = time.time()
@@ -95,11 +95,11 @@ async def run_pipeline():
         duration = time.time() - t0
         
         log_audit(trace_id, "validation_agent", duration, {"scores": scoring_results}, validation_results)
-        tracker.emit("ag-valid", "END", trace_id, span_id, "RULE", "OUTPUT", message="Validation audit complete.")
+        tracker.emit("ag-valid", "END", "Validation audit complete.", trace_id=trace_id, span_id=span_id, agent_type="RULE", stage="OUTPUT")
 
         # --- 5. Formatting Agent ---
         span_id = str(uuid.uuid4())
-        tracker.emit("ag-fmt", "START", trace_id, span_id, "API", "ACTION", message="Resolving NBAs and formatting final payload...")
+        tracker.emit("ag-fmt", "START", "Resolving NBAs and formatting final payload...", trace_id=trace_id, span_id=span_id, agent_type="API", stage="ACTION")
         await asyncio.sleep(5.0) # STAY YELLOW for 5s
         
         t0 = time.time()
@@ -114,11 +114,11 @@ async def run_pipeline():
         duration = time.time() - t0
         
         log_audit(trace_id, "formatting_agent", duration, {"v": validation_results}, final_response.dict())
-        tracker.emit("ag-fmt", "END", trace_id, span_id, "API", "OUTPUT", message="Final output validated and formatted.")
+        tracker.emit("ag-fmt", "END", "Final output validated and formatted.", trace_id=trace_id, span_id=span_id, agent_type="API", stage="OUTPUT")
         
         # 6. Final Orchestrator END
         total_duration = time.time() - start_time
-        tracker.emit("ag-orch", "END", trace_id, "", "RULE", "OUTPUT", message=f"Pipeline completed in {total_duration:.2f}s.")
+        tracker.emit("ag-orch", "END", f"Pipeline completed in {total_duration:.2f}s.", trace_id=trace_id, agent_type="RULE", stage="OUTPUT")
         
         return final_response.dict()
         

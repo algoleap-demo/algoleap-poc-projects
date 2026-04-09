@@ -3,7 +3,7 @@ import pandas as pd
 from app.progress_tracker import tracker
 
 def run_data_agent():
-    tracker.emit("ag-data", "started", "Loading synthetic datasets from data/synthetic/...")
+    tracker.emit("ag-data", "started", message="Loading synthetic datasets from data/synthetic/...")
     
     data_dir = "data/synthetic"
     tables = [
@@ -22,7 +22,7 @@ def run_data_agent():
         raw_data[table] = pd.read_csv(path)
     
     # Validation: Referential Integrity
-    tracker.emit("ag-data", "processing", "Validating referential integrity...")
+    tracker.emit("ag-data", "processing", message="Validating referential integrity...")
     account_ids = set(raw_data["accounts"].account_id)
     
     for table in ["opportunities", "snowflake_metrics", "external_funds", "conference_attendance"]:
@@ -32,5 +32,5 @@ def run_data_agent():
             tracker.emit("ag-data", "error", error_msg)
             raise ValueError(error_msg)
             
-    tracker.emit("ag-data", "completed", f"Data Agent successfully loaded {len(raw_data['accounts'])} accounts.")
+    tracker.emit("ag-data", "completed", message=f"Data Agent successfully loaded {len(raw_data['accounts'])} accounts.")
     return raw_data

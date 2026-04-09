@@ -5,7 +5,7 @@ from datetime import datetime
 import uuid
 
 def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw: list, full_raw: dict, model_version: str, run_id: str):
-    tracker.emit("ag-fmt", "START", run_id, str(uuid.uuid4()), "API", "PLAN", message="Resolving account identities and NBA mappings...")
+    tracker.emit("ag-fmt", "START", "Resolving account identities and NBA mappings...", trace_id=run_id, span_id=str(uuid.uuid4()), agent_type="API", stage="PLAN")
     
     # Map for easy assembly
     scoring_map = {r["account_id"]: r for r in scoring_raw}

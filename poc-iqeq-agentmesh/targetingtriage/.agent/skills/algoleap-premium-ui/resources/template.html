@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoleap POC Template</title>
+    <!-- Standard Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Syne:wght@700;800&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Base Stylesheet -->
+    <link rel="stylesheet" href="resources/algoleap-base.css">
+</head>
+<body>
+
+<!-- NBA Modal -->
+<div id="modal-overlay">
+    <div class="modal">
+        <div class="modal-hdr"><h2 id="m-name">Account Actions</h2><p id="m-id"></p></div>
+        <div class="modal-body">
+            <div class="modal-nba-box">
+                <div class="modal-label">Next Best Action</div>
+                <div id="m-nba-type" class="modal-val"></div>
+                <div id="m-nba-desc"></div>
+            </div>
+            <button class="close-btn" onclick="closeModal()">Close Details</button>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<div class="hdr">
+  <div class="hdr-l">
+      <!-- REPLACE WITH YOUR LOGO -->
+      <div style="font-weight:800; font-size: 20px;">[LOGO]</div>
+      <div style="width:1px;height:24px;background:#E5E7EB"></div>
+      <div class="hdr-t">POC Dashboard Title</div>
+  </div>
+  <div class="hdr-b">ISO 42001 GOVERNANCE</div>
+</div>
+
+<!-- View Mode Bar -->
+<div class="view-bar">
+  View Mode &rarr; 
+  <div class="btns">
+    <button class="btn on" onclick="startRun()">Execute Pipeline</button>
+  </div>
+</div>
+
+<main>
+    <!-- Left: Visualization Canvas -->
+    <div class="canvas-container">
+        <svg class="mesh" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <rect x="100" y="100" width="800" height="400" rx="20" fill="none" stroke="#CBD5E1" stroke-dasharray="8 4"/>
+            <text x="500" y="80" text-anchor="middle" font-weight="800" fill="#CBD5E1">VISUALIZATION AREA</text>
+            
+            <!-- Example Agent Node -->
+            <g id="ag-data" class="ag ag-on" transform="translate(400, 250)">
+                <rect width="200" height="100" rx="12" fill="#FFF" stroke="#E5E7EB" stroke-width="2"/>
+                <text x="100" y="55" text-anchor="middle" font-weight="700">Sample Agent</text>
+            </g>
+        </svg>
+    </div>
+
+    <!-- Right: Data/Logs Panel -->
+    <div class="data-pane">
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('logs')">AGENT LOGS</div>
+            <div class="tab" onclick="switchTab('resp')">RESULTS</div>
+        </div>
+        <div id="logs" class="pane-content active"></div>
+        <div id="resp" class="pane-content"></div>
+    </div>
+</main>
+
+<script>
+    function switchTab(t) {
+        document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+        document.querySelectorAll('.pane-content').forEach(x => x.classList.remove('active'));
+        // Logic to toggle based on selection
+    }
+
+    function closeModal() { document.getElementById('modal-overlay').style.display='none'; }
+
+    // SSE and Rendering logic would go here
+</script>
+</body>
+</html>

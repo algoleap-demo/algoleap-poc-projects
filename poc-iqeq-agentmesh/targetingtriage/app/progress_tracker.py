@@ -19,38 +19,27 @@ class ProgressTracker:
     def emit(self, 
              agent_name: str, 
              status: str, 
-             trace_id: str = "",
-             span_id: str = "",
-             agent_type: str = "RULE",
-             stage: str = "PLAN",
-             decision: str = "",
-             reason_summary: str = "",
-             inputs: Dict[str, Any] = None,
-             outputs: Dict[str, Any] = None,
-             tool_name: str = "",
-             tool_status: str = "",
-             confidence: float = 1.0,
-             latency_ms: int = 0,
-             message: str = ""):
+             message: str = "",
+             **kwargs):
         
-        # Construct the requested structured log
+        # Merge kwargs with defaults
         payload = {
             "timestamp": datetime.now().isoformat(),
-            "trace_id": trace_id,
-            "span_id": span_id,
+            "trace_id": kwargs.get("trace_id", ""),
+            "span_id": kwargs.get("span_id", ""),
             "agent_name": agent_name,
-            "agent_type": agent_type, # LLM | ML | RULE | API
-            "stage": stage, # PLAN | DECISION | ACTION | TOOL | OUTPUT | ERROR
-            "decision": decision,
-            "reason_summary": reason_summary,
-            "inputs": inputs or {},
-            "outputs": outputs or {},
-            "tool_name": tool_name,
-            "tool_status": tool_status, # SUCCESS | FAILED
-            "confidence": confidence,
-            "latency_ms": latency_ms,
-            "status": status, # START | IN_PROGRESS | END | FAILED
-            "message": message # For UI backwards compatibility
+            "agent_type": kwargs.get("agent_type", "RULE"), 
+            "stage": kwargs.get("stage", "PLAN"),
+            "decision": kwargs.get("decision", ""),
+            "reason_summary": kwargs.get("reason_summary", ""),
+            "inputs": kwargs.get("inputs", {}),
+            "outputs": kwargs.get("outputs", {}),
+            "tool_name": kwargs.get("tool_name", ""),
+            "tool_status": kwargs.get("tool_status", ""),
+            "confidence": kwargs.get("confidence", 1.0),
+            "latency_ms": kwargs.get("latency_ms", 0),
+            "status": status,
+            "message": message 
         }
         
         event_str = f"data: {json.dumps(payload)}\n\n"

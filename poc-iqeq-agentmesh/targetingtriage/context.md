@@ -50,6 +50,10 @@ Every agent must emit events via SSE (`ProgressTracker`):
   "message": "Human readable progress update"
 }
 ```
+To maintain a premium feel, the following standards are enforced:
+- **Typewriter Speed**: 15ms per character for recommendations to simulate "thinking" and improve readability.
+- **Visual Feedback**: Independent scroll containers for agent logs to prevent workspace jitter.
+
 
 ## 5. Directory Structure
 - `/app`: Implementation of agents, schemas, and core logic.

@@ -5,7 +5,7 @@ from app.progress_tracker import tracker
 from app.constants import ML_HIGH_THRESHOLD, ML_LOW_THRESHOLD, LLM_BUCKET_TO_LEVEL
 
 def run_validation_agent(scoring_results: list, reasoning_results: list, run_id: str):
-    tracker.emit("ag-valid", "started", "Running cross-agent conflict validation...")
+    tracker.emit("ag-valid", "started", message="Running cross-agent conflict validation...")
     
     # Map reasoning results for easy lookup
     reasoning_map = {r["account_id"]: r for r in reasoning_results}
@@ -32,7 +32,7 @@ def run_validation_agent(scoring_results: list, reasoning_results: list, run_id:
             
             if is_conflict:
                 conflicts_found += 1
-                tracker.emit("ag-valid", "warning", f"Conflict detected on {acc_id}: ML={ml_level}, LLM={llm_level}")
+                tracker.emit("ag-valid", "warning", message=f"Conflict detected on {acc_id}: ML={ml_level}, LLM={llm_level}")
                 
                 # Append to governance queue
                 gov_entry = {
@@ -52,5 +52,5 @@ def run_validation_agent(scoring_results: list, reasoning_results: list, run_id:
                 "conflict_flag": is_conflict
             })
             
-    tracker.emit("ag-valid", "completed", f"Validation complete. {conflicts_found} conflicts surfaced and logged to governance queue.")
+    tracker.emit("ag-valid", "completed", message=f"Validation complete. {conflicts_found} conflicts surfaced and logged to governance queue.")
     return results

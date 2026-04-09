@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algoleap &middot; IQ-EQ Agent Mesh</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-primary: #3C8943;
@@ -23,25 +23,25 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Syne', sans-serif; background: var(--bg-light); color: #111827; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: #111827; height: 100vh; display: flex; flex-direction: column; overflow: hidden; -webkit-font-smoothing: antialiased; }
 
         /* --- Header --- */
         .hdr { background: #FFFFFF; padding: 12px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); z-index: 20; }
         .hdr-l { display: flex; align-items: center; gap: 20px; }
         .logo { height: 32px; width: auto; }
-        .hdr-t { font-size: 15px; font-weight: 800; color: #111827; }
+        .hdr-t { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: #111827; }
         .hdr-b { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 4px 12px; border: 1px solid #E5E7EB; border-radius: 20px; color: #6B7280; }
 
         .view-bar { background: #fff; border-bottom: 1px solid var(--border-color); padding: 5px 40px; display: flex; align-items: center; gap: 15px; z-index: 10; font-size: 10px; color: #9CA3AF; font-weight: 700; text-transform: uppercase; }
         .btns { display: flex; gap: 10px; margin-left: 10px; }
-        .btn { padding: 6px 16px; border-radius: 20px; border: 1.5px solid #E5E7EB; background: #FFF; cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 11px; color: #4B5563; transition: 0.2s; white-space: nowrap; }
+        .btn { padding: 6px 16px; border-radius: 20px; border: 1.5px solid #E5E7EB; background: #FFF; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 11px; color: #4B5563; transition: 0.2s; white-space: nowrap; }
         .btn span { font-size: 9px; opacity: 0.5; margin-left: 5px; font-weight: 400; }
         .btn.on { border-color: var(--brand-blue); color: var(--brand-blue); background: #EFF6FF; }
         .btn:hover:not(.on) { border-color: #D1D5DB; background: #F9FAFB; }
 
         /* --- Main Layout --- */
         main { display: flex; flex: 1; overflow: hidden; }
-        .canvas-container { flex: 7; padding: 30px; display: flex; justify-content: center; align-items: center; overflow: auto; background: #F8F9FB; position: relative; }
+        .canvas-container { flex: 1; min-width: 0; padding: 20px; display: flex; justify-content: center; align-items: center; overflow: auto; background: #F8F9FB; position: relative; }
         svg.mesh { 
             width: 100%; 
             max-width: 1000px; 
@@ -50,11 +50,11 @@
             overflow: visible; 
         }
 
-        .data-pane { flex: 3; background: #FFF; border-left: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .data-pane { flex: 1; min-width: 0; background: #FFF; border-left: 1px solid var(--border-color); display: flex; flex-direction: column; }
         .tabs { display: flex; background: #FFF; border-bottom: 2px solid #F3F4F6; }
         .tab { flex: 1; text-align: center; padding: 14px 0; font-size: 11px; font-weight: 800; cursor: pointer; color: #9CA3AF; border-bottom: 2px solid transparent; letter-spacing: 0.5px; }
         .tab.active { color: var(--brand-primary); border-bottom-color: var(--brand-primary); }
-        .pane-content { display: none; flex: 1; overflow-y: auto; padding: 15px; }
+        .pane-content { display: none; height: calc(100vh - 120px); overflow-y: scroll; padding: 20px; scrollbar-width: thin; scrollbar-color: #E5E7EB transparent; }
         .pane-content.active { display: flex; flex-direction: column; }
 
         /* --- Response Cards (New Styled) --- */
@@ -65,13 +65,13 @@
         .response-card:hover { transform: translateY(-2px); border-color: var(--brand-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
         
         .card-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-        .acc-id { font-weight: 800; font-size: 15px; color: var(--acc-id-color); letter-spacing: -0.2px; }
+        .acc-id { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: var(--acc-id-color); letter-spacing: -0.3px; }
         .bucket-badge { background: #3C8943; color: #FFF; font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 20px; }
         .bucket-B { background: #F59E0B; }
         .bucket-C { background: #6B7280; }
 
         .rationale-box { background: #F8F9FB; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
-        .rationale-text { font-family: 'Roboto', sans-serif; font-size: 12.5px; color: #4B5563; line-height: 1.5; font-weight: 400; }
+        .rationale-text { font-family: 'Inter', sans-serif; font-size: 12.5px; color: #4B5563; line-height: 1.6; font-weight: 400; }
 
         .score-row { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 800; }
         .score-lbl { color: var(--brand-primary); }
@@ -83,8 +83,8 @@
         .trace-status { width: 8px; height: 8px; border-radius: 50%; background: #D1D5DB; }
         .trace-status.active { background: var(--status-executing); }
         .trace-status.done { background: var(--status-completed); }
-        .trace-agent { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: #374151; background: #F3F4F6; padding: 2px 6px; border-radius: 4px; }
-        .trace-desc { font-family: 'Roboto', sans-serif; font-size: 11.5px; color: #6B7280; line-height: 1.4; }
+        .trace-agent { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #374151; background: #F3F4F6; padding: 3px 8px; border-radius: 4px; }
+        .trace-desc { font-family: 'Inter', sans-serif; font-size: 13.5px; color: #4B5563; line-height: 1.5; font-weight: 400; }
 
         /* --- Modal --- */
         #modal-overlay { 
@@ -107,6 +107,41 @@
         }
         .close-btn:hover { background: #E5E7EB; }
 
+        .nba-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #F0FDF4;
+            border-radius: 8px;
+            border: 0px solid #DCFCE7;
+            margin: 0;
+        }
+        .nba-panel.open {
+            max-height: 500px;
+            padding: 16px;
+            border-width: 1.5px;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .nba-hdr-row {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--brand-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nba-desc { font-size: 13px; color: #374151; margin-bottom: 12px; font-weight: 500; font-family: 'Roboto', sans-serif; }
+        .nba-reasoning { font-size: 11.5px; color: #6B7280; font-style: italic; line-height: 1.4; }
+        .nba-contact { font-size: 11px; color: #9CA3AF; margin-top: 10px; font-weight: 700; }
+        
+        /* Rotate arrow on Link */
+        .nba-link span { transition: 0.3s; display: inline-block; }
+        .response-card.active .nba-link span { transform: rotate(90deg); }
+
         /* --- SVG Mesh Highlight --- */
         .ag { transition: 0.4s; filter: grayscale(1); opacity: 0.4; }
         .ag-on { filter: grayscale(0); opacity: 1; }
@@ -120,25 +155,6 @@
 </head>
 <body>
 
-<div id="modal-overlay">
-    <div class="modal">
-        <div class="modal-hdr"><h2 id="m-name" style="font-size:18px">Account Actions</h2><p id="m-id" style="font-size:11px;opacity:0.8"></p></div>
-        <div class="modal-body">
-            <div class="modal-nba-box">
-                <div class="modal-label">Next Best Action</div>
-                <div id="m-nba-type" class="modal-val" style="color:var(--brand-primary)"></div>
-                <div id="m-nba-desc" style="font-size:13px;color:#374151;margin-bottom:12px"></div>
-                <div class="modal-label">Why this action?</div>
-                <div id="m-nba-reason" style="font-size:12px;color:#6B7280;font-style:italic"></div>
-            </div>
-            <div class="modal-label">Contact Person</div>
-            <div id="m-contact" class="modal-val"></div>
-            <div class="modal-label">ML Score</div>
-            <div id="m-score" class="modal-val"></div>
-            <button class="close-btn" onclick="closeModal()">Close Details</button>
-        </div>
-    </div>
-</div>
 
 <div class="hdr">
   <div class="hdr-l"><img src="/assets/Algoleap_logo.png" alt="Algoleap" class="logo"><div style="width:1px;height:24px;background:#E5E7EB"></div><div class="hdr-t">IQ-EQ Agent Mesh Dashboard</div></div>
@@ -151,7 +167,6 @@
     <button class="btn on" data-p="1" onclick="pick(1)">Targeting &amp; Triage <span>POC 1</span></button>
     <button class="btn" data-p="2" onclick="pick(2)">Account Planning <span>POC 2</span></button>
     <button class="btn" data-p="3" onclick="pick(3)">Whitespace Analysis <span>POC 3</span></button>
-    <button class="btn" data-p="0" onclick="pick(0)">Full Agent Mesh <span>All POCs</span></button>
   </div>
 </div>
 
@@ -164,17 +179,20 @@
             </defs>
 
             <!-- Shared Agent Pool Background -->
-            <rect x="280" y="80" width="700" height="740" rx="16" fill="none" stroke="#F1F5F9" stroke-width="2" stroke-dasharray="10 5"/>
-            <text x="630" y="105" font-size="10" font-weight="800" fill="#CBD5E1" text-anchor="middle" style="letter-spacing:1px">SHARED AGENT POOL</text>
+            <rect x="280" y="100" width="700" height="710" rx="16" fill="none" stroke="#F1F5F9" stroke-width="2" stroke-dasharray="10 5"/>
+            <text x="630" y="125" font-size="10" font-weight="800" fill="#CBD5E1" text-anchor="middle" style="letter-spacing:1px">SHARED AGENT POOL</text>
 
-            <!-- Orchestrator (Permanent Left) -->
-            <g id="ag-orch" class="ag ag-on" style="transform:translate(20px, 120px)">
-                <rect width="230" height="660" rx="14" fill="#FFF" stroke="#E5E7EB" stroke-width="2"/>
-                <path d="M0,14 Q0,0 14,0 L216,0 Q230,0 230,14 L230,50 L0,50 Z" fill="#1D4ED8"/>
-                <text font-weight="800" font-size="13" fill="white" x="115" y="32" text-anchor="middle">Orchestration Agent</text>
-                <text font-size="9" fill="#93C5FD" x="115" y="65" text-anchor="middle">Single instance &middot; hub of the mesh</text>
-                <line x1="20" y1="85" x2="210" y2="85" stroke="#F1F5F9" stroke-width="1"/>
+            <!-- Orchestrator (Top Horizontal) -->
+            <g id="ag-orch" class="ag ag-on" style="transform:translate(320px, 20px)">
+                <rect width="620" height="60" rx="12" fill="#FFF" stroke="#E5E7EB" stroke-width="2"/>
+                <path d="M0,12 Q0,0 12,0 L14,0 L14,60 L0,60 Z" fill="#1D4ED8"/>
+                <text font-weight="800" font-size="14" fill="#1D4ED8" x="25" y="36" text-anchor="start">Orchestration Agent</text>
+                <text font-size="9" fill="#94A3B8" x="600" y="36" text-anchor="end">PIPELINE MASTER CONTROL</text>
             </g>
+
+            <!-- Initiative Arrow: Orch -> Data -->
+            <line x1="630" y1="80" x2="630" y2="140" class="path-line path-on" marker-end="url(#arr-on)"/>
+            <text x="640" y="115" font-size="9" font-weight="700" fill="#3C8943">INITIATE</text>
 
             <!-- Path Indicators (Connections) -->
             <path id="path-1" class="path-line" d="M250 180 H300 V180 H330"/>
@@ -182,17 +200,17 @@
             <!-- STEP 1: Data -->
             <g id="ag-data" class="ag ag-on" style="transform:translate(320px, 150px)">
                 <rect width="620" height="60" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
-                <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Data Agent</text>
+                <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Data Agent Layer</text>
             </g>
 
             <!-- STEP 2: ML & Brief -->
             <g id="ag-ml" class="ag ag-on" style="transform:translate(320px, 260px)">
                 <rect width="300" height="80" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
-                <text font-weight="700" font-size="12" fill="#374151" x="150" y="45" text-anchor="middle">ML / Whitespace Scoring Agent</text>
+                <text font-weight="700" font-size="12" fill="#374151" x="150" y="45" text-anchor="middle">ML / Whitespace Scoring</text>
             </g>
             <g id="ag-brief" class="ag" style="transform:translate(640px, 260px)">
                 <rect width="300" height="80" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
-                <text font-weight="700" font-size="12" fill="#374151" x="150" y="45" text-anchor="middle">Brief Agent LLM</text>
+                <text font-weight="700" font-size="12" fill="#374151" x="150" y="45" text-anchor="middle">Briefing Layer LLM</text>
             </g>
 
             <!-- STEP 3: Reasoning, Call Plan, Campaign -->
@@ -221,6 +239,10 @@
                 <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Formatting Agent</text>
             </g>
 
+            <!-- Return Arrow: Fmt -> Orch -->
+            <path id="path-return" class="path-line path-on" d="M320 670 H290 V50 H320" marker-end="url(#arr-on)" style="stroke-dasharray: 4 2"/>
+            <text x="285" y="350" font-size="9" font-weight="700" fill="#3C8943" transform="rotate(-90, 285, 350)" text-anchor="middle">RETURN PAYLOAD</text>
+
             <!-- Connection lines (P1 focus) -->
             <line x1="630" y1="210" x2="630" y2="250" class="path-line path-on" marker-end="url(#arr-on)"/>
             <line x1="470" y1="340" x2="470" y2="380" class="path-line path-on" marker-end="url(#arr-on)"/>
@@ -237,7 +259,6 @@
 
 <script>
     const logs=document.getElementById('logs'), resp=document.getElementById('resp'), tabs=document.querySelectorAll('.tab'), panes=document.querySelectorAll('.pane-content');
-    const modal=document.getElementById('modal-overlay');
     const ALL_AGENTS=['ag-orch','ag-data','ag-ml','ag-brief','ag-reason','ag-call','ag-camp','ag-valid','ag-fmt'];
     const POC_MAP = {
         1: ['ag-orch','ag-data','ag-ml','ag-reason','ag-valid','ag-fmt'],
@@ -264,41 +285,99 @@
 
     tabs.forEach(t=>{ t.onclick=()=>{ tabs.forEach(x=>x.classList.remove('active')); panes.forEach(x=>x.classList.remove('active')); t.classList.add('active'); document.getElementById(t.dataset.target).classList.add('active'); }});
 
-    function updStatus(id,s){ const n=document.getElementById(id); if(!n)return; if(s==='START'){n.classList.remove('ag-completed');n.classList.add('ag-active');} else{n.classList.remove('ag-active');n.classList.add('ag-completed');}}
+    function updStatus(id,s){ 
+        const n=document.getElementById(id); 
+        if(!n)return; 
+        if(s==='START') {
+            n.classList.remove('ag-completed');
+            n.classList.add('ag-active');
+        } else if(s==='END') {
+            n.classList.remove('ag-active');
+            n.classList.add('ag-completed');
+        }
+    }
 
-    async function start(){
-        logs.innerHTML=''; resp.innerHTML='<div style="text-align:center;padding:4rem;font-size:11px;color:#9CA3AF">Orchestrating Pipeline...</div>';
-        ALL_AGENTS.forEach(id=>document.getElementById(id).classList.remove('ag-active','ag-completed'));
-        const es=new EventSource('/events'); 
-        es.onmessage=(e)=>{ 
-            const l=JSON.parse(e.data); 
+    const typeWriter = (el, text, speed=15) => {
+        return new Promise(resolve => {
+            let i = 0;
+            el.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    resolve();
+                }
+            }
+            type();
+        });
+    };
+
+    let msgQueue = [];
+    let isProcessing = false;
+    let isPipelineDone = false;
+
+    const processQueue = async () => {
+        if (isProcessing || msgQueue.length === 0) return;
+        isProcessing = true;
+        while (msgQueue.length > 0) {
+            const l = msgQueue.shift();
             const c=document.createElement('div'); 
             c.className='trace-card'; 
             const statusClass = l.status === 'START' ? 'active' : (l.status === 'END' ? 'done' : '');
+            const msgText = l.message || l.trace_id || "";
             c.innerHTML=`
                 <div class="trace-hdr">
                     <div class="trace-status ${statusClass}"></div>
                     <div class="trace-agent">${l.agent_name.toUpperCase()}</div>
                     <div style="font-size:9px;color:#9CA3AF;margin-left:auto">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}</div>
                 </div>
-                <div class="trace-desc">${l.message}</div>
+                <div class="trace-desc"></div>
             `;
             logs.appendChild(c); 
             logs.scrollTop=logs.scrollHeight; 
-            updStatus(l.agent_name,l.status); 
+            
+            // Turn YELLOW immediately on START
+            if(l.status === 'START') updStatus(l.agent_name, l.status);
+            
+            await typeWriter(c.querySelector('.trace-desc'), msgText);
+            
+            // Turn GREEN only AFTER typing finishes on END
+            if(l.status === 'END') updStatus(l.agent_name, l.status);
+        }
+        isProcessing = false;
+        if(isPipelineDone) {
+            setTimeout(() => { tabs[1].click(); isPipelineDone = false; }, 1000);
+        }
+    };
+
+    async function start(){
+        isPipelineDone = false;
+        logs.innerHTML=''; resp.innerHTML='<div style="text-align:center;padding:4rem;font-size:11px;color:#9CA3AF">Orchestrating Pipeline...</div>';
+        ALL_AGENTS.forEach(id=>document.getElementById(id).classList.remove('ag-active','ag-completed'));
+        const es=new EventSource('/events'); 
+        es.onmessage=(e)=>{ 
+            msgQueue.push(JSON.parse(e.data));
+            processQueue();
         };
         try {
             const r=await fetch('/score_accounts',{method:'POST'}); const d=await r.json(); es.close();
-            pipelineData = d.accounts; renderResults(); tabs[1].click();
+            pipelineData = d.accounts; renderResults(); 
+            isPipelineDone = true;
+            processQueue(); // Trigger final transition if queue is empty
         } catch(e){ es.close(); }
     }
 
     function renderResults(){
         resp.innerHTML='';
+        // Sort by ml_score descending
+        pipelineData.sort((a, b) => b.ml_score - a.ml_score);
         pipelineData.forEach(a=>{
             const card=document.createElement('div'); card.className='response-card';
             const scorePct = (a.ml_score * 100).toFixed(1);
             const bucketClass = `bucket-${a.priority_bucket}`;
+            const nba = a.nba_actions[0];
             card.innerHTML=`
                 <div class="card-hdr">
                     <div class="acc-id">${a.account_name}</div>
@@ -309,27 +388,38 @@
                 </div>
                 <div class="score-row">
                     <div class="score-lbl">Score: ${scorePct}%</div>
-                    <div class="nba-link">View Actions &rarr;</div>
+                    <div class="nba-link" onclick="toggleNba(event, this)">Next Best Action <span>&rarr;</span></div>
+                </div>
+                <div class="nba-panel">
+                    <div class="nba-hdr-row">
+                        <span>Action: ${nba.action_type.replace('_',' ')}</span>
+                        <span>Due: ${nba.due_in_days}d</span>
+                    </div>
+                    <div class="nba-desc">${nba.description}</div>
+                    <div style="font-size:9px;color:#9CA3AF;text-transform:uppercase;margin-bottom:4px">Why this action?</div>
+                    <div class="nba-reasoning">"${nba.reasoning}"</div>
+                    <div class="nba-contact">Contact: ${a.contact_person}</div>
                 </div>
             `;
-            card.onclick=()=>showModal(a); 
             resp.appendChild(card);
         });
     }
 
-    function showModal(a){
-        const nba = a.nba_actions[0];
-        document.getElementById('m-name').innerText=a.account_name;
-        document.getElementById('m-id').innerText=`${a.account_id} | ${a.priority_bucket} Priority`;
-        document.getElementById('m-nba-type').innerText=nba.action_type.toUpperCase().replace('_',' ');
-        document.getElementById('m-nba-desc').innerText=nba.description;
-        document.getElementById('m-nba-reason').innerText=nba.reasoning;
-        document.getElementById('m-contact').innerText=a.contact_person;
-        document.getElementById('m-score').innerText=`${(a.ml_score*100).toFixed(1)}% Propensity`;
-        modal.style.display='flex';
+    function toggleNba(e, btn){
+        e.stopPropagation();
+        const card = btn.closest('.response-card');
+        const panel = card.querySelector('.nba-panel');
+        const isOpen = panel.classList.contains('open');
+        
+        // Close others for accordion effect (optional, keeping it for focus)
+        document.querySelectorAll('.nba-panel').forEach(p => p.classList.remove('open'));
+        document.querySelectorAll('.response-card').forEach(c => c.classList.remove('active'));
+
+        if(!isOpen) {
+            panel.classList.add('open');
+            card.classList.add('active');
+        }
     }
-    function closeModal(){ modal.style.display='none'; }
-    window.onclick=(e)=>{if(e.target===modal)closeModal();}
     
     // Initial State: Full Mesh View (Visual Only)
     pick(0);
