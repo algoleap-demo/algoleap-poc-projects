@@ -1,0 +1,801 @@
+opp_id,account_id,close_date,stage,status,product_line,deal_size_eur,competitor,win_loss_reason_code,win_loss_notes
+OPP_000001,ACC_IT_0108,2024-02-06,Closed Lost,lost,Middle Office,1310949,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000002,ACC_NL_0097,2022-06-14,Closed Won,won,AIFM,997624,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000003,ACC_FR_0031,2023-01-01,Closed Lost,lost,ESG Reporting,1073061,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000004,ACC_LU_0001,2022-02-16,Closed Lost,lost,Regulatory,1092686,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000005,ACC_LU_0137,2024-02-16,Closed Lost,lost,Middle Office,551931,Competitor C,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000006,ACC_LU_0049,2026-01-24,Closed Lost,lost,Regulatory,2386582,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000007,ACC_IT_0062,2023-02-27,Prospecting,,ESG Reporting,651093,Competitor A,,
+OPP_000008,ACC_IT_0063,2026-02-25,Prospecting,,Middle Office,389791,Competitor B,,
+OPP_000009,ACC_LU_0015,2022-10-14,Closed Won,won,AIFM,4171038,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000010,ACC_LU_0148,2025-05-09,Closed Lost,lost,AIFM,487558,Competitor B,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000011,ACC_NL_0134,2023-03-29,Closed Won,won,Fund Admin,857241,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000012,ACC_FR_0110,2025-02-12,Closed Won,won,Regulatory,1023446,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000013,ACC_LU_0107,2024-04-16,Prospecting,,Middle Office,316624,,,
+OPP_000014,ACC_IT_0062,2023-04-07,Proposal,,Regulatory,1149582,,,
+OPP_000015,ACC_LU_0015,2025-02-25,Closed Won,won,ESG Reporting,2884963,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000016,ACC_IT_0063,2023-06-07,Proposal,,Regulatory,164652,,,
+OPP_000017,ACC_FR_0095,2022-07-09,Closed Won,won,Fund Admin,1708077,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000018,ACC_FR_0019,2023-01-21,Closed Lost,lost,Regulatory,3521527,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000019,ACC_LU_0123,2023-03-04,Closed Lost,lost,Depositary,1437678,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000020,ACC_LU_0055,2023-01-25,Closed Lost,lost,Regulatory,4998074,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000021,ACC_IT_0063,2025-11-25,Closed Won,won,Middle Office,1376933,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000022,ACC_NL_0073,2024-02-19,Closed Won,won,Depositary,1677027,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000023,ACC_LU_0120,2022-07-21,Closed Lost,lost,Depositary,4614487,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000024,ACC_NL_0081,2024-04-27,Prospecting,,AIFM,1124815,Competitor A,,
+OPP_000025,ACC_LU_0067,2025-02-07,Closed Lost,lost,Regulatory,655488,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000026,ACC_FR_0051,2023-11-07,Proposal,,ESG Reporting,1258375,,,
+OPP_000027,ACC_IT_0141,2025-09-02,Closed Lost,lost,Depositary,1156872,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000028,ACC_IT_0126,2024-08-01,Proposal,,Depositary,1261695,,,
+OPP_000029,ACC_IT_0048,2025-01-15,Closed Lost,lost,ESG Reporting,652206,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000030,ACC_LU_0013,2022-01-14,Closed Won,won,Fund Admin,3682263,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000031,ACC_NL_0056,2024-11-01,Closed Won,won,ESG Reporting,974706,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000032,ACC_LU_0125,2022-02-02,Prospecting,,ESG Reporting,2351023,Competitor A,,
+OPP_000033,ACC_NL_0136,2026-01-19,Proposal,,Depositary,74856,,,
+OPP_000034,ACC_LU_0046,2022-08-08,Closed Lost,lost,AIFM,399404,Competitor C,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000035,ACC_IT_0091,2023-07-02,Closed Lost,lost,Depositary,4816840,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000036,ACC_NL_0145,2023-05-14,Closed Lost,lost,Depositary,1041860,Competitor A,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000037,ACC_LU_0009,2022-07-11,Closed Won,won,ESG Reporting,740207,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000038,ACC_NL_0044,2022-06-19,Closed Won,won,Regulatory,4029693,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000039,ACC_NL_0136,2022-03-29,Proposal,,Regulatory,1336953,,,
+OPP_000040,ACC_LU_0070,2022-04-06,Closed Lost,lost,ESG Reporting,3035794,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000041,ACC_LU_0046,2023-10-07,Prospecting,,AIFM,901202,,,
+OPP_000042,ACC_FR_0020,2023-09-05,Proposal,,AIFM,871709,,,
+OPP_000043,ACC_FR_0139,2023-11-11,Negotiation,,Regulatory,1129777,Competitor A,,
+OPP_000044,ACC_NL_0129,2023-12-10,Prospecting,,Middle Office,1544648,Competitor A,,
+OPP_000045,ACC_NL_0088,2025-05-24,Closed Lost,lost,Middle Office,4860142,Competitor C,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000046,ACC_NL_0008,2025-07-22,Proposal,,Middle Office,761375,Competitor C,,
+OPP_000047,ACC_IT_0142,2024-02-08,Closed Won,won,Regulatory,601105,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000048,ACC_IT_0064,2025-12-31,Prospecting,,Depositary,273620,Competitor B,,
+OPP_000049,ACC_IT_0100,2023-10-11,Negotiation,,Fund Admin,57533,Competitor C,,
+OPP_000050,ACC_NL_0114,2024-01-08,Closed Lost,lost,AIFM,892837,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000051,ACC_IT_0115,2025-02-14,Closed Won,won,Fund Admin,618178,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000052,ACC_IT_0142,2022-07-10,Closed Won,won,Middle Office,67893,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000053,ACC_IT_0100,2022-06-23,Closed Lost,lost,AIFM,879342,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000054,ACC_LU_0098,2022-12-14,Prospecting,,Depositary,439189,Competitor B,,
+OPP_000055,ACC_FR_0017,2022-12-09,Closed Won,won,Depositary,752135,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000056,ACC_NL_0093,2023-05-31,Closed Lost,lost,ESG Reporting,944169,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000057,ACC_NL_0028,2022-10-05,Negotiation,,Middle Office,531714,,,
+OPP_000058,ACC_LU_0085,2024-06-20,Negotiation,,Regulatory,1462626,Competitor B,,
+OPP_000059,ACC_NL_0077,2023-10-19,Closed Won,won,Middle Office,1913824,,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000060,ACC_NL_0082,2023-08-20,Closed Lost,lost,ESG Reporting,4018884,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000061,ACC_NL_0097,2023-07-29,Closed Lost,lost,Depositary,215137,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000062,ACC_IT_0140,2023-01-04,Closed Won,won,Fund Admin,1431856,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000063,ACC_IT_0054,2024-06-16,Closed Lost,lost,Middle Office,3528399,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000064,ACC_FR_0078,2023-05-11,Proposal,,AIFM,1087092,,,
+OPP_000065,ACC_FR_0019,2024-07-08,Closed Lost,lost,ESG Reporting,2303622,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000066,ACC_IT_0140,2022-03-17,Closed Lost,lost,Regulatory,1348477,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000067,ACC_NL_0028,2023-05-24,Closed Won,won,AIFM,988149,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000068,ACC_NL_0145,2025-08-14,Closed Won,won,Depositary,1450289,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000069,ACC_NL_0028,2022-01-22,Prospecting,,AIFM,790480,Competitor B,,
+OPP_000070,ACC_IT_0115,2024-02-06,Negotiation,,Regulatory,3148654,Competitor B,,
+OPP_000071,ACC_LU_0089,2022-02-20,Closed Won,won,Middle Office,1384793,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000072,ACC_IT_0030,2026-02-04,Prospecting,,Depositary,2043800,Competitor B,,
+OPP_000073,ACC_NL_0134,2024-09-16,Negotiation,,Fund Admin,685340,,,
+OPP_000074,ACC_NL_0082,2022-05-18,Proposal,,Regulatory,1017883,Competitor C,,
+OPP_000075,ACC_NL_0028,2025-10-18,Closed Lost,lost,ESG Reporting,302957,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000076,ACC_LU_0085,2025-02-20,Closed Won,won,AIFM,1206745,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000077,ACC_IT_0048,2025-08-04,Closed Won,won,Fund Admin,3818247,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000078,ACC_NL_0116,2025-04-27,Closed Won,won,Regulatory,361454,Competitor C,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000079,ACC_FR_0017,2025-03-28,Prospecting,,ESG Reporting,321091,Competitor C,,
+OPP_000080,ACC_FR_0051,2024-07-26,Prospecting,,Regulatory,1300822,Competitor C,,
+OPP_000081,ACC_IT_0100,2025-06-05,Negotiation,,Fund Admin,554490,,,
+OPP_000082,ACC_IT_0045,2025-10-11,Closed Lost,lost,ESG Reporting,905744,Competitor B,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000083,ACC_NL_0081,2022-08-30,Proposal,,Fund Admin,315414,Competitor B,,
+OPP_000084,ACC_IT_0131,2024-03-06,Closed Won,won,ESG Reporting,606379,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000085,ACC_LU_0125,2025-07-25,Closed Won,won,ESG Reporting,1250894,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000086,ACC_LU_0036,2023-01-19,Negotiation,,Middle Office,948144,Competitor C,,
+OPP_000087,ACC_NL_0003,2024-09-19,Prospecting,,Middle Office,4837230,,,
+OPP_000088,ACC_LU_0105,2025-11-03,Closed Won,won,Middle Office,1252640,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000089,ACC_LU_0057,2023-08-22,Prospecting,,AIFM,2919238,Competitor B,,
+OPP_000090,ACC_LU_0118,2025-03-04,Closed Lost,lost,ESG Reporting,2798626,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000091,ACC_FR_0069,2025-01-17,Closed Lost,lost,ESG Reporting,1242785,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000092,ACC_IT_0113,2025-01-23,Proposal,,Middle Office,198503,Competitor B,,
+OPP_000093,ACC_NL_0077,2022-03-08,Closed Won,won,Fund Admin,2475814,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000094,ACC_NL_0061,2023-03-06,Closed Lost,lost,Regulatory,2077838,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000095,ACC_FR_0043,2025-06-15,Prospecting,,AIFM,4160884,Competitor A,,
+OPP_000096,ACC_FR_0146,2023-12-20,Closed Won,won,ESG Reporting,1257698,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000097,ACC_NL_0075,2025-03-18,Proposal,,ESG Reporting,1478958,Competitor A,,
+OPP_000098,ACC_LU_0035,2024-04-22,Closed Lost,lost,Regulatory,233987,Competitor B,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000099,ACC_IT_0064,2022-10-27,Closed Lost,lost,Regulatory,619416,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000100,ACC_LU_0148,2025-07-19,Proposal,,Middle Office,593999,Competitor A,,
+OPP_000101,ACC_LU_0024,2024-04-05,Closed Won,won,Regulatory,1407687,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000102,ACC_IT_0117,2024-09-26,Negotiation,,Fund Admin,1309916,Competitor A,,
+OPP_000103,ACC_LU_0118,2025-07-24,Closed Won,won,Fund Admin,4080550,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000104,ACC_NL_0056,2024-05-29,Closed Lost,lost,Depositary,518154,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000105,ACC_LU_0087,2025-01-25,Closed Won,won,Middle Office,1193040,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000106,ACC_NL_0012,2022-07-23,Closed Won,won,Fund Admin,230143,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000107,ACC_IT_0113,2024-07-23,Prospecting,,Middle Office,343361,Competitor B,,
+OPP_000108,ACC_FR_0078,2022-11-22,Closed Lost,lost,Fund Admin,999152,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000109,ACC_NL_0022,2024-02-01,Closed Won,won,Fund Admin,2283537,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000110,ACC_LU_0060,2024-05-29,Closed Won,won,Fund Admin,359460,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000111,ACC_FR_0034,2025-04-30,Proposal,,Regulatory,2502800,Competitor A,,
+OPP_000112,ACC_NL_0088,2022-09-04,Closed Lost,lost,Regulatory,1094788,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000113,ACC_FR_0059,2024-02-24,Prospecting,,Fund Admin,964406,Competitor C,,
+OPP_000114,ACC_NL_0077,2022-10-08,Negotiation,,AIFM,3387092,Competitor B,,
+OPP_000115,ACC_LU_0018,2024-12-22,Closed Won,won,Regulatory,1238524,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000116,ACC_LU_0055,2025-07-10,Closed Lost,lost,ESG Reporting,3589547,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000117,ACC_NL_0023,2022-07-25,Prospecting,,Fund Admin,904882,,,
+OPP_000118,ACC_LU_0090,2024-05-29,Negotiation,,AIFM,409290,Competitor A,,
+OPP_000119,ACC_IT_0064,2025-02-07,Closed Won,won,Depositary,1179505,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000120,ACC_FR_0078,2023-02-25,Closed Won,won,AIFM,1134373,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000121,ACC_FR_0014,2023-05-06,Closed Won,won,AIFM,2748121,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000122,ACC_NL_0136,2022-01-25,Closed Lost,lost,AIFM,610915,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000123,ACC_LU_0094,2025-01-23,Closed Won,won,Fund Admin,74199,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000124,ACC_IT_0004,2023-06-21,Proposal,,Fund Admin,4769059,,,
+OPP_000125,ACC_FR_0130,2023-08-10,Closed Won,won,Middle Office,2406088,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000126,ACC_NL_0022,2025-08-04,Closed Won,won,AIFM,1748604,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000127,ACC_LU_0021,2024-11-13,Closed Lost,lost,ESG Reporting,1970376,Competitor A,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000128,ACC_NL_0080,2025-12-01,Closed Won,won,Fund Admin,1600158,,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000129,ACC_IT_0030,2024-07-17,Closed Won,won,Depositary,3497358,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000130,ACC_FR_0031,2022-01-26,Closed Lost,lost,AIFM,2733858,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000131,ACC_NL_0134,2024-11-25,Closed Lost,lost,AIFM,589210,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000132,ACC_FR_0031,2022-03-02,Negotiation,,Middle Office,1723912,Competitor A,,
+OPP_000133,ACC_NL_0068,2025-12-29,Closed Lost,lost,Middle Office,710036,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000134,ACC_LU_0015,2024-10-20,Closed Lost,lost,Depositary,1207894,Competitor A,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000135,ACC_NL_0147,2025-10-12,Closed Lost,lost,Regulatory,2789711,Competitor A,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000136,ACC_IT_0004,2023-05-16,Prospecting,,Depositary,2223407,Competitor B,,
+OPP_000137,ACC_LU_0046,2022-03-14,Closed Won,won,AIFM,516612,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000138,ACC_NL_0082,2023-07-10,Closed Lost,lost,Depositary,1037304,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000139,ACC_LU_0046,2023-04-03,Closed Lost,lost,Middle Office,149943,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000140,ACC_NL_0073,2023-09-29,Negotiation,,ESG Reporting,2555357,Competitor C,,
+OPP_000141,ACC_FR_0052,2023-08-21,Closed Won,won,Regulatory,952940,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000142,ACC_FR_0095,2025-04-26,Closed Lost,lost,Regulatory,4551994,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000143,ACC_LU_0039,2022-01-14,Closed Lost,lost,AIFM,835240,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000144,ACC_FR_0086,2022-01-03,Closed Lost,lost,Regulatory,3772467,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000145,ACC_FR_0053,2024-12-21,Closed Lost,lost,Middle Office,4825332,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000146,ACC_LU_0072,2022-07-10,Prospecting,,AIFM,4537793,,,
+OPP_000147,ACC_LU_0096,2024-07-27,Closed Lost,lost,ESG Reporting,188586,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000148,ACC_FR_0101,2022-06-03,Closed Won,won,Middle Office,3480997,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000149,ACC_NL_0061,2023-08-21,Proposal,,Depositary,4667188,,,
+OPP_000150,ACC_FR_0084,2023-10-14,Closed Won,won,Fund Admin,4745996,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000151,ACC_LU_0150,2022-08-12,Proposal,,AIFM,2523050,Competitor C,,
+OPP_000152,ACC_LU_0105,2022-09-05,Closed Won,won,Middle Office,1887384,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000153,ACC_FR_0031,2022-07-05,Proposal,,Regulatory,1868967,Competitor A,,
+OPP_000154,ACC_NL_0056,2023-11-03,Prospecting,,Regulatory,409917,Competitor C,,
+OPP_000155,ACC_IT_0102,2024-11-17,Prospecting,,Depositary,1670750,Competitor B,,
+OPP_000156,ACC_NL_0008,2024-04-08,Closed Lost,lost,Regulatory,847675,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000157,ACC_IT_0119,2022-07-28,Closed Lost,lost,Fund Admin,67337,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000158,ACC_FR_0034,2023-02-10,Closed Lost,lost,Regulatory,3336338,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000159,ACC_LU_0150,2025-04-15,Proposal,,Fund Admin,598100,Competitor A,,
+OPP_000160,ACC_FR_0051,2025-08-15,Closed Won,won,Fund Admin,1362363,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000161,ACC_NL_0032,2022-03-29,Closed Lost,lost,AIFM,4658592,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000162,ACC_IT_0102,2024-10-13,Prospecting,,Regulatory,2419988,Competitor C,,
+OPP_000163,ACC_LU_0055,2023-01-19,Proposal,,Middle Office,4475407,Competitor A,,
+OPP_000164,ACC_IT_0063,2025-08-18,Proposal,,Middle Office,1330028,,,
+OPP_000165,ACC_NL_0016,2022-06-29,Proposal,,AIFM,2386556,Competitor B,,
+OPP_000166,ACC_IT_0140,2022-02-09,Closed Lost,lost,Middle Office,839550,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000167,ACC_LU_0089,2025-03-04,Closed Won,won,Depositary,310733,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000168,ACC_LU_0057,2022-03-02,Closed Lost,lost,Fund Admin,4138942,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000169,ACC_NL_0136,2024-01-03,Closed Lost,lost,AIFM,195194,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000170,ACC_FR_0069,2024-12-28,Closed Lost,lost,AIFM,884753,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000171,ACC_IT_0091,2022-12-22,Proposal,,ESG Reporting,1931019,Competitor C,,
+OPP_000172,ACC_NL_0008,2025-12-11,Closed Lost,lost,ESG Reporting,256048,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000173,ACC_NL_0127,2025-01-15,Negotiation,,Middle Office,670836,Competitor A,,
+OPP_000174,ACC_LU_0060,2025-05-17,Proposal,,ESG Reporting,743084,Competitor C,,
+OPP_000175,ACC_FR_0052,2022-09-25,Negotiation,,AIFM,1382232,Competitor C,,
+OPP_000176,ACC_NL_0016,2022-02-14,Prospecting,,Regulatory,4627508,Competitor A,,
+OPP_000177,ACC_LU_0135,2024-01-18,Closed Lost,lost,Regulatory,1415788,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000178,ACC_LU_0026,2023-11-21,Proposal,,AIFM,1464997,,,
+OPP_000179,ACC_LU_0125,2025-08-22,Negotiation,,Regulatory,4859343,Competitor C,,
+OPP_000180,ACC_NL_0058,2025-09-25,Closed Won,won,Middle Office,494893,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000181,ACC_NL_0033,2022-12-30,Closed Lost,lost,Middle Office,1283597,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000182,ACC_IT_0047,2025-05-18,Negotiation,,ESG Reporting,370298,Competitor A,,
+OPP_000183,ACC_IT_0128,2022-10-16,Negotiation,,Fund Admin,1570981,Competitor C,,
+OPP_000184,ACC_FR_0043,2025-07-26,Closed Lost,lost,Regulatory,3515110,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000185,ACC_IT_0115,2022-01-24,Proposal,,AIFM,3619292,Competitor C,,
+OPP_000186,ACC_LU_0066,2022-08-10,Closed Lost,lost,Middle Office,2471990,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000187,ACC_FR_0043,2024-04-27,Closed Won,won,Depositary,2957107,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000188,ACC_LU_0123,2025-03-29,Closed Won,won,AIFM,704366,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000189,ACC_FR_0076,2022-02-11,Negotiation,,Fund Admin,157590,Competitor B,,
+OPP_000190,ACC_NL_0097,2022-11-26,Closed Lost,lost,Fund Admin,540028,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000191,ACC_NL_0008,2024-06-02,Closed Lost,lost,ESG Reporting,1340142,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000192,ACC_FR_0014,2022-07-27,Negotiation,,AIFM,2341759,Competitor C,,
+OPP_000193,ACC_NL_0073,2023-09-02,Proposal,,Fund Admin,2268059,,,
+OPP_000194,ACC_IT_0040,2022-04-22,Negotiation,,Middle Office,177061,,,
+OPP_000195,ACC_FR_0052,2022-07-18,Prospecting,,AIFM,975376,Competitor A,,
+OPP_000196,ACC_FR_0122,2022-08-25,Negotiation,,Middle Office,732869,Competitor C,,
+OPP_000197,ACC_LU_0024,2025-08-07,Closed Won,won,Depositary,1333964,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000198,ACC_IT_0048,2024-07-01,Prospecting,,Middle Office,2592760,Competitor B,,
+OPP_000199,ACC_FR_0069,2025-03-01,Prospecting,,Regulatory,1017829,Competitor A,,
+OPP_000200,ACC_LU_0089,2025-01-13,Closed Won,won,AIFM,852722,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000201,ACC_NL_0134,2024-05-07,Closed Lost,lost,ESG Reporting,1328398,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000202,ACC_NL_0077,2022-06-11,Closed Won,won,ESG Reporting,3070489,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000203,ACC_FR_0031,2024-07-08,Proposal,,AIFM,4874741,Competitor B,,
+OPP_000204,ACC_NL_0033,2022-03-29,Closed Won,won,AIFM,1496040,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000205,ACC_LU_0067,2023-10-17,Closed Lost,lost,Fund Admin,612743,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000206,ACC_IT_0142,2023-10-30,Closed Lost,lost,Middle Office,1379884,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000207,ACC_NL_0134,2024-05-09,Prospecting,,AIFM,264889,Competitor A,,
+OPP_000208,ACC_NL_0028,2025-02-26,Closed Lost,lost,ESG Reporting,1326196,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000209,ACC_NL_0068,2024-02-24,Closed Won,won,ESG Reporting,735917,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000210,ACC_NL_0071,2024-04-05,Prospecting,,ESG Reporting,3563657,,,
+OPP_000211,ACC_FR_0010,2024-03-21,Closed Lost,lost,Regulatory,394489,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000212,ACC_FR_0069,2024-02-02,Prospecting,,Depositary,500876,,,
+OPP_000213,ACC_LU_0026,2023-04-12,Prospecting,,Regulatory,692510,Competitor C,,
+OPP_000214,ACC_FR_0069,2026-02-01,Closed Won,won,AIFM,690489,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000215,ACC_LU_0125,2024-11-23,Closed Lost,lost,ESG Reporting,4061706,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000216,ACC_NL_0080,2025-12-24,Closed Won,won,ESG Reporting,4456996,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000217,ACC_IT_0045,2023-01-30,Closed Lost,lost,Fund Admin,411760,,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000218,ACC_LU_0013,2024-01-09,Closed Lost,lost,Depositary,4205778,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000219,ACC_NL_0032,2025-10-27,Prospecting,,Depositary,2699540,,,
+OPP_000220,ACC_LU_0046,2024-08-29,Closed Won,won,Depositary,287094,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000221,ACC_LU_0024,2023-08-07,Prospecting,,Fund Admin,286215,Competitor B,,
+OPP_000222,ACC_LU_0057,2025-08-18,Proposal,,AIFM,1710876,,,
+OPP_000223,ACC_FR_0132,2022-02-11,Closed Lost,lost,Middle Office,1371697,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000224,ACC_NL_0003,2023-04-04,Proposal,,Depositary,3707332,Competitor C,,
+OPP_000225,ACC_NL_0109,2024-02-11,Closed Lost,lost,Depositary,1481940,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000226,ACC_NL_0134,2025-07-01,Closed Won,won,Fund Admin,791694,Competitor C,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000227,ACC_LU_0144,2025-08-18,Closed Won,won,Depositary,3579859,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000228,ACC_FR_0017,2023-11-20,Closed Lost,lost,Depositary,428663,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000229,ACC_LU_0049,2022-11-04,Closed Won,won,Fund Admin,4124434,,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000230,ACC_NL_0082,2025-10-26,Prospecting,,Fund Admin,3449302,Competitor C,,
+OPP_000231,ACC_LU_0067,2024-05-07,Closed Won,won,ESG Reporting,1076699,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000232,ACC_NL_0088,2026-01-27,Closed Lost,lost,Regulatory,4032036,Competitor C,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000233,ACC_FR_0130,2023-09-07,Closed Lost,lost,AIFM,1822028,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000234,ACC_NL_0033,2026-02-26,Proposal,,ESG Reporting,1156231,Competitor B,,
+OPP_000235,ACC_FR_0086,2025-09-02,Prospecting,,Depositary,1504975,Competitor C,,
+OPP_000236,ACC_IT_0108,2023-11-10,Negotiation,,ESG Reporting,476374,Competitor A,,
+OPP_000237,ACC_IT_0121,2022-04-20,Closed Lost,lost,ESG Reporting,1419236,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000238,ACC_IT_0121,2023-02-03,Closed Won,won,ESG Reporting,482615,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000239,ACC_LU_0039,2022-10-09,Closed Lost,lost,Middle Office,1481427,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000240,ACC_NL_0037,2023-10-10,Closed Lost,lost,Fund Admin,2694113,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000241,ACC_NL_0081,2025-07-23,Prospecting,,Middle Office,446615,Competitor B,,
+OPP_000242,ACC_LU_0148,2022-11-21,Closed Won,won,AIFM,940995,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000243,ACC_FR_0104,2024-05-28,Closed Lost,lost,Fund Admin,669763,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000244,ACC_LU_0096,2022-01-29,Closed Lost,lost,AIFM,75978,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000245,ACC_IT_0064,2023-04-09,Closed Won,won,Depositary,236949,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000246,ACC_NL_0129,2025-04-20,Negotiation,,Fund Admin,4207297,Competitor C,,
+OPP_000247,ACC_NL_0075,2024-07-22,Closed Lost,lost,ESG Reporting,539860,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000248,ACC_NL_0088,2024-09-30,Negotiation,,AIFM,1241975,,,
+OPP_000249,ACC_IT_0005,2023-04-13,Proposal,,AIFM,1450356,Competitor A,,
+OPP_000250,ACC_FR_0130,2022-12-13,Prospecting,,Regulatory,3427431,Competitor A,,
+OPP_000251,ACC_NL_0097,2025-08-04,Proposal,,ESG Reporting,953545,Competitor A,,
+OPP_000252,ACC_NL_0028,2025-08-31,Closed Lost,lost,Regulatory,217895,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000253,ACC_LU_0098,2022-09-11,Closed Won,won,Regulatory,272034,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000254,ACC_FR_0078,2024-05-11,Closed Won,won,Depositary,953056,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000255,ACC_IT_0108,2022-08-03,Closed Won,won,Fund Admin,459924,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000256,ACC_IT_0128,2023-02-11,Closed Won,won,ESG Reporting,4879038,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000257,ACC_LU_0105,2023-08-28,Proposal,,ESG Reporting,2733596,Competitor B,,
+OPP_000258,ACC_FR_0124,2023-11-09,Proposal,,Fund Admin,1023868,Competitor A,,
+OPP_000259,ACC_NL_0147,2025-10-02,Closed Won,won,ESG Reporting,837716,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000260,ACC_LU_0066,2025-08-12,Proposal,,Depositary,1688562,Competitor A,,
+OPP_000261,ACC_LU_0026,2022-12-24,Closed Lost,lost,Depositary,1212314,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000262,ACC_FR_0110,2026-02-21,Prospecting,,Fund Admin,64024,Competitor B,,
+OPP_000263,ACC_NL_0044,2023-11-05,Negotiation,,Middle Office,4797901,Competitor C,,
+OPP_000264,ACC_LU_0024,2024-02-03,Closed Lost,lost,Fund Admin,631127,,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000265,ACC_LU_0070,2024-02-29,Closed Won,won,Middle Office,3419809,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000266,ACC_NL_0029,2022-09-29,Closed Won,won,AIFM,200384,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000267,ACC_FR_0146,2025-10-21,Closed Won,won,Middle Office,4006239,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000268,ACC_FR_0034,2024-09-16,Closed Lost,lost,Middle Office,2483095,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000269,ACC_LU_0067,2025-09-03,Negotiation,,Regulatory,1309081,Competitor B,,
+OPP_000270,ACC_LU_0087,2024-11-29,Closed Won,won,Fund Admin,677629,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000271,ACC_FR_0124,2023-12-10,Closed Won,won,AIFM,1266597,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000272,ACC_NL_0003,2025-08-10,Closed Lost,lost,Middle Office,4333420,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000273,ACC_FR_0020,2024-10-03,Negotiation,,Depositary,1456710,Competitor A,,
+OPP_000274,ACC_FR_0130,2023-04-02,Closed Won,won,Middle Office,4176964,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000275,ACC_LU_0118,2024-06-28,Closed Lost,lost,Fund Admin,4354651,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000276,ACC_NL_0081,2022-09-01,Closed Lost,lost,Fund Admin,634987,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000277,ACC_NL_0143,2025-01-29,Prospecting,,Fund Admin,4063024,Competitor C,,
+OPP_000278,ACC_IT_0131,2025-02-25,Proposal,,Regulatory,711501,Competitor C,,
+OPP_000279,ACC_LU_0094,2022-04-22,Closed Lost,lost,Depositary,862218,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000280,ACC_LU_0094,2026-01-06,Closed Won,won,Regulatory,371533,Competitor C,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000281,ACC_IT_0091,2025-07-21,Closed Lost,lost,ESG Reporting,2848932,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000282,ACC_NL_0012,2022-12-03,Closed Won,won,Fund Admin,418719,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000283,ACC_LU_0049,2022-09-05,Closed Lost,lost,AIFM,2556707,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000284,ACC_LU_0087,2022-08-09,Closed Lost,lost,Regulatory,1264326,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000285,ACC_NL_0116,2024-07-25,Closed Won,won,AIFM,1447589,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000286,ACC_NL_0136,2026-02-16,Prospecting,,Middle Office,1266283,,,
+OPP_000287,ACC_IT_0131,2022-12-29,Closed Won,won,Regulatory,1232104,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000288,ACC_IT_0100,2025-09-08,Closed Won,won,ESG Reporting,1328016,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000289,ACC_IT_0064,2023-07-15,Closed Won,won,Depositary,706626,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000290,ACC_LU_0036,2024-04-25,Closed Won,won,Depositary,1272457,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000291,ACC_IT_0142,2025-07-19,Proposal,,AIFM,955043,Competitor C,,
+OPP_000292,ACC_LU_0089,2025-10-09,Prospecting,,Regulatory,992625,Competitor B,,
+OPP_000293,ACC_NL_0129,2025-01-16,Closed Won,won,Regulatory,1019323,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000294,ACC_LU_0144,2024-09-10,Closed Won,won,Regulatory,3865409,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000295,ACC_NL_0109,2022-01-27,Closed Won,won,Middle Office,1153970,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000296,ACC_FR_0052,2023-07-01,Closed Lost,lost,Depositary,1040915,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000297,ACC_NL_0016,2025-11-15,Closed Lost,lost,ESG Reporting,645378,,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000298,ACC_NL_0027,2025-06-15,Closed Lost,lost,AIFM,3840857,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000299,ACC_NL_0061,2024-11-12,Closed Lost,lost,Regulatory,3490221,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000300,ACC_IT_0100,2024-05-03,Closed Lost,lost,ESG Reporting,128013,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000301,ACC_FR_0052,2025-06-24,Closed Lost,lost,AIFM,1371655,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000302,ACC_IT_0140,2026-02-21,Closed Won,won,Depositary,700781,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000303,ACC_IT_0048,2022-12-22,Closed Lost,lost,Middle Office,682854,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000304,ACC_NL_0143,2023-06-26,Prospecting,,ESG Reporting,4307063,Competitor A,,
+OPP_000305,ACC_LU_0085,2024-08-13,Closed Lost,lost,Fund Admin,272869,Competitor C,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000306,ACC_FR_0014,2025-07-04,Closed Won,won,Middle Office,4054586,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000307,ACC_FR_0019,2025-12-20,Negotiation,,AIFM,4806444,Competitor A,,
+OPP_000308,ACC_FR_0130,2022-11-23,Closed Won,won,Middle Office,913754,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000309,ACC_LU_0055,2025-09-20,Negotiation,,Depositary,1821084,,,
+OPP_000310,ACC_LU_0144,2025-08-22,Prospecting,,Regulatory,2057032,Competitor B,,
+OPP_000311,ACC_IT_0063,2022-03-23,Closed Won,won,Middle Office,1378102,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000312,ACC_IT_0099,2023-06-10,Closed Won,won,Fund Admin,1371437,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000313,ACC_FR_0132,2024-11-07,Closed Won,won,Depositary,1352508,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000314,ACC_LU_0083,2024-11-18,Prospecting,,Fund Admin,1253276,Competitor A,,
+OPP_000315,ACC_FR_0017,2023-03-08,Closed Won,won,Regulatory,665103,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000316,ACC_FR_0053,2025-01-06,Closed Lost,lost,Regulatory,4175394,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000317,ACC_IT_0040,2022-02-18,Closed Won,won,Fund Admin,176905,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000318,ACC_LU_0046,2023-05-31,Closed Won,won,AIFM,1370930,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000319,ACC_IT_0100,2024-07-12,Closed Won,won,Depositary,74491,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000320,ACC_LU_0137,2022-01-13,Closed Won,won,Fund Admin,1146142,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000321,ACC_FR_0019,2024-01-03,Closed Lost,lost,Depositary,4041013,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000322,ACC_NL_0023,2023-07-31,Closed Lost,lost,Middle Office,622914,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000323,ACC_FR_0122,2022-11-17,Closed Won,won,Regulatory,616939,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000324,ACC_NL_0037,2023-09-03,Closed Won,won,Fund Admin,2990858,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000325,ACC_NL_0032,2022-03-27,Prospecting,,ESG Reporting,2273367,Competitor A,,
+OPP_000326,ACC_LU_0079,2023-03-07,Closed Lost,lost,AIFM,648349,Competitor B,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000327,ACC_LU_0042,2023-01-12,Proposal,,Depositary,1374467,Competitor B,,
+OPP_000328,ACC_FR_0146,2022-04-22,Closed Lost,lost,Middle Office,3401035,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000329,ACC_NL_0075,2025-10-07,Prospecting,,Fund Admin,336255,,,
+OPP_000330,ACC_LU_0085,2024-01-02,Prospecting,,Regulatory,390072,Competitor C,,
+OPP_000331,ACC_LU_0018,2023-02-01,Negotiation,,Middle Office,1977557,Competitor C,,
+OPP_000332,ACC_LU_0150,2022-11-09,Closed Won,won,Depositary,4813965,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000333,ACC_FR_0002,2023-10-04,Proposal,,AIFM,3704896,,,
+OPP_000334,ACC_NL_0071,2024-01-07,Prospecting,,Regulatory,1992033,,,
+OPP_000335,ACC_IT_0119,2024-07-01,Negotiation,,Depositary,756108,Competitor A,,
+OPP_000336,ACC_IT_0045,2025-08-15,Closed Won,won,AIFM,1342380,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000337,ACC_NL_0068,2026-02-11,Closed Lost,lost,Regulatory,159329,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000338,ACC_FR_0130,2025-07-17,Prospecting,,ESG Reporting,3105053,Competitor B,,
+OPP_000339,ACC_FR_0010,2025-02-03,Proposal,,ESG Reporting,734550,Competitor B,,
+OPP_000340,ACC_LU_0094,2024-03-14,Proposal,,ESG Reporting,1113178,Competitor C,,
+OPP_000341,ACC_LU_0035,2024-08-09,Closed Won,won,Middle Office,577605,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000342,ACC_IT_0062,2025-06-11,Closed Won,won,AIFM,2507991,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000343,ACC_NL_0145,2025-03-04,Closed Won,won,Regulatory,1111406,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000344,ACC_LU_0011,2023-03-25,Closed Lost,lost,Fund Admin,433317,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000345,ACC_LU_0011,2025-10-01,Proposal,,Depositary,612735,,,
+OPP_000346,ACC_NL_0012,2022-03-23,Closed Lost,lost,Fund Admin,1070417,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000347,ACC_NL_0068,2025-03-31,Closed Won,won,Middle Office,997829,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000348,ACC_FR_0020,2024-11-24,Proposal,,AIFM,798739,Competitor C,,
+OPP_000349,ACC_LU_0089,2024-09-24,Closed Lost,lost,Fund Admin,777663,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000350,ACC_IT_0113,2022-12-06,Proposal,,ESG Reporting,983041,Competitor B,,
+OPP_000351,ACC_LU_0039,2023-01-18,Proposal,,ESG Reporting,1090088,Competitor A,,
+OPP_000352,ACC_FR_0059,2024-04-29,Closed Lost,lost,Middle Office,3538532,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000353,ACC_IT_0054,2025-04-24,Proposal,,Middle Office,601007,Competitor A,,
+OPP_000354,ACC_NL_0033,2025-03-20,Closed Won,won,Regulatory,793332,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000355,ACC_LU_0015,2022-12-07,Proposal,,AIFM,2824883,,,
+OPP_000356,ACC_NL_0145,2025-07-29,Prospecting,,Regulatory,1105562,Competitor C,,
+OPP_000357,ACC_NL_0022,2023-03-20,Closed Won,won,Middle Office,1267550,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000358,ACC_NL_0037,2025-04-08,Closed Lost,lost,ESG Reporting,3468419,Competitor C,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000359,ACC_FR_0043,2026-01-23,Closed Won,won,ESG Reporting,3157681,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000360,ACC_NL_0097,2024-02-29,Prospecting,,Fund Admin,343405,,,
+OPP_000361,ACC_LU_0039,2025-05-25,Prospecting,,Middle Office,1357331,Competitor A,,
+OPP_000362,ACC_LU_0137,2024-10-27,Closed Lost,lost,Middle Office,1006119,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000363,ACC_NL_0111,2024-12-05,Closed Won,won,Regulatory,818233,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000364,ACC_FR_0124,2024-02-20,Negotiation,,Regulatory,1366395,Competitor A,,
+OPP_000365,ACC_NL_0109,2022-10-02,Proposal,,AIFM,4595384,Competitor A,,
+OPP_000366,ACC_NL_0073,2025-05-10,Closed Lost,lost,Depositary,1350594,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000367,ACC_LU_0148,2024-12-06,Prospecting,,Fund Admin,593793,Competitor B,,
+OPP_000368,ACC_NL_0081,2024-04-17,Negotiation,,AIFM,667803,Competitor C,,
+OPP_000369,ACC_LU_0067,2025-01-02,Closed Won,won,ESG Reporting,449562,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000370,ACC_FR_0053,2024-04-26,Closed Won,won,Middle Office,1304238,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000371,ACC_LU_0065,2023-09-21,Closed Won,won,Regulatory,250199,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000372,ACC_FR_0059,2024-07-03,Closed Lost,lost,Fund Admin,1465061,,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000373,ACC_LU_0087,2025-02-01,Closed Won,won,AIFM,614200,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000374,ACC_LU_0024,2022-10-25,Closed Won,won,Middle Office,177803,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000375,ACC_LU_0057,2024-01-30,Prospecting,,Fund Admin,3760226,,,
+OPP_000376,ACC_NL_0134,2023-08-10,Closed Lost,lost,Fund Admin,1421287,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000377,ACC_NL_0127,2024-06-18,Prospecting,,Regulatory,4688413,Competitor C,,
+OPP_000378,ACC_NL_0050,2022-03-10,Closed Lost,lost,ESG Reporting,1062752,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000379,ACC_FR_0010,2024-01-07,Proposal,,Fund Admin,1464686,Competitor A,,
+OPP_000380,ACC_NL_0071,2024-03-29,Negotiation,,Middle Office,2324529,Competitor B,,
+OPP_000381,ACC_IT_0133,2022-02-01,Closed Lost,lost,Fund Admin,2973166,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000382,ACC_LU_0089,2023-07-21,Proposal,,AIFM,709400,,,
+OPP_000383,ACC_LU_0148,2022-01-10,Proposal,,Middle Office,784045,Competitor A,,
+OPP_000384,ACC_NL_0129,2023-08-26,Negotiation,,Fund Admin,4113240,Competitor C,,
+OPP_000385,ACC_FR_0138,2025-03-23,Proposal,,Middle Office,4847249,,,
+OPP_000386,ACC_IT_0063,2023-11-27,Closed Lost,lost,Regulatory,718044,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000387,ACC_FR_0124,2022-08-27,Proposal,,Middle Office,968809,Competitor B,,
+OPP_000388,ACC_FR_0059,2023-10-09,Closed Won,won,ESG Reporting,2910433,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000389,ACC_IT_0064,2023-08-12,Prospecting,,Regulatory,1135742,Competitor C,,
+OPP_000390,ACC_FR_0020,2025-02-09,Closed Lost,lost,Depositary,562629,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000391,ACC_IT_0047,2025-10-31,Closed Lost,lost,Middle Office,1118812,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000392,ACC_IT_0062,2023-06-28,Proposal,,AIFM,4257232,Competitor C,,
+OPP_000393,ACC_IT_0040,2022-08-07,Prospecting,,Fund Admin,1029927,,,
+OPP_000394,ACC_FR_0002,2025-01-13,Closed Lost,lost,Depositary,3293003,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000395,ACC_LU_0148,2023-07-17,Closed Won,won,Depositary,626925,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000396,ACC_FR_0014,2024-12-12,Closed Lost,lost,ESG Reporting,646531,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000397,ACC_FR_0101,2025-11-06,Closed Lost,lost,Fund Admin,3642100,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000398,ACC_NL_0081,2025-11-12,Prospecting,,Regulatory,355590,Competitor A,,
+OPP_000399,ACC_FR_0084,2024-01-11,Closed Won,won,AIFM,2968535,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000400,ACC_FR_0069,2024-08-23,Closed Lost,lost,Depositary,316674,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000401,ACC_IT_0054,2024-05-08,Closed Lost,lost,Depositary,4344467,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000402,ACC_NL_0116,2023-01-04,Closed Won,won,Regulatory,381421,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000403,ACC_LU_0070,2023-04-28,Closed Won,won,AIFM,1156296,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000404,ACC_FR_0122,2022-01-20,Proposal,,Middle Office,244983,Competitor C,,
+OPP_000405,ACC_LU_0125,2023-09-07,Proposal,,ESG Reporting,714691,Competitor A,,
+OPP_000406,ACC_LU_0042,2022-05-03,Proposal,,Depositary,2644427,Competitor A,,
+OPP_000407,ACC_NL_0116,2023-11-17,Proposal,,Depositary,862507,Competitor C,,
+OPP_000408,ACC_LU_0089,2022-02-10,Closed Won,won,Regulatory,1446519,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000409,ACC_LU_0148,2025-03-25,Closed Won,won,AIFM,1470091,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000410,ACC_IT_0091,2023-10-28,Closed Won,won,Regulatory,2511185,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000411,ACC_LU_0098,2025-06-10,Proposal,,Regulatory,1437061,Competitor B,,
+OPP_000412,ACC_LU_0087,2024-05-13,Closed Won,won,Middle Office,1280906,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000413,ACC_LU_0021,2022-11-28,Negotiation,,Depositary,1925952,Competitor C,,
+OPP_000414,ACC_FR_0069,2025-05-24,Closed Won,won,Middle Office,1182412,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000415,ACC_NL_0134,2024-07-11,Closed Won,won,Fund Admin,231307,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000416,ACC_LU_0065,2025-12-06,Closed Lost,lost,AIFM,625716,Competitor A,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000417,ACC_FR_0017,2024-08-27,Closed Won,won,Middle Office,809775,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000418,ACC_NL_0027,2023-06-22,Closed Won,won,Regulatory,4692153,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000419,ACC_NL_0080,2023-04-15,Proposal,,Depositary,2494221,Competitor B,,
+OPP_000420,ACC_FR_0034,2024-12-14,Closed Lost,lost,Fund Admin,3485971,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000421,ACC_FR_0122,2024-08-14,Closed Lost,lost,Depositary,845390,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000422,ACC_FR_0139,2022-12-29,Closed Won,won,Regulatory,3870102,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000423,ACC_LU_0135,2025-08-03,Closed Won,won,Depositary,748394,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000424,ACC_NL_0023,2024-06-23,Negotiation,,Middle Office,426720,Competitor C,,
+OPP_000425,ACC_NL_0003,2022-01-01,Closed Won,won,Depositary,1790430,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000426,ACC_IT_0126,2024-09-04,Proposal,,Middle Office,4090841,Competitor B,,
+OPP_000427,ACC_FR_0002,2025-01-27,Negotiation,,Middle Office,4469729,,,
+OPP_000428,ACC_IT_0102,2023-05-27,Proposal,,Regulatory,3406958,,,
+OPP_000429,ACC_LU_0057,2023-06-23,Prospecting,,Regulatory,1578028,Competitor C,,
+OPP_000430,ACC_NL_0073,2025-08-21,Closed Lost,lost,Middle Office,1346002,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000431,ACC_IT_0047,2022-10-07,Proposal,,Regulatory,710247,,,
+OPP_000432,ACC_LU_0070,2025-12-05,Closed Won,won,Depositary,587279,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000433,ACC_LU_0137,2022-02-15,Proposal,,Fund Admin,459066,Competitor B,,
+OPP_000434,ACC_IT_0113,2026-01-29,Prospecting,,Fund Admin,268491,,,
+OPP_000435,ACC_NL_0056,2023-12-02,Closed Won,won,Depositary,722342,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000436,ACC_LU_0085,2022-06-14,Closed Lost,lost,Fund Admin,436430,,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000437,ACC_FR_0019,2025-01-17,Closed Won,won,Depositary,4177628,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000438,ACC_NL_0032,2026-01-03,Proposal,,Middle Office,1612229,Competitor A,,
+OPP_000439,ACC_FR_0051,2024-08-01,Closed Lost,lost,ESG Reporting,1015711,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000440,ACC_FR_0122,2024-03-07,Closed Won,won,Depositary,279986,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000441,ACC_IT_0141,2024-12-02,Prospecting,,Middle Office,975854,Competitor B,,
+OPP_000442,ACC_NL_0093,2022-04-17,Closed Lost,lost,Fund Admin,392150,,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000443,ACC_FR_0084,2022-01-31,Proposal,,Depositary,3131135,,,
+OPP_000444,ACC_IT_0063,2022-01-19,Closed Lost,lost,Regulatory,739142,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000445,ACC_LU_0096,2022-07-03,Proposal,,Middle Office,182532,Competitor C,,
+OPP_000446,ACC_NL_0016,2022-05-03,Negotiation,,AIFM,3655976,Competitor A,,
+OPP_000447,ACC_NL_0033,2024-09-26,Proposal,,ESG Reporting,1193414,Competitor C,,
+OPP_000448,ACC_IT_0113,2026-02-10,Proposal,,Regulatory,597764,Competitor B,,
+OPP_000449,ACC_LU_0065,2022-03-22,Closed Won,won,ESG Reporting,477336,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000450,ACC_LU_0049,2025-03-06,Proposal,,Depositary,1956563,,,
+OPP_000451,ACC_NL_0071,2025-05-11,Closed Lost,lost,AIFM,809944,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000452,ACC_NL_0116,2023-08-29,Closed Lost,lost,Depositary,708414,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000453,ACC_IT_0048,2022-02-08,Closed Won,won,ESG Reporting,1574539,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000454,ACC_FR_0138,2024-03-04,Proposal,,Regulatory,2738971,Competitor B,,
+OPP_000455,ACC_NL_0073,2023-10-23,Closed Won,won,Fund Admin,933153,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000456,ACC_NL_0012,2022-09-23,Proposal,,Fund Admin,343014,,,
+OPP_000457,ACC_NL_0050,2022-07-22,Prospecting,,Regulatory,1262634,,,
+OPP_000458,ACC_LU_0135,2025-07-01,Closed Lost,lost,Fund Admin,581213,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000459,ACC_IT_0004,2023-03-04,Closed Won,won,Middle Office,4104589,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000460,ACC_NL_0093,2025-02-16,Closed Lost,lost,Depositary,1201661,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000461,ACC_FR_0069,2024-12-19,Prospecting,,Fund Admin,1259961,Competitor A,,
+OPP_000462,ACC_NL_0056,2024-11-29,Prospecting,,Regulatory,384976,,,
+OPP_000463,ACC_LU_0049,2023-01-31,Closed Won,won,ESG Reporting,3313962,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000464,ACC_NL_0143,2025-02-17,Closed Won,won,Regulatory,3094536,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000465,ACC_FR_0110,2022-08-02,Proposal,,AIFM,847449,Competitor C,,
+OPP_000466,ACC_NL_0041,2024-12-29,Closed Lost,lost,Depositary,1358603,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000467,ACC_LU_0096,2024-04-24,Closed Lost,lost,Regulatory,519003,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000468,ACC_NL_0145,2025-01-22,Proposal,,ESG Reporting,1392913,Competitor C,,
+OPP_000469,ACC_NL_0093,2024-07-15,Closed Won,won,Fund Admin,1103154,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000470,ACC_IT_0005,2024-11-26,Prospecting,,Depositary,529559,Competitor B,,
+OPP_000471,ACC_LU_0055,2023-10-07,Prospecting,,Regulatory,4200518,Competitor B,,
+OPP_000472,ACC_LU_0025,2022-03-19,Closed Won,won,AIFM,1692446,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000473,ACC_LU_0060,2023-06-09,Closed Lost,lost,ESG Reporting,629707,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000474,ACC_FR_0020,2026-01-21,Negotiation,,Middle Office,300708,Competitor A,,
+OPP_000475,ACC_NL_0077,2022-03-18,Closed Lost,lost,Middle Office,853148,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000476,ACC_FR_0086,2023-12-14,Closed Lost,lost,Middle Office,4686107,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000477,ACC_FR_0059,2025-08-29,Closed Lost,lost,Regulatory,3998383,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000478,ACC_FR_0014,2023-09-17,Closed Won,won,ESG Reporting,3042108,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000479,ACC_NL_0129,2025-11-30,Proposal,,Fund Admin,3531358,,,
+OPP_000480,ACC_IT_0115,2025-05-03,Closed Won,won,AIFM,2443710,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000481,ACC_NL_0038,2022-09-28,Negotiation,,Middle Office,878588,Competitor A,,
+OPP_000482,ACC_IT_0141,2024-03-28,Proposal,,Middle Office,777643,Competitor B,,
+OPP_000483,ACC_LU_0035,2024-09-11,Closed Won,won,Middle Office,995760,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000484,ACC_LU_0144,2025-06-15,Closed Lost,lost,AIFM,1590417,Competitor C,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000485,ACC_NL_0111,2023-10-25,Closed Won,won,Fund Admin,213168,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000486,ACC_NL_0109,2024-01-19,Negotiation,,Depositary,2050362,Competitor A,,
+OPP_000487,ACC_LU_0079,2022-12-13,Closed Lost,lost,Middle Office,953614,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000488,ACC_NL_0012,2023-04-24,Proposal,,Depositary,276187,Competitor A,,
+OPP_000489,ACC_NL_0029,2026-02-23,Prospecting,,ESG Reporting,1393758,Competitor C,,
+OPP_000490,ACC_IT_0004,2023-12-05,Closed Won,won,Depositary,2525277,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000491,ACC_LU_0085,2023-03-05,Closed Lost,lost,AIFM,842315,Competitor C,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000492,ACC_IT_0141,2024-09-16,Closed Won,won,Regulatory,1063195,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000493,ACC_NL_0097,2025-04-08,Closed Lost,lost,Fund Admin,420411,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000494,ACC_NL_0073,2023-02-16,Closed Lost,lost,Depositary,738883,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000495,ACC_LU_0018,2024-03-06,Closed Won,won,Fund Admin,585852,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000496,ACC_LU_0060,2024-02-19,Closed Won,won,Depositary,752760,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000497,ACC_IT_0048,2023-02-12,Closed Won,won,ESG Reporting,4668574,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000498,ACC_LU_0011,2023-05-22,Closed Lost,lost,Depositary,760402,Competitor B,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000499,ACC_IT_0005,2023-12-12,Closed Won,won,Regulatory,1860467,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000500,ACC_NL_0016,2025-07-05,Proposal,,Middle Office,4506809,Competitor A,,
+OPP_000501,ACC_NL_0143,2023-07-28,Proposal,,Depositary,4537288,Competitor B,,
+OPP_000502,ACC_NL_0023,2026-02-03,Negotiation,,Regulatory,938050,Competitor B,,
+OPP_000503,ACC_LU_0107,2023-05-08,Closed Won,won,Depositary,1369116,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000504,ACC_IT_0115,2025-01-15,Prospecting,,Regulatory,1123594,Competitor B,,
+OPP_000505,ACC_LU_0036,2023-09-25,Closed Won,won,AIFM,673593,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000506,ACC_NL_0145,2022-11-20,Negotiation,,ESG Reporting,822794,Competitor A,,
+OPP_000507,ACC_IT_0048,2023-10-13,Closed Lost,lost,Regulatory,632675,Competitor C,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000508,ACC_NL_0106,2024-04-22,Negotiation,,Regulatory,1403964,Competitor C,,
+OPP_000509,ACC_LU_0039,2023-01-20,Prospecting,,AIFM,87987,Competitor C,,
+OPP_000510,ACC_FR_0146,2025-06-08,Proposal,,AIFM,1539105,Competitor A,,
+OPP_000511,ACC_IT_0092,2022-06-12,Closed Won,won,AIFM,2760460,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000512,ACC_LU_0096,2023-01-12,Closed Lost,lost,Middle Office,249393,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000513,ACC_NL_0058,2022-03-08,Closed Won,won,Depositary,1427787,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000514,ACC_FR_0052,2023-02-23,Prospecting,,Middle Office,1307337,,,
+OPP_000515,ACC_FR_0084,2024-07-26,Closed Lost,lost,Middle Office,3992966,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000516,ACC_NL_0081,2024-03-18,Closed Won,won,ESG Reporting,827431,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000517,ACC_NL_0134,2022-08-12,Closed Won,won,AIFM,802118,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000518,ACC_LU_0011,2025-02-16,Negotiation,,Regulatory,1445758,Competitor B,,
+OPP_000519,ACC_NL_0075,2024-06-19,Closed Won,won,Depositary,718953,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000520,ACC_FR_0076,2025-06-09,Closed Lost,lost,AIFM,722189,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000521,ACC_LU_0024,2026-01-19,Closed Won,won,ESG Reporting,1409871,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000522,ACC_FR_0101,2024-04-26,Negotiation,,Fund Admin,1304953,Competitor B,,
+OPP_000523,ACC_IT_0117,2022-07-04,Proposal,,Regulatory,990435,Competitor B,,
+OPP_000524,ACC_NL_0032,2022-07-06,Prospecting,,Middle Office,3353325,Competitor A,,
+OPP_000525,ACC_LU_0135,2025-12-19,Negotiation,,ESG Reporting,937505,Competitor B,,
+OPP_000526,ACC_NL_0097,2025-02-01,Negotiation,,AIFM,1372766,Competitor B,,
+OPP_000527,ACC_LU_0042,2022-10-24,Proposal,,Regulatory,730897,Competitor C,,
+OPP_000528,ACC_NL_0080,2026-02-04,Closed Lost,lost,Depositary,3319037,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000529,ACC_FR_0034,2023-02-20,Prospecting,,Depositary,554934,,,
+OPP_000530,ACC_IT_0128,2025-01-18,Closed Lost,lost,Middle Office,1570452,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000531,ACC_IT_0117,2024-04-19,Closed Won,won,ESG Reporting,59530,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000532,ACC_NL_0143,2023-03-02,Prospecting,,AIFM,747787,Competitor C,,
+OPP_000533,ACC_FR_0010,2022-10-25,Closed Lost,lost,ESG Reporting,482740,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000534,ACC_LU_0013,2022-08-12,Closed Won,won,AIFM,3524407,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000535,ACC_IT_0117,2025-03-31,Negotiation,,Fund Admin,185033,Competitor C,,
+OPP_000536,ACC_LU_0083,2024-01-25,Closed Lost,lost,Middle Office,4294893,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000537,ACC_NL_0075,2024-08-22,Prospecting,,Regulatory,1296141,Competitor C,,
+OPP_000538,ACC_LU_0135,2024-04-27,Closed Won,won,ESG Reporting,134367,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000539,ACC_FR_0124,2026-01-22,Closed Won,won,Middle Office,932824,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000540,ACC_LU_0067,2024-12-12,Closed Won,won,Depositary,1394302,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000541,ACC_NL_0134,2026-02-02,Closed Won,won,AIFM,1331312,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000542,ACC_NL_0075,2023-02-01,Prospecting,,Fund Admin,724084,Competitor A,,
+OPP_000543,ACC_IT_0054,2025-06-14,Closed Lost,lost,Fund Admin,2002065,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000544,ACC_NL_0003,2025-08-04,Proposal,,Depositary,1644878,Competitor A,,
+OPP_000545,ACC_LU_0079,2023-09-07,Closed Won,won,Fund Admin,215063,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000546,ACC_NL_0088,2024-03-22,Closed Lost,lost,Fund Admin,4244192,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000547,ACC_LU_0085,2023-11-24,Closed Lost,lost,Middle Office,1206018,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000548,ACC_FR_0124,2022-11-15,Closed Won,won,Depositary,720581,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000549,ACC_LU_0015,2024-12-03,Proposal,,Regulatory,3551889,Competitor A,,
+OPP_000550,ACC_IT_0054,2025-03-28,Closed Won,won,Fund Admin,4863259,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000551,ACC_NL_0008,2023-11-26,Closed Lost,lost,AIFM,877923,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000552,ACC_IT_0048,2025-05-03,Prospecting,,Depositary,3673697,Competitor C,,
+OPP_000553,ACC_LU_0009,2023-07-11,Closed Won,won,AIFM,588796,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000554,ACC_NL_0056,2024-12-11,Proposal,,Fund Admin,592612,Competitor A,,
+OPP_000555,ACC_FR_0052,2022-07-09,Closed Won,won,Middle Office,1362185,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000556,ACC_LU_0049,2023-11-28,Closed Lost,lost,Depositary,3989899,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000557,ACC_LU_0026,2024-11-23,Closed Won,won,AIFM,1100627,,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000558,ACC_IT_0100,2026-01-01,Closed Lost,lost,Fund Admin,500922,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000559,ACC_NL_0023,2023-11-14,Closed Won,won,Fund Admin,804837,Competitor C,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000560,ACC_NL_0006,2025-03-28,Closed Lost,lost,Depositary,340805,Competitor C,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000561,ACC_NL_0071,2024-12-26,Negotiation,,Middle Office,3520058,Competitor C,,
+OPP_000562,ACC_LU_0039,2022-11-19,Proposal,,Fund Admin,1439532,Competitor A,,
+OPP_000563,ACC_FR_0053,2025-01-16,Negotiation,,Depositary,1719734,Competitor C,,
+OPP_000564,ACC_NL_0147,2023-05-17,Proposal,,Depositary,3259682,Competitor C,,
+OPP_000565,ACC_FR_0139,2024-06-27,Prospecting,,Fund Admin,2618310,Competitor A,,
+OPP_000566,ACC_NL_0028,2024-02-25,Prospecting,,Middle Office,618279,,,
+OPP_000567,ACC_IT_0092,2023-10-02,Negotiation,,AIFM,3708044,Competitor A,,
+OPP_000568,ACC_LU_0120,2025-03-08,Prospecting,,Regulatory,2607241,,,
+OPP_000569,ACC_NL_0080,2025-11-02,Closed Won,won,Middle Office,1542623,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000570,ACC_NL_0037,2025-06-17,Proposal,,Depositary,2264346,Competitor C,,
+OPP_000571,ACC_FR_0084,2024-07-17,Closed Won,won,Middle Office,1007991,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000572,ACC_IT_0119,2022-12-16,Proposal,,Depositary,926438,Competitor B,,
+OPP_000573,ACC_IT_0131,2022-07-30,Closed Won,won,Depositary,856417,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000574,ACC_FR_0078,2024-12-27,Closed Won,won,Middle Office,395934,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000575,ACC_IT_0141,2022-11-22,Closed Lost,lost,Fund Admin,544035,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000576,ACC_NL_0112,2025-03-07,Closed Lost,lost,Regulatory,392423,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000577,ACC_NL_0147,2024-09-23,Prospecting,,ESG Reporting,2583087,Competitor A,,
+OPP_000578,ACC_NL_0114,2022-12-27,Negotiation,,Middle Office,813234,Competitor A,,
+OPP_000579,ACC_LU_0098,2023-11-02,Closed Won,won,Fund Admin,365537,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000580,ACC_NL_0149,2025-07-26,Closed Lost,lost,Regulatory,266363,Competitor C,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000581,ACC_IT_0100,2025-06-14,Closed Won,won,AIFM,1038199,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000582,ACC_NL_0077,2025-03-13,Closed Lost,lost,Middle Office,3730060,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000583,ACC_NL_0023,2025-04-08,Prospecting,,ESG Reporting,636086,Competitor B,,
+OPP_000584,ACC_FR_0076,2022-05-08,Negotiation,,ESG Reporting,1453454,Competitor A,,
+OPP_000585,ACC_LU_0144,2024-01-06,Prospecting,,Depositary,4395558,Competitor B,,
+OPP_000586,ACC_NL_0111,2025-12-09,Closed Won,won,Regulatory,605044,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000587,ACC_NL_0112,2025-01-21,Proposal,,AIFM,738563,Competitor B,,
+OPP_000588,ACC_NL_0143,2024-02-27,Closed Lost,lost,Middle Office,1194202,Competitor B,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000589,ACC_LU_0035,2022-01-24,Prospecting,,Fund Admin,258794,,,
+OPP_000590,ACC_NL_0112,2022-10-06,Prospecting,,Regulatory,1218615,,,
+OPP_000591,ACC_NL_0109,2025-06-30,Proposal,,ESG Reporting,2408561,,,
+OPP_000592,ACC_IT_0099,2023-12-29,Proposal,,Middle Office,926631,,,
+OPP_000593,ACC_NL_0061,2025-12-29,Closed Won,won,ESG Reporting,3093585,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000594,ACC_FR_0010,2025-03-09,Closed Won,won,Fund Admin,891389,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000595,ACC_NL_0037,2026-02-04,Closed Lost,lost,Middle Office,2826272,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000596,ACC_IT_0063,2024-08-25,Closed Won,won,Regulatory,968847,Competitor C,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000597,ACC_FR_0014,2023-12-05,Closed Won,won,Middle Office,2543156,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000598,ACC_NL_0147,2026-02-11,Negotiation,,Depositary,4822615,Competitor C,,
+OPP_000599,ACC_NL_0075,2022-12-10,Prospecting,,ESG Reporting,1136666,Competitor C,,
+OPP_000600,ACC_NL_0016,2025-07-12,Closed Won,won,ESG Reporting,732289,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000601,ACC_LU_0007,2023-08-11,Closed Won,won,ESG Reporting,845880,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000602,ACC_LU_0065,2022-09-29,Closed Won,won,Depositary,70594,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000603,ACC_IT_0045,2025-04-26,Closed Lost,lost,Depositary,1221369,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000604,ACC_NL_0061,2024-09-20,Proposal,,ESG Reporting,4379064,Competitor C,,
+OPP_000605,ACC_NL_0022,2022-10-25,Closed Won,won,Middle Office,3887425,,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000606,ACC_IT_0099,2023-05-03,Closed Won,won,AIFM,887748,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000607,ACC_FR_0014,2025-08-08,Proposal,,Fund Admin,736354,,,
+OPP_000608,ACC_IT_0103,2024-09-02,Proposal,,Regulatory,1424965,Competitor B,,
+OPP_000609,ACC_LU_0098,2025-10-31,Closed Lost,lost,Depositary,260467,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000610,ACC_IT_0004,2023-08-15,Closed Lost,lost,Middle Office,3553220,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000611,ACC_LU_0025,2024-12-24,Closed Won,won,ESG Reporting,4631189,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000612,ACC_FR_0086,2023-07-08,Proposal,,Fund Admin,1649047,,,
+OPP_000613,ACC_IT_0119,2025-10-14,Closed Lost,lost,AIFM,803930,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000614,ACC_NL_0081,2025-01-26,Prospecting,,Fund Admin,1255949,Competitor A,,
+OPP_000615,ACC_NL_0106,2022-07-20,Closed Won,won,Depositary,368153,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000616,ACC_LU_0065,2023-01-31,Prospecting,,ESG Reporting,183314,Competitor B,,
+OPP_000617,ACC_NL_0032,2025-12-21,Closed Lost,lost,ESG Reporting,1084582,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000618,ACC_NL_0029,2025-11-25,Proposal,,Depositary,727085,Competitor A,,
+OPP_000619,ACC_IT_0117,2023-07-21,Closed Lost,lost,Depositary,284850,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000620,ACC_NL_0071,2022-05-08,Negotiation,,Depositary,4981813,Competitor C,,
+OPP_000621,ACC_NL_0068,2022-12-31,Closed Won,won,AIFM,934937,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000622,ACC_IT_0126,2022-08-11,Prospecting,,Middle Office,1482739,Competitor A,,
+OPP_000623,ACC_NL_0114,2026-01-05,Proposal,,Fund Admin,828137,Competitor C,,
+OPP_000624,ACC_IT_0115,2022-02-08,Closed Lost,lost,Regulatory,3381508,Competitor A,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000625,ACC_IT_0100,2023-06-30,Proposal,,Depositary,1361695,Competitor A,,
+OPP_000626,ACC_FR_0132,2025-12-20,Closed Lost,lost,Middle Office,682283,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000627,ACC_FR_0139,2023-04-08,Prospecting,,Regulatory,4180894,,,
+OPP_000628,ACC_NL_0032,2025-03-07,Closed Won,won,Depositary,3568260,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000629,ACC_LU_0015,2025-07-18,Closed Lost,lost,Depositary,2905818,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000630,ACC_LU_0021,2024-07-30,Closed Lost,lost,Regulatory,1414042,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000631,ACC_IT_0099,2025-09-15,Proposal,,Regulatory,615651,Competitor A,,
+OPP_000632,ACC_IT_0092,2024-09-23,Prospecting,,Regulatory,2470926,Competitor B,,
+OPP_000633,ACC_LU_0036,2022-03-15,Proposal,,Regulatory,1494756,Competitor B,,
+OPP_000634,ACC_IT_0126,2024-03-07,Prospecting,,ESG Reporting,3395334,,,
+OPP_000635,ACC_LU_0137,2024-07-09,Closed Lost,lost,Fund Admin,541963,Competitor C,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000636,ACC_LU_0011,2024-04-10,Prospecting,,Regulatory,1017608,,,
+OPP_000637,ACC_FR_0138,2022-11-02,Closed Lost,lost,Fund Admin,665949,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000638,ACC_IT_0126,2025-09-01,Prospecting,,ESG Reporting,706107,Competitor B,,
+OPP_000639,ACC_IT_0004,2022-12-19,Closed Won,won,Fund Admin,2552830,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000640,ACC_FR_0017,2022-08-06,Prospecting,,ESG Reporting,1208804,Competitor B,,
+OPP_000641,ACC_FR_0017,2023-02-20,Closed Won,won,Depositary,225163,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000642,ACC_LU_0083,2023-03-13,Closed Lost,lost,AIFM,2009766,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000643,ACC_NL_0071,2022-10-17,Closed Lost,lost,Regulatory,2164673,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000644,ACC_IT_0113,2023-05-14,Closed Lost,lost,AIFM,194953,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000645,ACC_NL_0041,2022-02-02,Closed Lost,lost,Fund Admin,60474,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000646,ACC_NL_0073,2024-05-02,Closed Won,won,Regulatory,1071015,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000647,ACC_LU_0070,2024-12-07,Closed Won,won,AIFM,3247420,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000648,ACC_IT_0047,2026-01-08,Closed Won,won,Regulatory,1248401,Competitor C,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000649,ACC_LU_0090,2024-05-07,Prospecting,,AIFM,328259,Competitor A,,
+OPP_000650,ACC_NL_0093,2025-01-10,Closed Won,won,Regulatory,1006024,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000651,ACC_FR_0014,2023-02-01,Prospecting,,AIFM,3583596,,,
+OPP_000652,ACC_IT_0128,2022-12-28,Proposal,,Fund Admin,743124,Competitor C,,
+OPP_000653,ACC_NL_0073,2023-03-06,Closed Won,won,ESG Reporting,4123191,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000654,ACC_NL_0012,2022-08-02,Closed Lost,lost,AIFM,279166,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000655,ACC_LU_0125,2024-11-20,Prospecting,,AIFM,3746313,Competitor C,,
+OPP_000656,ACC_IT_0108,2023-02-12,Closed Lost,lost,AIFM,1179514,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000657,ACC_FR_0059,2022-07-20,Proposal,,Middle Office,4414488,,,
+OPP_000658,ACC_LU_0057,2022-05-31,Closed Won,won,Fund Admin,4507199,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000659,ACC_NL_0056,2025-06-02,Closed Won,won,Depositary,247786,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000660,ACC_IT_0092,2023-07-07,Proposal,,AIFM,644425,Competitor A,,
+OPP_000661,ACC_LU_0072,2022-10-07,Prospecting,,Middle Office,2563605,Competitor B,,
+OPP_000662,ACC_NL_0088,2023-03-27,Closed Lost,lost,AIFM,4052961,Competitor B,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000663,ACC_LU_0148,2025-02-06,Closed Lost,lost,Middle Office,1292611,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000664,ACC_NL_0056,2025-04-26,Closed Won,won,Depositary,71030,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000665,ACC_IT_0064,2023-05-23,Negotiation,,ESG Reporting,372489,Competitor B,,
+OPP_000666,ACC_NL_0147,2022-01-11,Closed Won,won,Fund Admin,4960730,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000667,ACC_NL_0109,2024-12-23,Closed Won,won,Middle Office,2728782,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000668,ACC_NL_0143,2022-01-26,Closed Won,won,AIFM,1097204,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000669,ACC_IT_0062,2025-08-19,Closed Lost,lost,Middle Office,3510660,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000670,ACC_LU_0118,2025-03-14,Closed Lost,lost,Middle Office,2586922,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000671,ACC_FR_0104,2023-01-14,Closed Lost,lost,Regulatory,2589331,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000672,ACC_FR_0019,2024-02-28,Closed Lost,lost,ESG Reporting,647213,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000673,ACC_LU_0070,2025-11-30,Closed Lost,lost,ESG Reporting,4075154,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000674,ACC_FR_0086,2026-02-15,Closed Lost,lost,Regulatory,2137957,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000675,ACC_NL_0029,2024-02-24,Negotiation,,ESG Reporting,109267,Competitor C,,
+OPP_000676,ACC_IT_0045,2025-08-20,Closed Won,won,ESG Reporting,1078538,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000677,ACC_LU_0036,2023-11-17,Proposal,,Fund Admin,991105,Competitor B,,
+OPP_000678,ACC_NL_0058,2023-10-19,Negotiation,,Depositary,780170,,,
+OPP_000679,ACC_NL_0071,2022-04-22,Prospecting,,Depositary,2535847,Competitor A,,
+OPP_000680,ACC_IT_0121,2025-12-24,Closed Won,won,Depositary,705368,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000681,ACC_FR_0017,2023-01-21,Closed Lost,lost,Fund Admin,166247,Competitor B,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000682,ACC_FR_0074,2022-06-07,Prospecting,,Depositary,1004110,Competitor B,,
+OPP_000683,ACC_IT_0128,2022-11-05,Closed Lost,lost,Regulatory,602106,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000684,ACC_FR_0139,2022-09-28,Closed Won,won,Middle Office,3819691,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000685,ACC_NL_0075,2023-01-23,Prospecting,,AIFM,1260673,Competitor C,,
+OPP_000686,ACC_NL_0106,2025-03-31,Negotiation,,Regulatory,1190895,,,
+OPP_000687,ACC_NL_0136,2025-01-28,Closed Won,won,ESG Reporting,241333,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000688,ACC_NL_0044,2023-06-17,Proposal,,Depositary,4868258,Competitor A,,
+OPP_000689,ACC_NL_0038,2023-12-25,Proposal,,AIFM,947013,Competitor B,,
+OPP_000690,ACC_FR_0138,2023-08-08,Proposal,,AIFM,4276992,Competitor B,,
+OPP_000691,ACC_LU_0042,2023-05-03,Prospecting,,Depositary,3085363,,,
+OPP_000692,ACC_LU_0067,2024-01-28,Proposal,,ESG Reporting,1075344,Competitor C,,
+OPP_000693,ACC_LU_0089,2022-10-30,Negotiation,,ESG Reporting,1464425,Competitor C,,
+OPP_000694,ACC_NL_0032,2022-02-21,Closed Won,won,AIFM,4765050,Competitor C,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000695,ACC_IT_0040,2022-01-09,Closed Lost,lost,ESG Reporting,530356,Competitor C,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000696,ACC_FR_0122,2023-08-17,Closed Lost,lost,Regulatory,263271,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000697,ACC_LU_0087,2025-11-12,Prospecting,,Middle Office,1355252,Competitor B,,
+OPP_000698,ACC_IT_0142,2022-08-28,Negotiation,,Middle Office,945406,Competitor B,,
+OPP_000699,ACC_IT_0115,2024-01-02,Prospecting,,Fund Admin,3236680,Competitor B,,
+OPP_000700,ACC_LU_0150,2024-12-14,Proposal,,Depositary,1380720,Competitor A,,
+OPP_000701,ACC_FR_0138,2024-07-01,Closed Won,won,ESG Reporting,2274906,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000702,ACC_NL_0082,2025-05-20,Closed Won,won,Regulatory,2124791,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000703,ACC_FR_0110,2024-01-28,Negotiation,,Fund Admin,462743,Competitor C,,
+OPP_000704,ACC_LU_0079,2024-07-01,Closed Lost,lost,AIFM,1105387,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000705,ACC_LU_0107,2024-06-25,Proposal,,Regulatory,1457022,,,
+OPP_000706,ACC_LU_0107,2022-10-13,Closed Lost,lost,Fund Admin,258276,Competitor C,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000707,ACC_FR_0122,2024-12-11,Closed Lost,lost,ESG Reporting,1146365,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000708,ACC_FR_0002,2024-04-18,Closed Won,won,Middle Office,1287018,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000709,ACC_FR_0146,2022-10-08,Proposal,,Middle Office,1802584,,,
+OPP_000710,ACC_LU_0011,2023-09-11,Closed Lost,lost,Middle Office,860957,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000711,ACC_NL_0058,2022-02-24,Closed Lost,lost,Depositary,485245,,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000712,ACC_NL_0032,2025-09-01,Closed Won,won,Middle Office,1307175,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000713,ACC_NL_0008,2022-09-02,Closed Lost,lost,Fund Admin,918392,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000714,ACC_NL_0149,2024-09-11,Closed Won,won,Regulatory,1044573,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000715,ACC_LU_0096,2024-11-15,Closed Lost,lost,Depositary,286128,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000716,ACC_NL_0038,2023-10-17,Closed Won,won,Depositary,286797,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000717,ACC_NL_0093,2024-05-09,Closed Won,won,Fund Admin,470291,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000718,ACC_FR_0132,2023-02-01,Closed Lost,lost,Fund Admin,918205,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000719,ACC_IT_0140,2023-10-23,Closed Lost,lost,Depositary,1043893,Competitor C,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000720,ACC_LU_0025,2024-12-30,Closed Won,won,Fund Admin,1116272,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000721,ACC_LU_0096,2024-09-20,Closed Won,won,Fund Admin,365920,Competitor B,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000722,ACC_LU_0049,2025-02-18,Closed Won,won,ESG Reporting,3706462,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000723,ACC_LU_0107,2024-08-01,Closed Lost,lost,AIFM,1388944,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000724,ACC_LU_0090,2023-10-01,Closed Won,won,Middle Office,1340103,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000725,ACC_IT_0045,2025-12-24,Negotiation,,Regulatory,1231132,Competitor B,,
+OPP_000726,ACC_NL_0033,2025-11-22,Prospecting,,AIFM,495771,Competitor B,,
+OPP_000727,ACC_FR_0034,2022-06-10,Closed Won,won,Fund Admin,584628,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000728,ACC_NL_0111,2022-03-29,Proposal,,Fund Admin,1199930,Competitor A,,
+OPP_000729,ACC_IT_0121,2022-09-01,Closed Lost,lost,Fund Admin,487386,Competitor A,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000730,ACC_LU_0025,2022-09-11,Closed Lost,lost,ESG Reporting,4555286,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000731,ACC_LU_0090,2022-03-01,Prospecting,,Regulatory,1415675,Competitor C,,
+OPP_000732,ACC_IT_0091,2022-11-25,Closed Lost,lost,AIFM,2772091,Competitor A,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000733,ACC_LU_0026,2025-03-30,Closed Lost,lost,AIFM,1087926,Competitor C,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000734,ACC_NL_0044,2025-01-05,Prospecting,,Regulatory,944085,Competitor B,,
+OPP_000735,ACC_FR_0130,2025-12-20,Closed Won,won,AIFM,2478496,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000736,ACC_IT_0047,2023-12-28,Closed Lost,lost,AIFM,795663,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000737,ACC_NL_0029,2023-10-06,Prospecting,,Fund Admin,803604,,,
+OPP_000738,ACC_NL_0093,2025-12-14,Proposal,,Regulatory,108882,Competitor C,,
+OPP_000739,ACC_NL_0127,2022-08-25,Negotiation,,Middle Office,3201752,Competitor C,,
+OPP_000740,ACC_NL_0114,2023-04-08,Closed Won,won,Middle Office,1349532,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000741,ACC_FR_0122,2025-10-22,Negotiation,,Fund Admin,1498148,,,
+OPP_000742,ACC_NL_0027,2024-03-22,Closed Won,won,Fund Admin,1145154,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000743,ACC_NL_0027,2026-02-27,Closed Lost,lost,Fund Admin,2136694,Competitor B,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000744,ACC_LU_0087,2023-02-15,Closed Won,won,Fund Admin,387660,,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000745,ACC_IT_0128,2023-07-25,Closed Lost,lost,ESG Reporting,1728377,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000746,ACC_IT_0092,2024-09-01,Closed Won,won,Middle Office,2801365,Competitor B,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000747,ACC_IT_0117,2022-08-10,Prospecting,,Middle Office,771046,Competitor B,,
+OPP_000748,ACC_NL_0008,2022-07-23,Closed Lost,lost,Middle Office,1033255,Competitor B,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000749,ACC_LU_0098,2025-05-23,Closed Won,won,Depositary,951851,Competitor A,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000750,ACC_FR_0020,2025-09-15,Closed Lost,lost,Middle Office,342801,,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000751,ACC_IT_0126,2024-10-30,Proposal,,Depositary,4142667,Competitor A,,
+OPP_000752,ACC_LU_0009,2024-05-31,Closed Lost,lost,Middle Office,702667,,PRICE,Client selected a competitor offering a lower fee structure for the same service scope.
+OPP_000753,ACC_NL_0114,2024-07-30,Prospecting,,AIFM,3004999,Competitor C,,
+OPP_000754,ACC_FR_0043,2024-10-03,Closed Won,won,Regulatory,2250862,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000755,ACC_FR_0146,2025-10-14,Closed Won,won,Regulatory,2927265,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000756,ACC_FR_0122,2025-02-25,Closed Lost,lost,Fund Admin,617507,,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000757,ACC_NL_0097,2025-06-17,Closed Won,won,Depositary,139064,Competitor A,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000758,ACC_NL_0033,2024-01-21,Negotiation,,Regulatory,896752,Competitor C,,
+OPP_000759,ACC_LU_0098,2022-07-19,Closed Won,won,Middle Office,559340,Competitor B,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000760,ACC_IT_0064,2023-04-26,Closed Won,won,Fund Admin,1370064,Competitor A,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000761,ACC_LU_0079,2022-08-23,Negotiation,,Fund Admin,830704,Competitor A,,
+OPP_000762,ACC_LU_0118,2025-09-09,Closed Lost,lost,ESG Reporting,4556344,Competitor C,OTHER,Deal stalled due to internal restructuring at the client; no clear next steps.
+OPP_000763,ACC_NL_0006,2025-11-26,Closed Won,won,Depositary,597719,,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000764,ACC_LU_0083,2025-03-18,Prospecting,,Middle Office,950255,Competitor B,,
+OPP_000765,ACC_LU_0087,2024-10-14,Closed Won,won,AIFM,941500,Competitor C,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000766,ACC_NL_0112,2023-02-18,Closed Won,won,ESG Reporting,360416,Competitor C,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000767,ACC_LU_0013,2023-09-01,Closed Lost,lost,AIFM,3310575,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000768,ACC_NL_0149,2022-07-14,Closed Won,won,Fund Admin,871321,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000769,ACC_FR_0110,2023-03-06,Negotiation,,Fund Admin,994728,Competitor C,,
+OPP_000770,ACC_FR_0130,2023-09-07,Closed Won,won,Depositary,1400346,,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000771,ACC_LU_0065,2025-07-03,Closed Won,won,AIFM,1327300,Competitor B,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000772,ACC_LU_0148,2024-10-19,Proposal,,Regulatory,1410249,Competitor C,,
+OPP_000773,ACC_LU_0137,2025-06-12,Closed Lost,lost,ESG Reporting,1103591,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000774,ACC_NL_0134,2023-02-15,Negotiation,,AIFM,398542,Competitor C,,
+OPP_000775,ACC_NL_0112,2024-04-20,Negotiation,,Fund Admin,969194,,,
+OPP_000776,ACC_FR_0069,2023-08-11,Closed Won,won,Regulatory,921786,,COVERAGE,Our broad coverage across the required jurisdictions exceeded all other proposals.
+OPP_000777,ACC_IT_0062,2022-08-21,Prospecting,,Fund Admin,1605139,Competitor C,,
+OPP_000778,ACC_IT_0119,2024-09-21,Closed Won,won,Middle Office,988036,Competitor A,COMPETITOR_RELATIONSHIP,Existing long-term relationship with IQ-EQ team outweighed competitor's lower price.
+OPP_000779,ACC_FR_0052,2022-11-23,Proposal,,Fund Admin,424675,Competitor C,,
+OPP_000780,ACC_IT_0141,2022-12-27,Closed Won,won,Regulatory,754470,Competitor A,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000781,ACC_LU_0015,2022-06-21,Negotiation,,Depositary,4402273,,,
+OPP_000782,ACC_LU_0094,2025-10-07,Closed Won,won,Middle Office,1417585,Competitor B,PRICE,Client confirmed our pricing was competitive and within the approved budget envelope.
+OPP_000783,ACC_NL_0061,2022-08-18,Closed Won,won,Fund Admin,2848809,Competitor C,OTHER,A combination of service quality and responsiveness led to a successful close.
+OPP_000784,ACC_IT_0128,2022-07-04,Proposal,,Fund Admin,3979358,Competitor C,,
+OPP_000785,ACC_LU_0085,2025-04-11,Closed Lost,lost,Middle Office,366112,Competitor A,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000786,ACC_IT_0045,2023-03-15,Closed Lost,lost,Middle Office,418743,Competitor A,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000787,ACC_IT_0126,2024-12-28,Negotiation,,Fund Admin,1924204,,,
+OPP_000788,ACC_FR_0122,2025-10-30,Proposal,,Depositary,1325178,Competitor B,,
+OPP_000789,ACC_NL_0093,2024-08-31,Closed Lost,lost,Fund Admin,985826,Competitor A,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000790,ACC_FR_0014,2025-11-15,Closed Lost,lost,Depositary,2987275,Competitor C,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000791,ACC_NL_0093,2025-11-04,Prospecting,,AIFM,1293588,,,
+OPP_000792,ACC_NL_0003,2024-03-15,Closed Lost,lost,Depositary,906126,Competitor B,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000793,ACC_NL_0077,2023-03-07,Closed Lost,lost,Middle Office,3341087,,ONBOARDING_SPEED,Competitor promised a faster go-live timeline which was critical for the fund launch.
+OPP_000794,ACC_LU_0009,2023-07-16,Closed Lost,lost,Middle Office,1118565,Competitor C,COMPETITOR_RELATIONSHIP,Incumbent provider retained mandate due to entrenched relationship with CFO.
+OPP_000795,ACC_NL_0109,2022-07-25,Closed Lost,lost,ESG Reporting,798652,,COVERAGE,Our current coverage in the required domicile was insufficient for the mandate.
+OPP_000796,ACC_IT_0141,2026-02-19,Negotiation,,Regulatory,89658,Competitor A,,
+OPP_000797,ACC_IT_0048,2025-07-14,Closed Won,won,Fund Admin,2302978,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000798,ACC_NL_0081,2025-03-25,Prospecting,,AIFM,411925,Competitor B,,
+OPP_000799,ACC_NL_0106,2023-10-17,Closed Won,won,Depositary,301544,Competitor C,ONBOARDING_SPEED,Our rapid onboarding capability was a decisive factor in the client's selection.
+OPP_000800,ACC_NL_0073,2023-02-11,Prospecting,,Depositary,1318501,,,

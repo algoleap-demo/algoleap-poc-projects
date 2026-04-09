@@ -1,0 +1,51 @@
+account_id,account_name,contact_person,country,segment,fund_size_eur,strategic_priority_flag
+ACME-EU-90001,Nordic Horizon Wealth (90001),Marie Lefebvre,NL,PIAO,3194583667.0116196,False
+ACME-EU-90002,Silverstone Ventures (90002),Luca Bianchi,NL,PIAO,229643061.26033014,False
+ACME-EU-90003,Summit Trust (90003),Robert de Jong,LU,PIAO,1210269174.6282625,True
+ACME-EU-90004,Vanguard Legacy (90004),Marco Moretti,NL,PIAO,4231886890.0238004,False
+ACME-EU-90005,Pioneer Equities (90005),Luca Bianchi,ES,FAM,2405827423.6063666,False
+ACME-EU-90006,Summit Trust (90006),Sofia Conti,IT,PIAO,3202636792.6978354,False
+ACME-EU-90007,Rhone Global Partners (90007),Klaus Fischer,FR,PIAO,2436741631.8752484,False
+ACME-EU-90008,Crestview Asset (90008),Ana Garcia,CH,PIAO,2878922426.2325277,False
+ACME-EU-90009,Silverstone Ventures (90009),Hans Schmidt,LU,PIAO,2095439667.724177,True
+ACME-EU-90010,Luminara Equity (90010),Isabelle Fournier,DE,PIAO,2892289127.0715,False
+ACME-EU-90011,Azure Blue Fund (90011),Erik Janssen,ES,FAM,4888510209.931115,False
+ACME-EU-90012,Marathon Growth (90012),Marco Moretti,DE,FAM,3884686966.0640664,False
+ACME-EU-90013,Alpine Peak Capital (90013),Isabelle Fournier,FR,PIAO,4496343077.490847,False
+ACME-EU-90014,Obsidian Capital (90014),Marco Moretti,DE,PIAO,4649660410.866987,False
+ACME-EU-90015,Rhone Global Partners (90015),Robert de Jong,FR,FAM,1470523406.1115978,False
+ACME-EU-90016,Marathon Growth (90016),Marco Moretti,ES,PIAO,652920849.6458205,False
+ACME-EU-90017,Rhone Global Partners (90017),Erik Janssen,NL,FAM,1153717972.052809,False
+ACME-EU-90018,Luminara Equity (90018),Isabelle Fournier,LU,PIAO,2600006273.7052536,True
+ACME-EU-90019,Nordic Horizon Wealth (90019),Marie Lefebvre,BE,FAM,1337024502.4073462,False
+ACME-EU-90020,Nordic Horizon Wealth (90020),Paolo Romano,NL,PIAO,4145532656.4836392,False
+ACME-EU-90021,Vanguard Legacy (90021),Jean-Pierre Dubois,BE,FAM,2122775333.034978,False
+ACME-EU-90022,Ironclad Holdings (90022),Luca Bianchi,IT,FAM,2917708923.2557373,False
+ACME-EU-90023,Obsidian Capital (90023),Sarah Müller,DE,FAM,2211562424.5930014,False
+ACME-EU-90024,Silverstone Ventures (90024),Sarah Müller,CH,PIAO,3615468111.041943,True
+ACME-EU-90025,Solaris Institutional (90025),Klaus Fischer,DE,FAM,1681417720.336409,False
+ACME-EU-90026,Vanguard Legacy (90026),Erik Janssen,ES,FAM,3006629535.4486217,False
+ACME-EU-90027,Nexus Capital EU (90027),Sofia Conti,NL,FAM,3874288213.8676662,False
+ACME-EU-90028,Rhone Global Partners (90028),Ana Garcia,IT,PIAO,129838475.68874621,False
+ACME-EU-90029,Vanguard Legacy (90029),Klaus Fischer,IT,PIAO,4409681152.502258,False
+ACME-EU-90030,Nordic Horizon Wealth (90030),Marie Lefebvre,NL,FAM,540467270.3906131,False
+ACME-EU-90031,Nexus Capital EU (90031),Jean-Pierre Dubois,NL,FAM,1405708953.7815351,True
+ACME-EU-90032,Vertex Portfolio (90032),Marco Moretti,ES,FAM,3899661486.381346,False
+ACME-EU-90033,Obsidian Capital (90033),Jean-Pierre Dubois,FR,FAM,4808327632.614214,False
+ACME-EU-90034,Aragon Strategic (90034),Isabelle Fournier,NL,PIAO,4690103050.520907,True
+ACME-EU-90035,Silverstone Ventures (90035),Sofia Conti,IT,FAM,3950389779.4127135,False
+ACME-EU-90036,Luminara Equity (90036),Robert de Jong,IT,PIAO,4786061634.38532,False
+ACME-EU-90037,Rhone Global Partners (90037),Sarah Müller,NL,FAM,1522112234.5625777,False
+ACME-EU-90038,Nexus Capital EU (90038),Marco Moretti,LU,PIAO,3869709685.7657886,True
+ACME-EU-90039,Marathon Growth (90039),Luca Bianchi,IT,FAM,3615923362.627965,False
+ACME-EU-90040,Vanguard Legacy (90040),Julia Weber,FR,FAM,2712246324.8709464,False
+ACME-EU-90041,Aragon Strategic (90041),Hans Schmidt,ES,PIAO,1136188983.145825,False
+ACME-EU-90042,Solaris Institutional (90042),Erik Janssen,CH,PIAO,3784345312.7159534,False
+ACME-EU-90043,Vertex Portfolio (90043),Luca Bianchi,NL,PIAO,1909158696.1079926,False
+ACME-EU-90044,Luminara Equity (90044),Klaus Fischer,BE,PIAO,4475610174.021611,True
+ACME-EU-90045,Pioneer Equities (90045),Marie Lefebvre,BE,PIAO,3574209819.1985784,False
+ACME-EU-90046,Rhone Global Partners (90046),Ana Garcia,DE,FAM,4077573630.343054,False
+ACME-EU-90047,Crestview Asset (90047),Julia Weber,ES,PIAO,3108132772.293431,False
+ACME-EU-90048,Solaris Institutional (90048),Hans Schmidt,NL,PIAO,1442954163.4001274,False
+ACME-EU-90049,Azure Blue Fund (90049),Isabelle Fournier,IT,FAM,2516703222.977571,False
+ACME-EU-90050,Luminara Equity (90050),Robert de Jong,NL,PIAO,1207599988.6830568,False

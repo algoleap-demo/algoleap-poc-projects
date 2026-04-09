@@ -1,0 +1,24 @@
+# Training data — regenerable from script, do not commit
+data/training/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment
+.env
+.venv/
+venv/
+
+# Runtime logs — generated per pipeline run
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

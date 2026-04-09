@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoleap &middot; IQ-EQ Agent Mesh</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-primary: #3C8943;
+            --brand-blue: #1D4ED8;
+            --status-executing: #FACC15;
+            --status-completed: #22C55E;
+            --bg-light: #F9FAFB;
+            --border-color: #E5E7EB;
+            --acc-id-color: #111827;
+        }
+
+        @keyframes pulse-glow {
+            0% { filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.4)); opacity: 1; }
+            50% { filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.8)); opacity: 0.9; }
+            100% { filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.4)); opacity: 1; }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Syne', sans-serif; background: var(--bg-light); color: #111827; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+        /* --- Header --- */
+        .hdr { background: #FFFFFF; padding: 12px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); z-index: 20; }
+        .hdr-l { display: flex; align-items: center; gap: 20px; }
+        .logo { height: 32px; width: auto; }
+        .hdr-t { font-size: 15px; font-weight: 800; color: #111827; }
+        .hdr-b { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 4px 12px; border: 1px solid #E5E7EB; border-radius: 20px; color: #6B7280; }
+
+        .view-bar { background: #fff; border-bottom: 1px solid var(--border-color); padding: 5px 40px; display: flex; align-items: center; gap: 15px; z-index: 10; font-size: 10px; color: #9CA3AF; font-weight: 700; text-transform: uppercase; }
+        .btns { display: flex; gap: 10px; margin-left: 10px; }
+        .btn { padding: 6px 16px; border-radius: 20px; border: 1.5px solid #E5E7EB; background: #FFF; cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 11px; color: #4B5563; transition: 0.2s; white-space: nowrap; }
+        .btn span { font-size: 9px; opacity: 0.5; margin-left: 5px; font-weight: 400; }
+        .btn.on { border-color: var(--brand-blue); color: var(--brand-blue); background: #EFF6FF; }
+        .btn:hover:not(.on) { border-color: #D1D5DB; background: #F9FAFB; }
+
+        /* --- Main Layout --- */
+        main { display: flex; flex: 1; overflow: hidden; }
+        .canvas-container { flex: 7; padding: 30px; display: flex; justify-content: center; align-items: center; overflow: auto; background: #F8F9FB; position: relative; }
+        svg.mesh { 
+            width: 100%; 
+            max-width: 1000px; 
+            height: auto; 
+            max-height: 95%;
+            overflow: visible; 
+        }
+
+        .data-pane { flex: 3; background: #FFF; border-left: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .tabs { display: flex; background: #FFF; border-bottom: 2px solid #F3F4F6; }
+        .tab { flex: 1; text-align: center; padding: 14px 0; font-size: 11px; font-weight: 800; cursor: pointer; color: #9CA3AF; border-bottom: 2px solid transparent; letter-spacing: 0.5px; }
+        .tab.active { color: var(--brand-primary); border-bottom-color: var(--brand-primary); }
+        .pane-content { display: none; flex: 1; overflow-y: auto; padding: 15px; }
+        .pane-content.active { display: flex; flex-direction: column; }
+
+        /* --- Response Cards (New Styled) --- */
+        .response-card { 
+            background: #FFF; border: 1.5px solid #F3F4F6; border-radius: 12px; padding: 16px; margin-bottom: 16px; 
+            transition: 0.2s; position: relative; cursor: pointer;
+        }
+        .response-card:hover { transform: translateY(-2px); border-color: var(--brand-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+        
+        .card-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .acc-id { font-weight: 800; font-size: 15px; color: var(--acc-id-color); letter-spacing: -0.2px; }
+        .bucket-badge { background: #3C8943; color: #FFF; font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 20px; }
+        .bucket-B { background: #F59E0B; }
+        .bucket-C { background: #6B7280; }
+
+        .rationale-box { background: #F8F9FB; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+        .rationale-text { font-family: 'Roboto', sans-serif; font-size: 12.5px; color: #4B5563; line-height: 1.5; font-weight: 400; }
+
+        .score-row { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 800; }
+        .score-lbl { color: var(--brand-primary); }
+        .nba-link { color: var(--brand-blue); text-transform: uppercase; font-size: 10px; text-decoration: underline; cursor: pointer; }
+
+        /* --- Agent Logs --- */
+        .trace-card { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #F3F4F6; }
+        .trace-hdr { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .trace-status { width: 8px; height: 8px; border-radius: 50%; background: #D1D5DB; }
+        .trace-status.active { background: var(--status-executing); }
+        .trace-status.done { background: var(--status-completed); }
+        .trace-agent { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; color: #374151; background: #F3F4F6; padding: 2px 6px; border-radius: 4px; }
+        .trace-desc { font-family: 'Roboto', sans-serif; font-size: 11.5px; color: #6B7280; line-height: 1.4; }
+
+        /* --- Modal --- */
+        #modal-overlay { 
+            display: none; position: fixed; inset: 0; background: rgba(17, 24, 39, 0.4); 
+            backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; 
+        }
+        .modal { 
+            background: #FFF; width: 90%; max-width: 480px; border-radius: 16px; 
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); overflow: hidden; animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-hdr { background: var(--brand-primary); padding: 20px; color: #FFF; position: relative; }
+        .modal-body { padding: 24px; }
+        .modal-nba-box { background: #F0FDF4; border: 1.5px solid #DCFCE7; padding: 18px; border-radius: 12px; margin-bottom: 20px; }
+        .modal-label { font-size: 10px; font-weight: 800; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .modal-val { font-size: 14px; color: #111827; font-weight: 700; margin-bottom: 16px; }
+        .close-btn { 
+            display: block; width: 100%; padding: 14px; background: #F3F4F6; border: none; 
+            border-radius: 10px; cursor: pointer; font-weight: 800; color: #4B5563; transition: 0.2s;
+        }
+        .close-btn:hover { background: #E5E7EB; }
+
+        /* --- SVG Mesh Highlight --- */
+        .ag { transition: 0.4s; filter: grayscale(1); opacity: 0.4; }
+        .ag-on { filter: grayscale(0); opacity: 1; }
+        .ag-active rect { fill: var(--status-executing) !important; stroke: #CA8A04 !important; animation: pulse-glow 1.5s infinite; filter: grayscale(0); opacity: 1; }
+        .ag-completed rect { fill: var(--status-completed) !important; stroke: #166534 !important; filter: grayscale(0); opacity: 1; }
+        .ag-active text, .ag-completed text { fill: #FFF !important; font-weight: 800; }
+        .path-line { transition: 0.5s; stroke: #E5E7EB; stroke-width: 1.5; fill: none; }
+        .path-on { stroke: var(--brand-primary); stroke-width: 2; }
+    </style>
+    </style>
+</head>
+<body>
+
+<div id="modal-overlay">
+    <div class="modal">
+        <div class="modal-hdr"><h2 id="m-name" style="font-size:18px">Account Actions</h2><p id="m-id" style="font-size:11px;opacity:0.8"></p></div>
+        <div class="modal-body">
+            <div class="modal-nba-box">
+                <div class="modal-label">Next Best Action</div>
+                <div id="m-nba-type" class="modal-val" style="color:var(--brand-primary)"></div>
+                <div id="m-nba-desc" style="font-size:13px;color:#374151"></div>
+            </div>
+            <div class="modal-label">Contact Person</div>
+            <div id="m-contact" class="modal-val"></div>
+            <div class="modal-label">ML Score</div>
+            <div id="m-score" class="modal-val"></div>
+            <button class="close-btn" onclick="closeModal()">Close Details</button>
+        </div>
+    </div>
+</div>
+
+<div class="hdr">
+  <div class="hdr-l"><img src="/assets/Algoleap_logo.png" alt="Algoleap" class="logo"><div style="width:1px;height:24px;background:#E5E7EB"></div><div class="hdr-t">IQ-EQ Agent Mesh Dashboard</div></div>
+  <div class="hdr-b">ISO 42001 GOVERNANCE</div>
+</div>
+
+<div class="view-bar">
+  View Mode &rarr; 
+  <div class="btns">
+    <button class="btn on" data-p="1" onclick="pick(1)">Targeting &amp; Triage <span>POC 1</span></button>
+    <button class="btn" data-p="2" onclick="pick(2)">Account Planning <span>POC 2</span></button>
+    <button class="btn" data-p="3" onclick="pick(3)">Whitespace Analysis <span>POC 3</span></button>
+    <button class="btn" data-p="0" onclick="pick(0)">Full Agent Mesh <span>All POCs</span></button>
+  </div>
+</div>
+
+<main>
+    <div class="canvas-container">
+        <svg class="mesh" viewBox="0 0 1000 850" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#E5E7EB" stroke-width="1.6"/></marker>
+                <marker id="arr-on" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#3C8943" stroke-width="1.6"/></marker>
+            </defs>
+
+            <!-- Shared Agent Pool Background -->
+            <rect x="280" y="80" width="700" height="740" rx="16" fill="none" stroke="#F1F5F9" stroke-width="2" stroke-dasharray="10 5"/>
+            <text x="630" y="105" font-size="10" font-weight="800" fill="#CBD5E1" text-anchor="middle" style="letter-spacing:1px">SHARED AGENT POOL</text>
+
+            <!-- Orchestrator (Permanent Left) -->
+            <g id="ag-orch" class="ag ag-on" style="transform:translate(20px, 120px)">
+                <rect width="230" height="660" rx="14" fill="#FFF" stroke="#E5E7EB" stroke-width="2"/>
+                <path d="M0,14 Q0,0 14,0 L216,0 Q230,0 230,14 L230,50 L0,50 Z" fill="#1D4ED8"/>
+                <text font-weight="800" font-size="13" fill="white" x="115" y="32" text-anchor="middle">Orchestration Agent</text>
+                <text font-size="9" fill="#93C5FD" x="115" y="65" text-anchor="middle">Single instance &middot; hub of the mesh</text>
+                <line x1="20" y1="85" x2="210" y2="85" stroke="#F1F5F9" stroke-width="1"/>
+            </g>
+
+            <!-- Path Indicators (Connections) -->
+            <path id="path-1" class="path-line" d="M250 180 H300 V180 H330"/>
+            
+            <!-- STEP 1: Data -->
+            <g id="ag-data" class="ag ag-on" style="transform:translate(320px, 150px)">
+                <rect width="620" height="60" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Data Agent</text>
+            </g>
+
+            <!-- STEP 2: ML & Brief -->
+            <g id="ag-ml" class="ag ag-on" style="transform:translate(320px, 260px)">
+                <rect width="300" height="80" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="150" y="45" text-anchor="middle">ML / Whitespace Scoring Agent</text>
+            </g>
+            <g id="ag-brief" class="ag" style="transform:translate(640px, 260px)">
+                <rect width="300" height="80" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="150" y="45" text-anchor="middle">Brief Agent LLM</text>
+            </g>
+
+            <!-- STEP 3: Reasoning, Call Plan, Campaign -->
+            <g id="ag-reason" class="ag ag-on" style="transform:translate(320px, 390px)">
+                <rect width="190" height="100" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="11" fill="#374151" x="95" y="55" text-anchor="middle">Reasoning Agent LLM</text>
+            </g>
+            <g id="ag-call" class="ag" style="transform:translate(535px, 390px)">
+                <rect width="190" height="100" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="11" fill="#374151" x="95" y="55" text-anchor="middle">Call Plan Agent LLM</text>
+            </g>
+            <g id="ag-camp" class="ag" style="transform:translate(750px, 390px)">
+                <rect width="190" height="100" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="11" fill="#374151" x="95" y="55" text-anchor="middle">Campaign Agent LLM</text>
+            </g>
+
+            <!-- STEP 4: Validation -->
+            <g id="ag-valid" class="ag ag-on" style="transform:translate(320px, 540px)">
+                <rect width="620" height="60" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Validation Agent</text>
+            </g>
+
+            <!-- STEP 5: Formatting -->
+            <g id="ag-fmt" class="ag ag-on" style="transform:translate(320px, 640px)">
+                <rect width="620" height="60" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Formatting Agent</text>
+            </g>
+
+            <!-- Connection lines (P1 focus) -->
+            <line x1="630" y1="210" x2="630" y2="250" class="path-line path-on" marker-end="url(#arr-on)"/>
+            <line x1="470" y1="340" x2="470" y2="380" class="path-line path-on" marker-end="url(#arr-on)"/>
+            <line x1="415" y1="490" x2="415" y2="540" class="path-line path-on" marker-end="url(#arr-on)"/>
+            <line x1="630" y1="600" x2="630" y2="640" class="path-line path-on" marker-end="url(#arr-on)"/>
+        </svg>
+    </div>
+    <div class="data-pane">
+        <div class="tabs"><div class="tab active" data-target="logs">AGENT LOGS</div><div class="tab" data-target="resp">TRIAL RECOMMENDATIONS</div></div>
+        <div id="logs" class="pane-content active"></div>
+        <div id="resp" class="pane-content"></div>
+    </div>
+</main>
+
+<script>
+    const logs=document.getElementById('logs'), resp=document.getElementById('resp'), tabs=document.querySelectorAll('.tab'), panes=document.querySelectorAll('.pane-content');
+    const modal=document.getElementById('modal-overlay');
+    const ALL_AGENTS=['ag-orch','ag-data','ag-ml','ag-brief','ag-reason','ag-call','ag-camp','ag-valid','ag-fmt'];
+    const POC_MAP = {
+        1: ['ag-orch','ag-data','ag-ml','ag-reason','ag-valid','ag-fmt'],
+        2: ['ag-orch','ag-data','ag-brief','ag-call','ag-valid','ag-fmt'],
+        3: ['ag-orch','ag-data','ag-ml','ag-camp','ag-valid','ag-fmt'],
+        0: ALL_AGENTS
+    };
+    let pipelineData = [];
+
+    function pick(p){
+        document.querySelectorAll('.btn').forEach(b=>b.classList.remove('on'));
+        const btn=document.querySelector(`.btn[data-p="${p}"]`); if(btn)btn.classList.add('on');
+        
+        // Update Mesh Visibility
+        const activeSet = POC_MAP[p];
+        ALL_AGENTS.forEach(id=>{
+            const el=document.getElementById(id);
+            if(activeSet.includes(id)) el.classList.add('ag-on');
+            else el.classList.remove('ag-on');
+        });
+
+        if(p===1) start();
+    }
+
+    tabs.forEach(t=>{ t.onclick=()=>{ tabs.forEach(x=>x.classList.remove('active')); panes.forEach(x=>x.classList.remove('active')); t.classList.add('active'); document.getElementById(t.dataset.target).classList.add('active'); }});
+
+    function updStatus(id,s){ const n=document.getElementById(id); if(!n)return; if(s==='START'){n.classList.remove('ag-completed');n.classList.add('ag-active');} else{n.classList.remove('ag-active');n.classList.add('ag-completed');}}
+
+    async function start(){
+        logs.innerHTML=''; resp.innerHTML='<div style="text-align:center;padding:4rem;font-size:11px;color:#9CA3AF">Orchestrating Pipeline...</div>';
+        ALL_AGENTS.forEach(id=>document.getElementById(id).classList.remove('ag-active','ag-completed'));
+        const es=new EventSource('/events'); 
+        es.onmessage=(e)=>{ 
+            const l=JSON.parse(e.data); 
+            const c=document.createElement('div'); 
+            c.className='trace-card'; 
+            const statusClass = l.status === 'START' ? 'active' : (l.status === 'END' ? 'done' : '');
+            c.innerHTML=`
+                <div class="trace-hdr">
+                    <div class="trace-status ${statusClass}"></div>
+                    <div class="trace-agent">${l.agent_name.toUpperCase()}</div>
+                    <div style="font-size:9px;color:#9CA3AF;margin-left:auto">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}</div>
+                </div>
+                <div class="trace-desc">${l.message}</div>
+            `;
+            logs.appendChild(c); 
+            logs.scrollTop=logs.scrollHeight; 
+            updStatus(l.agent_name,l.status); 
+        };
+        try {
+            const r=await fetch('/score_accounts',{method:'POST'}); const d=await r.json(); es.close();
+            pipelineData = d.accounts; renderResults(); tabs[1].click();
+        } catch(e){ es.close(); }
+    }
+
+    function renderResults(){
+        resp.innerHTML='';
+        pipelineData.forEach(a=>{
+            const card=document.createElement('div'); card.className='response-card';
+            const scorePct = (a.ml_score * 100).toFixed(1);
+            const bucketClass = `bucket-${a.priority_bucket}`;
+            card.innerHTML=`
+                <div class="card-hdr">
+                    <div class="acc-id">${a.account_name}</div>
+                    <div class="bucket-badge ${bucketClass}">Bucket ${a.priority_bucket}</div>
+                </div>
+                <div class="rationale-box">
+                    <div class="rationale-text">${a.rationale_text}</div>
+                </div>
+                <div class="score-row">
+                    <div class="score-lbl">Score: ${scorePct}%</div>
+                    <div class="nba-link">View Actions &rarr;</div>
+                </div>
+            `;
+            card.onclick=()=>showModal(a); 
+            resp.appendChild(card);
+        });
+    }
+
+    function showModal(a){
+        const nba = a.nba_actions[0];
+        document.getElementById('m-name').innerText=a.account_name;
+        document.getElementById('m-id').innerText=`${a.account_id} | ${a.priority_bucket} Priority`;
+        document.getElementById('m-nba-type').innerText=nba.action_type.toUpperCase().replace('_',' ');
+        document.getElementById('m-nba-desc').innerText=nba.description;
+        document.getElementById('m-contact').innerText=a.contact_person;
+        document.getElementById('m-score').innerText=`${(a.ml_score*100).toFixed(1)}% Propensity`;
+        modal.style.display='flex';
+    }
+    function closeModal(){ modal.style.display='none'; }
+    window.onclick=(e)=>{if(e.target===modal)closeModal();}
+    
+    // Initial State: Full Mesh View (Visual Only)
+    pick(0);
+</script>
+</body>
+</html>

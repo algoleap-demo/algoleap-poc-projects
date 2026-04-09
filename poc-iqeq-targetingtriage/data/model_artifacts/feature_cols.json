@@ -1,0 +1,14 @@
+[
+  "historic_win_rate",
+  "avg_deal_size_eur",
+  "opp_count",
+  "revenue_concentration",
+  "yoy_revenue_growth",
+  "service_penetration_score",
+  "existing_middle_office_flag",
+  "esg_policy_support_flag",
+  "upcoming_launch_flag",
+  "conference_engagement",
+  "strategic_priority_flag",
+  "is_prospect"
+]
