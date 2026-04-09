@@ -26,8 +26,10 @@ The core pipeline for POC 1 is fully functional with a production-ready dashboar
 
 ### 4. Interactive Refinement
 - [x] Added interactive POC modes (Targeting, Planning, Whitespace).
-- [x] Implemented "NBA Reasoning" in the modal popup.
+- [x] Implemented signal-driven "Next Best Action" synthesis (LLM-directed).
+- [x] Replaced deterministic mappings with context-aware NBA generation.
 - [x] Humanized account results (Names vs IDs in headers).
+- [x] Optimized log sequentiality with a promise-based typewriter queue.
 
 ## Upcoming Roadmap
 

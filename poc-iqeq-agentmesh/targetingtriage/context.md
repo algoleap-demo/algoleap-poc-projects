@@ -20,10 +20,15 @@ All UI components must adhere to the high-fidelity Algoleap aesthetic:
   - Accent Blue: `#3B82F6` (Orchestration).
   - Borders: `#E2E8F0` / `#E5E7EB`.
 - **Typography**: 
-  - Body: `Inter` / `Outfit`.
+  - Brand/Headers: `Outfit` (Bold, modern).
+  - Body/Data: `Inter` (High readability).
   - Logs/Monospace: `JetBrains Mono`.
 - **UI Components**:
-  - **SVG Mesh**: Clean rects/paths with `ag-active` (pulse) and `ag-completed` (fill) states.
+  - **SVG Mesh**: Horizontal "Master Control" Orchestrator bar at the top with a vertical agent pool below.
+  - **Flow Dynamics**: 
+    - **Initiate Path**: Direct green arrow from Master Control &rarr; Data Layer.
+    - **Return Payload**: Dashed side-loop from Formatting &rarr; Master Control for lifecycle completion.
+  - **Agent Status**: Clean rects with `ag-active` (pulse yellow) and `ag-completed` (fill green) states.
   - **Response Cards**: 
     - Header: Bold Account Name + (ID).
     - Badge: Positioned top-right, color-coded (`bucket-A`: green, `bucket-B`: amber, `bucket-C`: grey).
@@ -36,9 +41,9 @@ The pipeline follows a linear 6-agent contract:
 1. **Orchestration Agent**: Entry point, generates `run_id`, manages state.
 2. **Data Agent**: Ingests and joins 1:N account relationships.
 3. **ML Scoring Agent**: Runs the 8-feature XGBoost model for propensity.
-4. **Reasoning Agent**: Contextual LLM assessment for priority buckets.
+4. **Reasoning Agent**: Contextual LLM assessment for priority buckets and **bespoke NBA synthesis**.
 5. **Validation Agent**: Conflict detection between ML and LLM scores.
-6. **Formatting Agent**: Resolves determinisitic NBA and finalizes pydantic payload.
+6. **Formatting Agent**: Finalizes the pydantic payload and maps the LLM-suggested actions.
 
 ### Agent Messaging Standards
 Every agent must emit events via SSE (`ProgressTracker`):
@@ -51,8 +56,8 @@ Every agent must emit events via SSE (`ProgressTracker`):
 }
 ```
 To maintain a premium feel, the following standards are enforced:
-- **Typewriter Speed**: 15ms per character for recommendations to simulate "thinking" and improve readability.
-- **Visual Feedback**: Independent scroll containers for agent logs to prevent workspace jitter.
+- **Log Rendering**: Sequential, promise-based log queue ensures messages type out one-by-one at 15ms/char, perfectly synchronized with SVG state transitions.
+- **Visual Feedback**: Independent scroll containers for agent logs to prevent workspace jitter and a 50/50 split for balanced data/mesh viewing.
 
 
 ## 5. Directory Structure

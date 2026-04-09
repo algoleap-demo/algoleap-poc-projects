@@ -5,7 +5,8 @@ The Targeting & Triage POC successfully demonstrates a multi-agent system that c
 
 ### Key Achievements
 - **Model Accuracy**: AUC 1.00 on synthetic datasets.
-- **Agent Boundaries**: Strict separation between scoring (statistical) and reasoning (contextual).
+- **100% Signal-to-Action**: Replaced deterministic NBA lookups with LLM-synthesized context-aware strategy generation.
+- **Dynamic Confidence**: Implemented probability-based confidence scaling ($abs(prob - 0.5) / 0.5$) for honest AI assessment.
 - **ISO 42001 Compliance**: Hand-engineered conflict detection and cryptographic audit logging.
 
 ---
@@ -26,7 +27,7 @@ The next phase involve building the "Brief Agent" and "Call Plan Agent".
 
 ### Recommendations:
 1. **Brief Agent**: Should extend `app/agents/` and ingest account context to generate markdown-formatted summaries.
-2. **Deterministic NBAs**: Maintain the pattern in `app/agents/formatting_agent.py` where NBAs are rule-based, even if the LLM suggests content for them.
+2. **Total Autonomy**: New NBAs are generated dynamically by the LLM based on user segment and country signals. The rule-based mapping in `formatting_agent.py` has been deprecated.
 3. **Audit Continuity**: Ensure the `log_audit()` hashing pattern is maintained for new agents to keep the cryptographic chain intact.
 
 ---

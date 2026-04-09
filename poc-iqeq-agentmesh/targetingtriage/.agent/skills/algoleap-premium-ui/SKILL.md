@@ -3,68 +3,65 @@ name: Algoleap Premium UI
 description: Standards and base components for high-fidelity Algoleap Agentic POC dashboards.
 ---
 
-# Algoleap Premium UI Skill
+# Algoleap Premium UI Skill (v2)
 
 This skill provides the CSS and HTML patterns required to build "Algoleap Premium" dashboards—high-fidelity, glassmorphic interfaces designed for corporate Agentic POCs.
 
 ## Design Principles
-1. **Agentic Transparency**: Use a visual "Agent Mesh" (SVG) to show real-time processing state.
+1. **Agentic Transparency**: Use a visual "Agent Mesh" (SVG) with a **Horizontal Master Control** header to show real-time processing state.
 2. **Glassmorphism**: Subtle blurs and borders to create a premium, layered feel.
-3. **Typography**: Use `Syne` for headers, `Inter/Roboto` for body, and `JetBrains Mono` for agent logs.
+3. **Typography (High Readability)**: 
+   - **Headers**: `Outfit` (Bold, clean brand feel).
+   - **Body**: `Inter` (Optimized for data legibility).
+   - **Logs**: `Inter` (Large size, balanced line-height).
+   - **Monospace**: `JetBrains Mono` (For Agent IDs and raw metrics).
 4. **Color Palette**:
    - Primary Green: `#3C8943`
    - Orchestration Blue: `#1D4ED8`
    - Background Light: `#F9FAFB`
 
+## UI Layout Standards
+### 1. 50/50 Balanced Split
+The dashboard is structured into a header, a horizontal view-selector, and a 2-column main area with a **1:1 (50/50) split**:
+- **Left Column**: Architectural Mesh Canvas (`.canvas-container`).
+- **Right Column**: Side Data Pane (`.data-pane`) for Logs and Results.
+- This ensures that complex mesh visuals and dense data results are given equal visual priority.
+
+### 2. Sequential Log Engine
+To prevent "information overwhelm," logs must be rendered sequentially:
+- **Promise-Based Queue**: Push incoming SSE events to a `msgQueue`.
+- **Typwriter Persistence**: Each message card is created and typed out fully (15ms/char) before the next message in the queue is processed.
+- **Synchronization**: SVG state transitions (Yellow/Green) must wait for the corresponding typewriter animation to resolve.
+
 ## Components
 
-### 1. 3-Pane Layout
-The dashboard is structured into a header, a horizontal view-selector, and a 2-column main area (70/30 split):
-- **Left Column**: Visualization Canvas (`.canvas-container`)
-- **Right Column**: Side Panel (`.data-pane`) for Logs and Results.
-
-### 2. Response Card
-Used to display final agent recommendations.
+### 1. Response Card (Action Integrated)
+Used to display final agent recommendations with integrated **Next Best Actions**.
 ```html
 <div class="response-card">
     <div class="card-hdr">
-        <div class="acc-id">Account Name (ID)</div>
+        <div class="acc-id">Account Name</div>
         <div class="bucket-badge bucket-A">Bucket A</div>
     </div>
     <div class="rationale-box">
-        <div class="rationale-text">Agent rationale text goes here.</div>
+        <div class="rationale-text">LLM synthesized rationale.</div>
     </div>
     <div class="score-row">
         <div class="score-lbl">Score: 96.9%</div>
-        <div class="nba-link">View Actions &rarr;</div>
+        <div class="nba-link">Next Best Action <span>&rarr;</span></div>
+    </div>
+    <div class="nba-panel">
+        <!-- Collapsible panel containing bespoke LLM strategy -->
     </div>
 </div>
 ```
 
-### 3. Trace Card (Logs)
-Used for real-time SSE progress updates.
-```html
-<div class="trace-card">
-    <div class="trace-hdr">
-        <div class="trace-status active"></div>
-        <div class="trace-agent">AGENT-NAME</div>
-    </div>
-    <div class="trace-desc">Processing message...</div>
-</div>
-```
-
-### 4. Interactive SVG Mesh
-Use the classes `ag-active` and `ag-completed` on SVG groups (`<g>`) to trigger status highlights and pulse animations.
+### 2. SVG Mesh Architecture
+- **Master Header**: A horizontal `<g id="ag-orch">` at the top of the SVG.
+- **Initiate Flow**: A primary green arrow (`#arr-on`) pointing down to the Data Layer.
+- **Return Loop**: A dashed return path from the final Formatting agent back to the Master Header to signify lifecycle completion.
 
 ## Usage
-1. Reference `resources/algoleap-base.css` in your HTML.
-2. Use `resources/template.html` as a boilerplate for new projects.
-3. Ensure your backend returns the following schema for card compatibility:
-```json
-{
-  "account_name": "string",
-  "priority_bucket": "A|B|C",
-  "ml_score": "float",
-  "rationale_text": "string"
-}
-```
+1. Use `Outfit` and `Inter` from Google Fonts.
+2. Implement the `msgQueue` and `isProcessing` lock in the frontend JS to handle concurrent SSE bursts.
+3. Ensure the `updStatus()` SVG logic triggers *after* the typewriter `resolve()` for completion states.
