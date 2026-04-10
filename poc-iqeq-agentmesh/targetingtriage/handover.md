@@ -4,15 +4,17 @@
 The Targeting & Triage POC successfully demonstrates a multi-agent system that combines statistical machine learning (XGBoost) with semantic reasoning (LLM). 
 
 ### Key Achievements
-- **Model Accuracy**: AUC 1.00 on synthetic datasets.
-- **100% Signal-to-Action**: Replaced deterministic NBA lookups with LLM-synthesized context-aware strategy generation.
-- **Dynamic Confidence**: Implemented probability-based confidence scaling ($abs(prob - 0.5) / 0.5$) for honest AI assessment.
-- **ISO 42001 Compliance**: Hand-engineered conflict detection and cryptographic audit logging.
+- **Advanced Model**: Expanded to a 9-feature XGBoost propensity model (now including **Revenue Concentration**).
+- **Thematic Reasoning**: Reasoning Agent is now aligned with industry standards via tripartite weighting (60/80/100).
+- **LangChain/LangGraph Migration**: Standardized the agent mesh into a formal StateGraph for scalable, multi-POC orchestration.
+- **Resilience Architecture**: Implemented `tenacity` retry policies and an `asyncio.Semaphore` rate-limiter (limit: 3) to ensure stability during large batch runs.
+- **ISO 42001 & Governance**: Cryptographic audit logging (SHA-256) and Conflict Detection validated for every account triage.
 
 ---
 
 ## 🛠️ Technical Baseline
 - **Language**: Python 3.11+
+- **Agent Framework**: **LangChain (LCEL)** & **LangGraph**
 - **ML Framework**: XGBoost (Calibrated via Isotonic Regression)
 - **API**: FastAPI with SSE for real-time progress.
 - **Frontend**: Vanilla JS/CSS (Algoleap deep-dark theme).

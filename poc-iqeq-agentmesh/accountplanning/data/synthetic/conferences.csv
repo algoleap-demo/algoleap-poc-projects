@@ -1,0 +1,26 @@
+conference_id,conference_name,conference_date,location,tier
+CONF-001,Conference 1,2026-01-20,London,tier_2
+CONF-002,Conference 2,2026-01-24,Milan,tier_3
+CONF-003,Conference 3,2026-02-08,London,tier_1
+CONF-004,Conference 4,2026-03-08,Milan,tier_2
+CONF-005,Conference 5,2026-01-30,London,tier_3
+CONF-006,Conference 6,2026-03-13,Luxembourg,tier_3
+CONF-007,Conference 7,2026-02-06,Milan,tier_3
+CONF-008,Conference 8,2025-11-04,London,tier_1
+CONF-009,Conference 9,2025-09-23,Paris,tier_3
+CONF-010,Conference 10,2025-12-28,Luxembourg,tier_1
+CONF-011,Conference 11,2025-12-09,London,tier_2
+CONF-012,Conference 12,2025-10-22,Milan,tier_2
+CONF-013,Conference 13,2026-01-01,Milan,tier_2
+CONF-014,Conference 14,2026-01-24,London,tier_3
+CONF-015,Conference 15,2026-02-22,Milan,tier_3
+CONF-016,Conference 16,2025-11-22,Paris,tier_1
+CONF-017,Conference 17,2025-10-02,Milan,tier_3
+CONF-018,Conference 18,2025-11-26,London,tier_3
+CONF-019,Conference 19,2025-12-30,London,tier_2
+CONF-020,Conference 20,2025-12-08,Frankfurt,tier_2
+CONF-021,Conference 21,2026-02-23,Luxembourg,tier_2
+CONF-022,Conference 22,2026-01-13,Paris,tier_3
+CONF-023,Conference 23,2025-12-02,Frankfurt,tier_2
+CONF-024,Conference 24,2025-11-17,Paris,tier_2
+CONF-025,Conference 25,2026-02-21,London,tier_1

@@ -1,85 +1,76 @@
 import json
 import asyncio
+from typing import List
 from app.progress_tracker import tracker
 from app.features import compute_features
-from app.llm_client import call_router
+from app.llm_client import get_model, LLM_SEMAPHORE
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import JsonOutputParser
 
 # Prompt Template
-REASONING_PROMPT = """You are the Reasoning Agent for IQ-EQ FAM/PIAO account triage.
+REASONING_PROMPT = ChatPromptTemplate.from_template("""
+You are the Reasoning Agent for IQ-EQ FAM/PIAO account triage.
 
 Given an account with:
 - propensity_score: {ml_score} (0-1, from XGBoost)
 - confidence_level: {confidence}
+- revenue_concentration: {rev_conc}
 - launch_indicator: {launch}
 - tier_1_conf_count: {tier_1_count}
 - segment: {segment}, country: {country}
 
-Assign a priority bucket (A, B, or C), write a one-sentence rationale, and suggest the Next Best Action (NBA).
+Assign a priority bucket (A, B, or C), suggest a Next Best Action (NBA), and write a rationale structured by these weights:
+1. Historical Weight (60%): Mention Win Rate or Deal Size signals.
+2. Firmographic Fit (80%): Mention Revenue Concentration, Segment or Country catalysts.
+3. Timing Signal (100%): Mention specific fund launches or conference attendance.
 
-NBA Rules:
-- action_type: one of ["call", "email", "meeting", "send_link", "schedule"]
-- description: concise action summary (e.g., "Schedule Q3 Strategy Review")
-- reasoning: why this specific action for this specific client signal?
-- due_in_days: integer (priority A: 1-5, B: 7-21, C: 30-90)
-
-Return strict JSON: 
-{{
-  "priority_bucket": "A|B|C", 
-  "rationale_text": "...",
-  "suggested_nba": {{
-    "action_type": "...",
-    "description": "...",
-    "reasoning": "...",
-    "due_in_days": 10
-  }}
-}}"""
+Rules:
+- NBA Rules: action_type: ["call", "email", "meeting", "send_link", "schedule"], description, reasoning, due_in_days (A: 1-5, B: 7-21, C: 30-90).
+- Return strict JSON: {{"priority_bucket": "A|B|C", "rationale_text": "...", "suggested_nba": {{"action_type": "...", "description": "...", "reasoning": "...", "due_in_days": 1}}}}
+""")
 
 async def process_account_reasoning(acc_id, s_res, raw_data, i, total):
     accounts_df = raw_data["accounts"]
     acc_info = accounts_df[accounts_df.account_id == acc_id].iloc[0]
     feat = compute_features(acc_id, raw_data)
     
-    prompt = REASONING_PROMPT.format(
-        ml_score=s_res["propensity_score"],
-        confidence=s_res["confidence_level"],
-        launch=feat["launch_indicator"],
-        tier_1_count=feat["tier_1_conf_count"],
-        segment=acc_info["segment"],
-        country=acc_info["country"]
-    )
-    
     tracker.emit("ag-reason", "processing", message=f"Reasoning for {acc_id} ({i+1}/{total})...")
     
+    model = get_model()
+    parser = JsonOutputParser()
+    chain = REASONING_PROMPT | model | parser
+    
     try:
-        res = await call_router(prompt)
-        default_nba = {
-            "action_type": "email",
-            "description": "Follow up on automated scoring",
-            "reasoning": "Standard follow-up based on propensity signals.",
-            "due_in_days": 7
-        }
+        async with LLM_SEMAPHORE:
+            res = await chain.ainvoke({
+                "ml_score": s_res["propensity_score"],
+                "confidence": s_res["confidence_level"],
+                "rev_conc": feat["revenue_concentration"],
+                "launch": feat["launch_indicator"],
+                "tier_1_count": feat["tier_1_conf_count"],
+                "segment": acc_info["segment"],
+                "country": acc_info["country"]
+            })
+        
+        # Strict validation of LLM output
+        if "priority_bucket" not in res:
+            raise ValueError(f"LLM response missing 'priority_bucket' for {acc_id}")
+        if "suggested_nba" not in res or "reasoning" not in res["suggested_nba"]:
+            raise ValueError(f"LLM response missing 'suggested_nba.reasoning' for {acc_id}")
+
         return {
             "account_id": acc_id,
-            "priority_bucket": res.get("priority_bucket", "B"),
-            "rationale_text": res.get("rationale_text", "Processing complete."),
-            "suggested_nba": res.get("suggested_nba", default_nba)
+            "priority_bucket": res["priority_bucket"],
+            "rationale_text": res.get("rationale_text", "Reasoning generated successfully."),
+            "suggested_nba": res["suggested_nba"]
         }
     except Exception as e:
-        # Fallback in case of LLM failure
-        return {
-            "account_id": acc_id,
-            "priority_bucket": "B",
-            "rationale_text": f"Contextual reasoning fallback due to connection error.",
-            "suggested_nba": {
-                "action_type": "email",
-                "description": "Manual review required",
-                "reasoning": "LLM connection error during dynamic NBA synthesis.",
-                "due_in_days": 1
-            }
-        }
+        print(f"Error in Reasoning Node for {acc_id}: {e}")
+        # Re-raise to let the graph handle the failure
+        raise
 
 async def run_reasoning_agent(scoring_results: list, raw_data: dict):
-    tracker.emit("ag-reason", "started", message="Generating contextual rationales via OpenRouter...")
+    tracker.emit("ag-reason", "started", message="Generating contextual rationales via LangChain Graph...")
     
     results = []
     batch_size = 5 # Process 5 accounts at a time

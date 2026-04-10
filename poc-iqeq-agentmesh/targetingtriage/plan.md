@@ -31,7 +31,18 @@ The core pipeline for POC 1 is fully functional with a production-ready dashboar
 - [x] Humanized account results (Names vs IDs in headers).
 - [x] Optimized log sequentiality with a promise-based typewriter queue.
 
-## Upcoming Roadmap
+### 5. Propensity Calibration & Logic (v2)
+- [x] Expanded feature vector from 8 &rarr; 9 features (Added **Revenue Concentration**).
+- [x] Retrained and recalibrated XGBoost model to support expanded telemetry.
+- [x] Implemented **Thematic Weighting** (60/80/100) in Reasoning Agent prompts.
+- [x] Re-synced runtime and training data generation for deterministic accuracy.
+
+### 6. Resilience & Framework Hardening
+- [x] Transitioned to **Strict Online-Only** architecture (removed Ollama fallbacks).
+- [x] Migrated 100% of the mesh to **LangChain & LangGraph StateGraph**.
+- [x] Implemented **Exponential Backoff Retries** (Tenacity) across all graph nodes.
+- [x] Implemented **Global Semaphore** (Rate Limiter) for LLM concurrency control.
+- [x] Verified explicit failure reporting and cryptographic audit parity.
 
 ### Phase 2: Account Planning (POC 2)
 - [ ] Implement `Brief Agent LLM` logic to generate 1-page account briefs.

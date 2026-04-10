@@ -24,13 +24,18 @@ def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw:
         v = validation_map[acc_id]
         meta = accounts_map.get(acc_id, {"account_name": acc_id, "contact_person": "Unknown"})
         
-        # Bespoke NBA resolution from LLM
-        res_nba = r["suggested_nba"]
+        # Deterministic NBA resolution (Requirement 07.3)
+        bucket = r["priority_bucket"]
+        if bucket not in NBA_RESOLUTION:
+            raise ValueError(f"Invalid priority bucket returned by LLM: {bucket}")
+        nba_rule = NBA_RESOLUTION[bucket]
+        
+        # Use deterministic fields + LLM's reasoned context
         nba = NBAAction(
-            action_type=res_nba["action_type"],
-            description=res_nba["description"],
-            reasoning=res_nba["reasoning"],
-            due_in_days=res_nba["due_in_days"]
+            action_type=nba_rule["action_type"],
+            description=nba_rule["description"],
+            reasoning=r["suggested_nba"]["reasoning"],
+            due_in_days=nba_rule["due_in_days"]
         )
         
         # Assemble AccountResult

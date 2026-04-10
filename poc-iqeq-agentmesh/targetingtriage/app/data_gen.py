@@ -75,7 +75,8 @@ def generate_snowflake_metrics(accounts_df: pd.DataFrame, seed: int) -> pd.DataF
         "account_id": accounts_df.account_id,
         "service_penetration": np.random.uniform(0.0, 1.0, n),
         "engagement_score": np.random.uniform(0.0, 100.0, n),
-        "growth_metrics_qoq": np.random.uniform(-0.5, 1.5, n)
+        "growth_metrics_qoq": np.random.uniform(-0.5, 1.5, n),
+        "revenue_concentration": np.random.uniform(0.0, 1.0, n)
     })
     return df
 

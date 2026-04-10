@@ -32,19 +32,24 @@ curl -X POST http://localhost:8000/score_accounts
 
 ---
 
-### 🛡️ Architecture & Governance (ISO 42001)
+### 🛡️ Architecture & Governance (LangGraph)
 
-The system is built as a linear mesh of 6 specialist agents:
+The system is built as a formal **StateGraph** powered by **LangGraph**, providing a robust, fault-tolerant backbone for agent orchestration:
 
 ```
-User → Orchestration Agent → Data Agent → Scoring Agent (ML)
-          → Reasoning Agent (LLM) → Validation Agent → Formatting Agent
-          → Orchestration Agent → User
+User → LangGraph Orchestrator
+          → [NODE] Data Agent
+          → [NODE] Scoring Agent (ML)
+          → [NODE] Reasoning Agent (LangChain LLM)
+          → [NODE] Validation Agent
+          → [NODE] Formatting Agent
+User ← Output State
 ```
 
 **Key Features:**
+- **LangChain/LangGraph Foundation**: Standardized multi-agent orchestration for easier scalability into POC 2 and POC 3.
 - **Conflict Detection**: The Validation Agent flags disagreement between statistical ML scores and contextual LLM reasoning.
-- **Audit Trail**: Every agent invocation is cryptographically hashed (SHA-256) into `logs/audit.jsonl` to ensure an immutable chain of custody for all decisions.
+- **Audit Trail**: Every state transition is cryptographically hashed (SHA-256) into `logs/audit.jsonl`.
 - **NBA Resolution**: Deterministic rule-based lookup based on priority buckets to ensure 100% auditability.
 
 ---

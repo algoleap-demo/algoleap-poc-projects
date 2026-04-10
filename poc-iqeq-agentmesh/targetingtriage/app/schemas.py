@@ -1,7 +1,20 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List, Optional, Any, TypedDict
 from uuid import UUID
 from datetime import datetime
+
+class AgentMeshState(TypedDict):
+    """
+    State definition for the LangGraph Agentic Mesh.
+    """
+    trace_id: str
+    raw_data: Optional[dict]
+    scoring_results: List[dict]
+    reasoning_results: List[dict]
+    validation_results: List[dict]
+    final_output: Optional[dict]
+    errors: List[str]
+    telemetry: dict
 
 # NBA Action Schema
 class NBAAction(BaseModel):

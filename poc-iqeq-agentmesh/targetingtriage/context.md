@@ -36,14 +36,35 @@ All UI components must adhere to the high-fidelity Algoleap aesthetic:
     - Score: Bottom-left in bold green.
   - **Modals**: Glassmorphic overlay, interactive NBA details with explicit "Why this action?" reasoning.
 
-## 4. Agent Mesh Architecture
-The pipeline follows a linear 6-agent contract:
-1. **Orchestration Agent**: Entry point, generates `run_id`, manages state.
-2. **Data Agent**: Ingests and joins 1:N account relationships.
-3. **ML Scoring Agent**: Runs the 8-feature XGBoost model for propensity.
-4. **Reasoning Agent**: Contextual LLM assessment for priority buckets and **bespoke NBA synthesis**.
-5. **Validation Agent**: Conflict detection between ML and LLM scores.
-6. **Formatting Agent**: Finalizes the pydantic payload and maps the LLM-suggested actions.
+## 4. Agent Mesh Architecture (LangGraph)
+The pipeline is implemented as a formal **StateGraph** with a centralized `AgentMeshState`. Each agent represents a functional **Node** in the graph:
+
+1. **Orchestration Agent (Graph Entry)**: Compiles the graph, initializes state, and manages the trace/audit lifecycle.
+2. **Data Agent (Node)**: Ingests and joins 1:N account relationships.
+3. **ML Scoring Agent (Node)**: Runs the 9-feature XGBoost model for propensity scoring.
+4. **Reasoning Agent (Node)**: Contextual LLM assessment via **LangChain (LCEL)** using thematic weights (60/80/100).
+5. **Validation Agent (Node)**: Conflict detection and automated governance queueing.
+6. **Formatting Agent (Node)**: Finalizes the pydantic payload and maps deterministic NBAs.
+
+### 4.1 Decision Standards
+- **Propensity Thresholds**:
+  - High Propensity (Bucket A): > 0.70
+  - Mid Propensity (Bucket B): 0.30 - 0.70
+  - Low Propensity (Bucket C): < 0.30
+- **Thematic Weights**: 
+  - **60% Historical**: Performance metrics (Win Rate, Deal Size).
+  - **80% Firmographic**: Fit and Size (Revenue Concentration, Segment).
+  - **100% Timing**: Active Signals (Fund Launches, Conference Attendance).
+
+### 4.2 Resilience & Reliability
+To ensure production-grade stability, the Mesh implements several fault-tolerance patterns:
+- **Exponential Backoff Retries**: Every agent node is wrapped in a `tenacity` retry policy (3 attempts) to handle transient network or API failures.
+- **Concurrency Control (Rate Limiting)**: A global `asyncio.Semaphore(3)` restricts the number of simultaneous LLM calls, protecting our API quotas from exhaustion.
+- **Strict Online Execution**: To ensure absolute auditability, local LLM fallbacks (e.g., Ollama) and hardcoded "fail-soft" heuristics are prohibited.
+  - If online APIs (Gemini, OpenAI, Groq) are unreachable after 3 retries, the pipeline must **fail explicitly**.
+- **Cryptographic Traceability**: 
+  - All inter-agent communication is hashed (SHA-256).
+  - Every `run_id` provides a tamper-evident audit trail in `logs/audit.jsonl`.
 
 ### Agent Messaging Standards
 Every agent must emit events via SSE (`ProgressTracker`):

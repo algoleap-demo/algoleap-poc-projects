@@ -35,7 +35,7 @@ def run_scoring_agent(raw_data: dict):
     # 3. Predict
     tracker.emit("ag-ml", "processing", message=f"Running model scoring on {len(X)} records...")
     probs = clf.predict_proba(X)[:, 1]
-    
+    for i, acc_id in enumerate(accounts):
         # Calculate dynamic confidence based on distance from decision boundary (0.5)
         # Prob close to 0 or 1 = High Confidence; Prob close to 0.5 = Low Confidence
         raw_prob = float(probs[i])
