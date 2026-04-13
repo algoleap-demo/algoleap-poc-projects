@@ -98,7 +98,23 @@ async def process_brief(
     trace_id=None,
 ):
     accounts_df = raw_data["accounts"]
-    acc_info = accounts_df[accounts_df.account_id == acc_id].iloc[0]
+    acc_match = accounts_df[accounts_df.account_id == acc_id]
+    if acc_match.empty:
+        tracker.emit(
+            "ag-brief",
+            "processing",
+            message=f"Skipping brief for {acc_id}: not found in accounts table.",
+            trace_id=trace_id,
+        )
+        msg = f"### Data gap\n\nAccount `{acc_id}` is missing from **accounts** — cannot build a brief."
+        return {
+            "account_id": acc_id,
+            "brief_text": msg,
+            "call_plan_text": msg,
+            "brief_markdown": msg,
+            "call_plan_markdown": msg,
+        }
+    acc_info = acc_match.iloc[0]
 
     tracker.emit(
         "ag-brief",
@@ -118,11 +134,11 @@ async def process_brief(
                 "country": str(acc_info.get("country", "")),
                 "segment": str(acc_info.get("segment", "")),
                 "fund_size_eur": float(acc_info.get("fund_size_eur", 0) or 0),
-                "propensity_score": round(float(score_row["propensity_score"]), 4),
-                "confidence_level": round(float(score_row["confidence_level"]), 4),
-                "total_ws_potential_eur": float(score_row["total_ws_potential_eur"]),
-                "relationship_depth": round(float(score_row["relationship_depth"]), 4),
-                "api_score": round(float(score_row["api_score"]), 4),
+                "propensity_score": round(float(score_row.get("propensity_score", 0.5)), 4),
+                "confidence_level": round(float(score_row.get("confidence_level", 0.55)), 4),
+                "total_ws_potential_eur": float(score_row.get("total_ws_potential_eur", 0)),
+                "relationship_depth": round(float(score_row.get("relationship_depth", 0)), 4),
+                "api_score": round(float(score_row.get("api_score", 0)), 4),
                 "top_whitespace_json": json.dumps(top_ws, ensure_ascii=False),
                 "top_contacts_json": json.dumps(top_ct, ensure_ascii=False),
             },

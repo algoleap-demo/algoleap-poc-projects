@@ -42,8 +42,9 @@ async def process_call_plan(acc_id, brief_markdown, raw_data, i, total, trace_id
     contacts_df = raw_data["contacts"]
     matrix_df = raw_data["account_product_matrix"]
     catalog_df = raw_data["product_catalog"]
-    
-    acc_name = accounts_df[accounts_df.account_id == acc_id].iloc[0]["account_name"]
+
+    acc_row = accounts_df[accounts_df.account_id == acc_id]
+    acc_name = str(acc_row.iloc[0]["account_name"]) if not acc_row.empty else str(acc_id)
     
     # 1. Fetch Contacts
     account_contacts = contacts_df[contacts_df.account_id == acc_id]
@@ -58,7 +59,12 @@ async def process_call_plan(acc_id, brief_markdown, raw_data, i, total, trace_id
     gaps = matrix_df[(matrix_df.account_id == acc_id) & (matrix_df.is_active == False)]
     gap_names = []
     for _, row in gaps.iterrows():
-        gap_names.append(catalog_df[catalog_df.product_id == row["product_id"]].iloc[0]["product_name"])
+        pid = row["product_id"]
+        cr = catalog_df[catalog_df.product_id == pid]
+        if cr.empty:
+            gap_names.append(str(pid))
+        else:
+            gap_names.append(str(cr.iloc[0].get("product_name", pid)))
     
     # Progress Tracking Update (High Visibility)
     tracker.emit("ag-call", "processing", message=f"Crafting Tactical Call Plan for {acc_name} ({i+1}/{total})...", trace_id=trace_id)

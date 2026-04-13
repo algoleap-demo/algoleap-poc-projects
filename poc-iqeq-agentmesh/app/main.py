@@ -161,24 +161,30 @@ async def execute_mission():
             "Unified Mission (POC 1→2→3). Live LLM/API pipelines — no dashboard mock data.",
             trace_id=run_id,
         )
-
-        await mesh_app.ainvoke(
-            {
-                "run_id": run_id,
-                "filters": {},
-                "status": "started",
-                "targeting_results": {},
-                "planning_results": {},
-                "whitespace_results": {},
-            }
-        )
-
-        tracker.emit(
-            "ag-orch",
-            "END",
-            "Unified Mission Lifecycle Complete (POC 1–3).",
-            trace_id=run_id,
-        )
+        try:
+            await mesh_app.ainvoke(
+                {
+                    "run_id": run_id,
+                    "filters": {},
+                    "status": "started",
+                    "targeting_results": {},
+                    "planning_results": {},
+                    "whitespace_results": {},
+                }
+            )
+            tracker.emit(
+                "ag-orch",
+                "END",
+                "Unified Mission Lifecycle Complete (POC 1–3).",
+                trace_id=run_id,
+            )
+        except Exception as e:
+            tracker.emit(
+                "ag-orch",
+                "FAILED",
+                message=f"Unified mission failed: {e}",
+                trace_id=run_id,
+            )
 
     asyncio.create_task(run_task())
     return {"status": "unified_mission_initiated", "run_id": run_id}

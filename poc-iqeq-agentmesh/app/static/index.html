@@ -447,6 +447,10 @@
         });
     }
 
+    function briefToSafeHtml(text) {
+        return escapeHtml(text || '').replace(/\n/g, '<br>');
+    }
+
     function renderPlanning(data) {
         const container = document.getElementById('planning-view');
         const p = data || {};
@@ -457,15 +461,15 @@
             card.className = 'result-card';
             card.innerHTML = `
                 <div style="display:flex; justify-content:space-between; margin-bottom:8px">
-                    <div style="font-weight:800; color:var(--brand-primary)">${res.account_id}</div>
+                    <div style="font-weight:800; color:var(--brand-primary)">${escapeHtml(res.account_id || '')}</div>
                     ${res.conflict_flag ? '<div style="font-size:9px; font-weight:800; color:#EF4444; background:#FEF2F2; padding:2px 8px; border-radius:10px">CONFLICT</div>' : ''}
                 </div>
-                <div style="font-weight:700; margin-bottom:2px">${res.account_name || ''}</div>
-                <div style="font-size:11px; color:var(--text-dim); margin-bottom:15px">${res.contact_person || ''}</div>
+                <div style="font-weight:700; margin-bottom:2px">${escapeHtml(res.account_name || '')}</div>
+                <div style="font-size:11px; color:var(--text-dim); margin-bottom:15px">${escapeHtml(res.contact_person || '')}</div>
                 <details style="font-size:12px; cursor:pointer"><summary style="font-weight:700; color:var(--brand-primary)">Strategic brief</summary>
-                    <div style="padding:15px 0; line-height:1.6; border-top:1px solid #F1F5F9; margin-top:10px">${(res.brief_markdown || res.brief_text || '').replace(/\n/g, '<br>')}</div></details>
+                    <div style="padding:15px 0; line-height:1.6; border-top:1px solid #F1F5F9; margin-top:10px">${briefToSafeHtml(res.brief_markdown || res.brief_text || '')}</div></details>
                 <details style="font-size:12px; cursor:pointer; margin-top:10px"><summary style="font-weight:700; color:var(--brand-blue)">Tactical call plan</summary>
-                    <div style="padding:15px 0; line-height:1.6; border-top:1px solid #F1F5F9; margin-top:10px">${(res.call_plan_markdown || res.call_plan_text || '').replace(/\n/g, '<br>')}</div></details>`;
+                    <div style="padding:15px 0; line-height:1.6; border-top:1px solid #F1F5F9; margin-top:10px">${briefToSafeHtml(res.call_plan_markdown || res.call_plan_text || '')}</div></details>`;
             container.appendChild(card);
         });
     }

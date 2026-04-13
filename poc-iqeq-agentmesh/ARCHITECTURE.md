@@ -300,4 +300,65 @@ SVG source: `app/static/mesh_architecture.svg`.
 
 ---
 
+## 11. Critical review — gaps & stakeholder scrutiny (VP Sales Ops, analytics, CRM)
+
+Use this section when **IQ-EQ** leaders ask whether the demo is *statistically sound* or *finance-grade*. **Bottom line:** the mesh is a **coherent orchestration POC** with explicit formulas, but several choices are **heuristic or requirements-locked**, not empirically validated on your production book. Say clearly: *“decision support prototype — not a certified pricing or risk engine.”*
+
+### 11.1 Statistician / data science
+
+| Topic | What the code does | Gap / risk |
+|--------|-------------------|------------|
+| **Propensity** | XGBoost `predict_proba[:,1]` on9 engineered features | No documented **calibration** (Platt / isotonic) for “probability of win” language; scores are **ranking-oriented** unless the model was trained and tested with proper calibration on IQ-EQ data. |
+| **“Confidence”** | `min(0.98, (|p−0.5|/0.5)*0.4 + 0.55)` | This is a **display heuristic**, not posterior uncertainty, bootstrap CI, or conformal coverage. **Do not** interpret as statistical confidence interval. |
+| **API score** | Fixed weights0.5 / 0.3 / 0.2 (propensity / norm WS / strategic) | **Arbitrary linear blend** unless tied to uplift or revenue outcome models. Different segments may need different weights; no interaction terms or elasticity. |
+| **Whitespace normalization** | Min–max of **total** whitespace EUR across the **batch in the run** | Rankings **shift** if you change the account set (inclusion/exclusion). Not stable against cohort composition — classic **leakage of scale** into interpretation. |
+| **K-means** | `k = min(5, n)` on account vectors (max `ws_score` per product dimension) | Assumes Euclidean geometry and spherical clusters; **no** silhouette-driven *k*, no hierarchical structure, sensitive to **scale** and **sparse** high-dimensional product space. Fine for **demo segmentation**, weak for **strategic cluster definitions** without qualitative validation. |
+| **Train–serve** | Single pickle; fallback neutral 0.5 if missing | No online drift monitoring, no A/B, no recency of retrain disclosed in-app. |
+
+**Verdict:** Internally **consistent** math; **not** a mismatch of symbols vs code, but **epistemic** gaps: calibration, uncertainty, and cohort stability.
+
+### 11.2 Financial advisor / revenue integrity
+
+| Topic | What the code does | Gap / risk |
+|--------|-------------------|------------|
+| **Expected revenue** | Discrete buckets: Low **50k**, Medium **150k**, High **300k** EUR | **Point estimates** from buckets, not distributions, not NPV, not probability-weighted scenarios. Summing cells **double-counts** narrative risk if buckets are not mutually exclusive outcomes. |
+| **POC3 totals** | Sums `expected_revenue_eur` across whitespace cells per account / country–product | **Additive** implied “potential” can exceed realistic wallet share; no **cannibalization**, **capacity**, or **single-winner** constraints. |
+| **Currency** | EUR labels | No FX, no fiscal year alignment, no contract timing. |
+
+**Verdict:** Good for **relative** heatmaps and **storytelling**; **do not** present summed EUR as **forecast** or **quota** without a finance sign-off and definitions of “expected.”
+
+### 11.3 VP Sales Ops
+
+| Topic | What the code does | Gap / risk |
+|--------|-------------------|------------|
+| **Prioritization** | ML bucket + LLM rationale + NBA mapping | LLM **narrative** can diverge from ML bucket; validation catches **some** propensity vs whitespace mismatches, but not full **playbook** alignment to territories, coverage models, or comp rules. |
+| **Conflict rules** | e.g. high propensity & WS &lt; 50k EUR; low propensity & WS &gt; 500k EUR | Thresholds are **constants** in code — not tuned from win-rate data in this repo. |
+| **Actionability** | Brief + call plan + campaign text | Outputs are **not** written back to CRM in this POC; **no** closed-loop measurement of “brief sent → meeting booked.” |
+
+**Verdict:** Strong **demo** of agentic workflow; **operational** rollout needs CRM integration, guardrails, and KPI linkage.
+
+### 11.4 Data analytics / CRM owner (IQ-EQ.com)
+
+| Topic | What the code does | Gap / risk |
+|--------|-------------------|------------|
+| **Source of truth** | Local **CSV** only | No **Salesforce / Dynamics** field-level mapping, no **GDPR** residency story per tenant, no **golden record** merge rules. |
+| **Matrix semantics** | `has_product` / `is_active` / `potential_revenue_bucket` | If CRM **hygiene** is poor, whitespace flags are **wrong**; demo data is curated — production requires **data quality SLAs**. |
+| **Audit** | `audit.jsonl` + governance flags | Useful for **POC** traceability; not a full **model inventory** or **lineage** product (e.g. MLflow, OpenLineage). |
+| **LLM PII** | Account/contact snippets sent to OpenRouter (or other providers) | **DPA**, **subprocessor** list, and **redaction** policy must be explicit before production. |
+
+**Verdict:** Architecture is **explainable** (formulas in §5–6); **trust** depends on **data contract** and **governance** outside this repo.
+
+### 11.5 Formula “mismatch” summary
+
+There is **no** discovered bug where the documented formula in §5–6 **disagrees** with `features_poc2.py` / `scoring.py` for the **same inputs**. The **critical** issue is **fitness for purpose**: weights, buckets, and “confidence” are **requirements/demo choices**, not statistically **estimated** from IQ-EQ outcomes in this codebase.
+
+### 11.6 Recommended talk track for executives
+
+1. **“This shows how agents orchestrate ML + rules + LLM with audit hooks.”**  
+2. **“Numbers are illustrative — buckets and blend weights come from the POC spec; production would calibrate on your book and finance definitions.”**  
+3. **“Confidence on screen is a UX scalar, not a 95% interval.”**  
+4. **“Whitespace totals are directional heat, not booked pipeline.”**
+
+---
+
 *Document version: 2026-04 — aligned with repo root `app/` implementation.*
