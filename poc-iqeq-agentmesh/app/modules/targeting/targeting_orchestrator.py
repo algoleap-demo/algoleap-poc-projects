@@ -12,7 +12,7 @@ from app.modules.targeting.reasoning_agent import run_reasoning_agent
 from app.modules.targeting.validation_agent import run_validation_agent
 from app.modules.targeting.formatting_agent import run_formatting_agent
 from app.core.progress_tracker import tracker
-
+from app.core.pipeline_timing import AGENT_HANDOFF_DELAY_SEC
 from app.core.audit_logger import log_audit
 
 async def run_pipeline(trace_id: str = None):
@@ -21,8 +21,8 @@ async def run_pipeline(trace_id: str = None):
     
     # 0. Orchestrator START
     tracker.emit("ag-orch", "START", message=f"Pipeline initiated. Trace: {trace_id}", trace_id=trace_id, agent_type="RULE", stage="PLAN")
-    await asyncio.sleep(1.0) # Show Orchestrator active
-    
+    await asyncio.sleep(AGENT_HANDOFF_DELAY_SEC)
+
     try:
         # --- 1. Data Agent ---
         t0 = time.time()
@@ -30,12 +30,14 @@ async def run_pipeline(trace_id: str = None):
         duration = time.time() - t0
         
         log_audit(trace_id, "data_agent", duration, None, raw_data)
+        await asyncio.sleep(AGENT_HANDOFF_DELAY_SEC)
 
         t0 = time.time()
         scoring_results = run_scoring_agent(raw_data, trace_id=trace_id)
         duration = time.time() - t0
         
         log_audit(trace_id, "scoring_agent", duration, raw_data, scoring_results)
+        await asyncio.sleep(AGENT_HANDOFF_DELAY_SEC)
 
         # --- 3. Reasoning Agent ---
         t0 = time.time()
@@ -43,6 +45,7 @@ async def run_pipeline(trace_id: str = None):
         duration = time.time() - t0
         
         log_audit(trace_id, "reasoning_agent", duration, {"scores": scoring_results}, reasoning_results)
+        await asyncio.sleep(AGENT_HANDOFF_DELAY_SEC)
 
         # --- 4. Validation Agent ---
         t0 = time.time()
@@ -50,6 +53,7 @@ async def run_pipeline(trace_id: str = None):
         duration = time.time() - t0
         
         log_audit(trace_id, "validation_agent", duration, {"scores": scoring_results}, validation_results)
+        await asyncio.sleep(AGENT_HANDOFF_DELAY_SEC)
 
         # --- 5. Formatting Agent ---
         t0 = time.time()

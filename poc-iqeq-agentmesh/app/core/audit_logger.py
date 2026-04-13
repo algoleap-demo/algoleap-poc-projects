@@ -65,3 +65,26 @@ def log_governance_conflict(run_id: str, account_id: str, conflict_type: str, de
     
     with open(gov_path, "a") as f:
         f.write(json.dumps(entry) + "\n")
+
+
+def log_poc3_governance_flag(
+    run_id: str,
+    account_id: str,
+    product_id: str,
+    flag_type: str,
+    anomaly_note: str,
+):
+    """POC3 validation flags appended to governance_queue (§03.5)."""
+    gov_path = "logs/governance_queue.jsonl"
+    os.makedirs("logs", exist_ok=True)
+    entry = {
+        "run_id": run_id,
+        "account_id": account_id,
+        "product_id": product_id,
+        "flag_type": flag_type,
+        "anomaly_note": anomaly_note,
+        "ts": datetime.now().isoformat(),
+        "status": "pending_review",
+    }
+    with open(gov_path, "a") as f:
+        f.write(json.dumps(entry) + "\n")

@@ -2,10 +2,10 @@
 POC2 Account Brief Agent — single LLM call per account (brief + call plan), OpenRouter only.
 """
 import json
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 from app.core.progress_tracker import tracker
-from app.core.llm_client import run_planning_chain
+from app.core.llm_client import format_chain_failure, run_planning_chain
 
 ACCOUNT_BRIEF_PROMPT = """You are the Account Brief Agent for IQ-EQ FAM/PIAO account planning.
 
@@ -40,6 +40,42 @@ Constraints:
 - Do NOT recommend actions outside the API bands described (QBR / discovery / nurture).
 
 Return strict JSON: {{"brief_text": "...", "call_plan_text": "..."}}"""
+
+
+def _offline_brief_and_call_plan(acc_id: str, acc_info, score_row: Dict) -> Tuple[str, str]:
+    ps = float(score_row.get("propensity_score", 0) or 0)
+    api = float(score_row.get("api_score", 0) or 0)
+    ws = float(score_row.get("total_ws_potential_eur", 0) or 0)
+    name = str(acc_info.get("account_name", acc_id))
+    country = str(acc_info.get("country", ""))
+    seg = str(acc_info.get("segment", ""))
+    brief = (
+        f"### Account brief (structured offline)\n\n"
+        f"**Summary** — {name} ({acc_id}) in {country} / {seg}: "
+        f"propensity {ps:.2f}, blended API score {api:.2f}, whitespace potential €{ws:,.0f}.\n\n"
+        f"**Relationship & performance** — Use relationship_depth and engagement data from the scoring row in the workbench.\n\n"
+        f"**Whitespace** — Prioritize the top whitespace lines already ranked by expected revenue in the API payload.\n\n"
+        f"**Contacts** — Lead with highest-influence contacts from the influence-ranked list.\n\n"
+        f"**Next actions** — If API ≥0.75 schedule a QBR; 0.5–0.75 discovery; below 0.5 nurture. "
+        f"Align proposed plays strictly to those bands.\n"
+    )
+    cplan = (
+        "### Tactical call plan (offline)\n\n"
+        "**Objectives**\n"
+        "- Confirm current priorities and budget cycle.\n"
+        "- Align on top whitespace plays from the brief.\n"
+        "- Secure a dated follow-up with owners.\n\n"
+        "**Agenda**\n"
+        "- Context and performance snapshot\n"
+        "- Product fit on ranked opportunities\n"
+        "- Mutual success criteria and risks\n"
+        "- Next steps and owners\n\n"
+        "**Questions**\n"
+        "- What would need to be true to expand the mandate this year?\n"
+        "- Who else should join from the client side?\n"
+        "- What timeline works for a deeper working session?\n"
+    )
+    return brief, cplan
 
 
 def _coerce_llm_text(val) -> str:
@@ -105,13 +141,15 @@ async def process_brief(
             "call_plan_markdown": cplan,
         }
     except Exception as e:
-        err = f"Error generating brief: {str(e)}"
+        detail = format_chain_failure(e)
+        brief, cplan = _offline_brief_and_call_plan(acc_id, acc_info, score_row)
+        note = f"\n\n---\n*Model note:* Live brief generation failed — {detail[:420]}"
         return {
             "account_id": acc_id,
-            "brief_text": err,
-            "call_plan_text": err,
-            "brief_markdown": err,
-            "call_plan_markdown": err,
+            "brief_text": brief + note,
+            "call_plan_text": cplan + note,
+            "brief_markdown": brief + note,
+            "call_plan_markdown": cplan + note,
         }
 
 

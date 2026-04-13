@@ -1,7 +1,5 @@
-import json
-import asyncio
 from app.core.progress_tracker import tracker
-from app.core.llm_client import run_standard_chain
+from app.core.llm_client import format_chain_failure, run_planning_chain
 
 PLAN_PROMPT = """You are the 'Call Plan Strategist' for IQ-EQ.
 Your goal is to turn a strategic account brief into tactical discovery questions and objectives.
@@ -19,6 +17,26 @@ Instructions:
 
 Return strict JSON: {{"account_id": "...", "call_plan_markdown": "### Tactical Call Plan\\n\\n..."}}"""
 
+
+def _offline_call_plan_markdown(
+    acc_id: str, contacts_str: str, gap_names_csv: str
+) -> str:
+    gaps = gap_names_csv or "identified product whitespace"
+    people = contacts_str or "key stakeholders"
+    return f"""### Tactical Call Plan
+
+**Discovery questions**
+1. What are your top investment-admin priorities for the next 12 months, and where do you see friction today?
+2. How do you currently evaluate new fund-services or product extensions with {people.split(",")[0].strip() or "your team"}?
+3. What would need to be true for IQ-EQ to earn a deeper mandate on the themes in your brief?
+
+**Call objectives**
+1. Validate fit and urgency around: {gaps}.
+2. Agree on a concrete next step (workshop, deep-dive, or executive alignment) with {people}.
+
+*(Structured offline template for {acc_id} — use when the live model is unavailable.)*"""
+
+
 async def process_call_plan(acc_id, brief_markdown, raw_data, i, total, trace_id=None):
     accounts_df = raw_data["accounts"]
     contacts_df = raw_data["contacts"]
@@ -29,7 +47,12 @@ async def process_call_plan(acc_id, brief_markdown, raw_data, i, total, trace_id
     
     # 1. Fetch Contacts
     account_contacts = contacts_df[contacts_df.account_id == acc_id]
-    contacts_str = ", ".join([f"{c['name']} ({c['role']})" for _, c in account_contacts.iterrows()])
+    contacts_str = ", ".join(
+        [
+            f"{c.get('name', c.get('full_name', ''))} ({c.get('role', '')})"
+            for _, c in account_contacts.iterrows()
+        ]
+    )
     
     # 2. Fetch Gaps
     gaps = matrix_df[(matrix_df.account_id == acc_id) & (matrix_df.is_active == False)]
@@ -38,10 +61,10 @@ async def process_call_plan(acc_id, brief_markdown, raw_data, i, total, trace_id
         gap_names.append(catalog_df[catalog_df.product_id == row["product_id"]].iloc[0]["product_name"])
     
     # Progress Tracking Update (High Visibility)
-    tracker.emit("ag-plan", "processing", message=f"Crafting Tactical Call Plan for {acc_name} ({i+1}/{total})...", trace_id=trace_id)
+    tracker.emit("ag-call", "processing", message=f"Crafting Tactical Call Plan for {acc_name} ({i+1}/{total})...", trace_id=trace_id)
     
     try:
-        res = await run_standard_chain(PLAN_PROMPT, {
+        res = await run_planning_chain(PLAN_PROMPT, {
             "account_id": acc_id,
             "brief": brief_markdown[:1000], # Substantial snippet of the brief
             "contacts": contacts_str or "Key Decision Makers",
@@ -53,13 +76,17 @@ async def process_call_plan(acc_id, brief_markdown, raw_data, i, total, trace_id
             "call_plan_markdown": res.get("call_plan_markdown", "### Plan Unavailable")
         }
     except Exception as e:
+        detail = format_chain_failure(e)
         return {
             "account_id": acc_id,
-            "call_plan_markdown": f"### Error\n\nFailed to craft tactical plan: {str(e)}"
+            "call_plan_markdown": _offline_call_plan_markdown(
+                acc_id, contacts_str, ", ".join(gap_names)
+            )
+            + f"\n\n---\n**Model note:** Live drafting failed — {detail[:480]}",
         }
 
 async def run_call_plan_agent(briefs: list, raw_data: dict, trace_id: str = None):
-    tracker.emit("ag-plan", "started", message=f"Initializing tactical question generation for {len(briefs)} prioritized targets...", trace_id=trace_id)
+    tracker.emit("ag-call", "started", message=f"Initializing tactical question generation for {len(briefs)} prioritized targets...", trace_id=trace_id)
     
     results = []
     for i, b in enumerate(briefs):
@@ -68,5 +95,5 @@ async def run_call_plan_agent(briefs: list, raw_data: dict, trace_id: str = None
         res = await process_call_plan(acc_id, brief_md, raw_data, i, len(briefs), trace_id=trace_id)
         results.append(res)
         
-    tracker.emit("ag-plan", "completed", message=f"Tactical planning lifecycle complete for {len(results)} accounts.", trace_id=trace_id)
+    tracker.emit("ag-call", "completed", message=f"Tactical planning lifecycle complete for {len(results)} accounts.", trace_id=trace_id)
     return results

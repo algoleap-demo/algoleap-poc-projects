@@ -60,7 +60,7 @@ def run_whitespace_agent(
     tracker.emit(
         "ag-ml",
         "started",
-        message=f"Whitespace + propensity scoring for {len(accounts)} account(s)...",
+        message=f"POC2: XGBoost propensity for {len(accounts)} account(s)...",
         trace_id=trace_id,
     )
 
@@ -68,6 +68,19 @@ def run_whitespace_agent(
     catalog_df = raw_data["product_catalog"]
 
     prop_by_acc = _propensity_for_accounts(raw_data, accounts)
+    tracker.emit(
+        "ag-ml",
+        "completed",
+        message="POC2: propensity inference complete.",
+        trace_id=trace_id,
+    )
+
+    tracker.emit(
+        "ag-ws",
+        "started",
+        message=f"POC2: whitespace matrix scoring for {len(accounts)} account(s)...",
+        trace_id=trace_id,
+    )
     ws_totals: Dict[str, float] = {}
     details: Dict[str, List[Dict]] = {a: [] for a in accounts}
 
@@ -110,7 +123,7 @@ def run_whitespace_agent(
 
     for i, acc_id in enumerate(accounts):
         tracker.emit(
-            "ag-ml",
+            "ag-ws",
             "processing",
             message=f"Scoring account {acc_id} ({i + 1}/{len(accounts)})...",
             trace_id=trace_id,
@@ -141,9 +154,9 @@ def run_whitespace_agent(
         )
 
     tracker.emit(
-        "ag-ml",
+        "ag-ws",
         "completed",
-        message=f"Strategic scoring complete for {len(results)} account(s).",
+        message=f"POC2: whitespace scoring complete for {len(results)} account(s).",
         trace_id=trace_id,
     )
     return results

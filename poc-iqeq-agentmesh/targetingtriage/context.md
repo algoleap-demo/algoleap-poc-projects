@@ -1,9 +1,11 @@
 # IQ-EQ Agent Mesh: Context & Standards
 
-## Current Status: Phase 1 Stable | Phase 2 Active
-The core pipeline for POC 1 is fully functional. The focus has shifted to deep strategic enablement (POC 2) and aesthetic alignment.
+## Current Status: Unified repo (root `app/`) is authoritative
+The **canonical** implementation for POC 1–3 lives in the **workspace root**: [`app/`](../app/), [`data/raw/`](../data/raw/), with the dashboard at [`app/static/`](../app/static/). This `targetingtriage/` folder remains a **reference copy** of POC1-era assets (generators, requirements, `IQ_EQ_Agent_Mesh_2.html`); new work should land in the root app unless you are maintaining this subtree deliberately.
 
-This document establishes the technical, architectural, and design standards for the Algoleap IQ-EQ Agent Mesh POC.
+**As of 2026:** POC 1 (targeting), POC 2 (planning), and POC 3 (whitespace) are integrated in root `app/main.py` (LangGraph full mission + stepwise `/run/poc*` routes). See repo-root [`context.md`](../context.md) and [`plan.md`](../plan.md).
+
+This document still establishes **design standards** (Algoleap Premium, mesh semantics) shared with the unified dashboard.
 
 ## 1. Project Mission
 To transform IQ-EQ's targeting and triage process into a high-fidelity, multi-agent agentic mesh. The system automates the ingestion of account data, scoring for propensity, contextual reasoning, and resolving "Next Best Actions" (NBA) for relationship managers.
@@ -14,7 +16,7 @@ To transform IQ-EQ's targeting and triage process into a high-fidelity, multi-ag
 - **Reasoning Layer**: Agentic Blueprint Router (LLM) for contextual bucket assignment and rationale generation.
 - **Frontend**: Single-page application (SPA) using Vanilla HTML5, CSS3, and JavaScript.
 - **Visualization**: Complex interactive SVG for Agent Mesh status tracking with support for multi-agent pod transitions.
-- **Orchestration**: Centralized LangGraph `StateGraph` in `app/main.py` allowing for sequential "Unified Mission" execution.
+- **Orchestration**: LangGraph `StateGraph` in **repo-root** [`app/main.py`](../app/main.py): `targeting → planning → whitespace` for a full mission; POC1-only linear pipeline remains in [`app/modules/targeting/targeting_orchestrator.py`](../app/modules/targeting/targeting_orchestrator.py).
 
 
 ## 3. Design Standards (Algoleap Premium)

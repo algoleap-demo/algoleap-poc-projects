@@ -2,8 +2,8 @@
 
 This document tracks the milestones, completed work, and future roadmap for the Targeting & Triage Agent Mesh.
 
-## Current Status: Phase 1 Stable | Phase 2 Transition (Active)
-The core pipeline for POC 1 is fully functional. We are currently migrating the strategic mesh (POC 2) into the unified app structure.
+## Current Status: POC 1–3 live in repo-root `app/`
+Targeting & Triage logic is implemented in [`app/modules/targeting/`](../app/modules/targeting/). The **unified** FastAPI app ([`app/main.py`](../app/main.py)) runs POC1 → POC2 → POC3 for a full mission and serves the **dashboard** ([`app/static/`](../app/static/)) with the architecture SVG derived from [`plan/IQ_EQ_Agent_Mesh_2.html`](plan/IQ_EQ_Agent_Mesh_2.html). This file tracks historical milestones for the `targetingtriage/` folder; **roll-up status**: see repo-root [`plan.md`](../plan.md).
 
 
 ## Completed Milestones
@@ -46,15 +46,15 @@ The core pipeline for POC 1 is fully functional. We are currently migrating the 
 - [x] Verified explicit failure reporting and cryptographic audit parity.
 
 ### Phase 2: Account Planning (POC 2)
-- [x] Implement `Brief Agent LLM` (POC 2) in `app/modules/planning/brief_agent.py`.
-- [x] Implement `Call Plan Agent` (POC 2) in `app/modules/planning/call_plan_agent.py`.
-- [/] Update Mesh interactions to reflect POC 2 active path (Unified Dashboard Overhaul).
-
+- [x] Implement `Brief Agent LLM` (POC 2) in repo-root `app/modules/planning/brief_agent.py`.
+- [x] Implement `Call Plan Agent` (POC 2) in `app/modules/planning/call_plan_agent.py` (OpenRouter via `run_planning_chain`; tracker id **`ag-call`**).
+- [x] Unified dashboard: POC2 tab, mesh dimming, live SSE logs; call plan merged after brief in `planning_orchestrator.py`.
 
 ### Phase 3: Whitespace Analysis (POC 3)
-- [ ] Implement `Campaign Agent` for whitespace clustering.
-- [ ] Integrate market signal scoring (POC 3 specific weights).
+- [x] Whitespace scoring, k-means clustering, and **Campaign** LLM agent in `app/modules/whitespace/` (telemetry **`ag-camp`**; scoring stage **`ag-ml`**).
+- [x] POC3-specific weights and validation in `app/modules/whitespace/constants.py` and `validation_agent.py` (see [`whitespace/requirements/POC3_Requirements_v3.md`](../whitespace/requirements/POC3_Requirements_v3.md)).
 
 ### Phase 4: Integration
-- [ ] Mock Snowflake/CRM connectors for "Real Data" demo.
-- [ ] Final Governance Workbench review loop implementation.
+- [x] Single mesh dashboard + `POST /execute_mission` (POC 1–3) + stepwise `/run/poc1|2|3` (repo-root `app/main.py`).
+- [ ] Mock Snowflake/CRM connectors for "Real Data" demo narrative.
+- [ ] Final Governance Workbench review loop implementation (UI + tray).
