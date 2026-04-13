@@ -1,0 +1,105 @@
+contact_id,account_id,contact_name,role,email
+CON-00001,ACME-EU-90001,Marco Moretti,Investment Director,marco.moretti@acme-eu-90001.com
+CON-00002,ACME-EU-90001,Erik Janssen,Compliance Officer,erik.janssen@acme-eu-90001.com
+CON-00003,ACME-EU-90001,Ana Garcia,Investment Director,ana.garcia@acme-eu-90001.com
+CON-00004,ACME-EU-90002,Luca Bianchi,CFO,luca.bianchi@acme-eu-90002.com
+CON-00005,ACME-EU-90003,Luca Bianchi,Compliance Officer,luca.bianchi@acme-eu-90003.com
+CON-00006,ACME-EU-90003,Paolo Romano,Investment Director,paolo.romano@acme-eu-90003.com
+CON-00007,ACME-EU-90003,Marco Moretti,Compliance Officer,marco.moretti@acme-eu-90003.com
+CON-00008,ACME-EU-90004,Hans Schmidt,CFO,hans.schmidt@acme-eu-90004.com
+CON-00009,ACME-EU-90004,Ana Garcia,Portfolio Manager,ana.garcia@acme-eu-90004.com
+CON-00010,ACME-EU-90005,Isabelle Fournier,CFO,isabelle.fournier@acme-eu-90005.com
+CON-00011,ACME-EU-90005,Marie Lefebvre,Investment Director,marie.lefebvre@acme-eu-90005.com
+CON-00012,ACME-EU-90006,Marie Lefebvre,CFO,marie.lefebvre@acme-eu-90006.com
+CON-00013,ACME-EU-90007,Klaus Fischer,Portfolio Manager,klaus.fischer@acme-eu-90007.com
+CON-00014,ACME-EU-90007,Robert de Jong,GP,robert.de.jong@acme-eu-90007.com
+CON-00015,ACME-EU-90008,Paolo Romano,CFO,paolo.romano@acme-eu-90008.com
+CON-00016,ACME-EU-90008,Marie Lefebvre,Portfolio Manager,marie.lefebvre@acme-eu-90008.com
+CON-00017,ACME-EU-90008,Erik Janssen,Compliance Officer,erik.janssen@acme-eu-90008.com
+CON-00018,ACME-EU-90009,Marco Moretti,GP,marco.moretti@acme-eu-90009.com
+CON-00019,ACME-EU-90009,Elena Rossi,Investment Director,elena.rossi@acme-eu-90009.com
+CON-00020,ACME-EU-90009,Elena Rossi,Investment Director,elena.rossi@acme-eu-90009.com
+CON-00021,ACME-EU-90010,Luca Bianchi,CFO,luca.bianchi@acme-eu-90010.com
+CON-00022,ACME-EU-90011,Marie Lefebvre,CFO,marie.lefebvre@acme-eu-90011.com
+CON-00023,ACME-EU-90012,Robert de Jong,CFO,robert.de.jong@acme-eu-90012.com
+CON-00024,ACME-EU-90012,Hans Schmidt,CFO,hans.schmidt@acme-eu-90012.com
+CON-00025,ACME-EU-90013,Marie Lefebvre,Portfolio Manager,marie.lefebvre@acme-eu-90013.com
+CON-00026,ACME-EU-90013,Klaus Fischer,Compliance Officer,klaus.fischer@acme-eu-90013.com
+CON-00027,ACME-EU-90013,Sofia Conti,GP,sofia.conti@acme-eu-90013.com
+CON-00028,ACME-EU-90014,Ana Garcia,Portfolio Manager,ana.garcia@acme-eu-90014.com
+CON-00029,ACME-EU-90014,Jean-Pierre Dubois,CFO,jean-pierre.dubois@acme-eu-90014.com
+CON-00030,ACME-EU-90015,Klaus Fischer,CFO,klaus.fischer@acme-eu-90015.com
+CON-00031,ACME-EU-90015,Julia Weber,Portfolio Manager,julia.weber@acme-eu-90015.com
+CON-00032,ACME-EU-90016,Julia Weber,Portfolio Manager,julia.weber@acme-eu-90016.com
+CON-00033,ACME-EU-90016,Sofia Conti,Portfolio Manager,sofia.conti@acme-eu-90016.com
+CON-00034,ACME-EU-90017,Sofia Conti,Investment Director,sofia.conti@acme-eu-90017.com
+CON-00035,ACME-EU-90018,Jean-Pierre Dubois,Investment Director,jean-pierre.dubois@acme-eu-90018.com
+CON-00036,ACME-EU-90019,Robert de Jong,Portfolio Manager,robert.de.jong@acme-eu-90019.com
+CON-00037,ACME-EU-90019,Marie Lefebvre,Portfolio Manager,marie.lefebvre@acme-eu-90019.com
+CON-00038,ACME-EU-90020,Robert de Jong,Investment Director,robert.de.jong@acme-eu-90020.com
+CON-00039,ACME-EU-90021,Klaus Fischer,GP,klaus.fischer@acme-eu-90021.com
+CON-00040,ACME-EU-90021,Robert de Jong,GP,robert.de.jong@acme-eu-90021.com
+CON-00041,ACME-EU-90021,Ana Garcia,GP,ana.garcia@acme-eu-90021.com
+CON-00042,ACME-EU-90022,Paolo Romano,Compliance Officer,paolo.romano@acme-eu-90022.com
+CON-00043,ACME-EU-90022,Sarah Müller,Compliance Officer,sarah.müller@acme-eu-90022.com
+CON-00044,ACME-EU-90022,Elena Rossi,GP,elena.rossi@acme-eu-90022.com
+CON-00045,ACME-EU-90023,Hans Schmidt,CFO,hans.schmidt@acme-eu-90023.com
+CON-00046,ACME-EU-90023,Luca Bianchi,CFO,luca.bianchi@acme-eu-90023.com
+CON-00047,ACME-EU-90023,Robert de Jong,Portfolio Manager,robert.de.jong@acme-eu-90023.com
+CON-00048,ACME-EU-90024,Robert de Jong,Portfolio Manager,robert.de.jong@acme-eu-90024.com
+CON-00049,ACME-EU-90024,Jean-Pierre Dubois,GP,jean-pierre.dubois@acme-eu-90024.com
+CON-00050,ACME-EU-90024,Luca Bianchi,Investment Director,luca.bianchi@acme-eu-90024.com
+CON-00051,ACME-EU-90025,Marie Lefebvre,Compliance Officer,marie.lefebvre@acme-eu-90025.com
+CON-00052,ACME-EU-90025,Elena Rossi,GP,elena.rossi@acme-eu-90025.com
+CON-00053,ACME-EU-90025,Elena Rossi,Investment Director,elena.rossi@acme-eu-90025.com
+CON-00054,ACME-EU-90026,Sofia Conti,Compliance Officer,sofia.conti@acme-eu-90026.com
+CON-00055,ACME-EU-90026,Sarah Müller,Investment Director,sarah.müller@acme-eu-90026.com
+CON-00056,ACME-EU-90026,Julia Weber,Compliance Officer,julia.weber@acme-eu-90026.com
+CON-00057,ACME-EU-90027,Erik Janssen,CFO,erik.janssen@acme-eu-90027.com
+CON-00058,ACME-EU-90028,Marie Lefebvre,Investment Director,marie.lefebvre@acme-eu-90028.com
+CON-00059,ACME-EU-90028,Elena Rossi,GP,elena.rossi@acme-eu-90028.com
+CON-00060,ACME-EU-90029,Marco Moretti,Investment Director,marco.moretti@acme-eu-90029.com
+CON-00061,ACME-EU-90030,Luca Bianchi,Investment Director,luca.bianchi@acme-eu-90030.com
+CON-00062,ACME-EU-90030,Erik Janssen,Compliance Officer,erik.janssen@acme-eu-90030.com
+CON-00063,ACME-EU-90030,Klaus Fischer,Portfolio Manager,klaus.fischer@acme-eu-90030.com
+CON-00064,ACME-EU-90031,Luca Bianchi,Compliance Officer,luca.bianchi@acme-eu-90031.com
+CON-00065,ACME-EU-90032,Isabelle Fournier,Portfolio Manager,isabelle.fournier@acme-eu-90032.com
+CON-00066,ACME-EU-90032,Jean-Pierre Dubois,CFO,jean-pierre.dubois@acme-eu-90032.com
+CON-00067,ACME-EU-90032,Klaus Fischer,GP,klaus.fischer@acme-eu-90032.com
+CON-00068,ACME-EU-90033,Isabelle Fournier,Portfolio Manager,isabelle.fournier@acme-eu-90033.com
+CON-00069,ACME-EU-90034,Sofia Conti,Compliance Officer,sofia.conti@acme-eu-90034.com
+CON-00070,ACME-EU-90034,Julia Weber,Portfolio Manager,julia.weber@acme-eu-90034.com
+CON-00071,ACME-EU-90035,Luca Bianchi,GP,luca.bianchi@acme-eu-90035.com
+CON-00072,ACME-EU-90036,Robert de Jong,Compliance Officer,robert.de.jong@acme-eu-90036.com
+CON-00073,ACME-EU-90037,Robert de Jong,Portfolio Manager,robert.de.jong@acme-eu-90037.com
+CON-00074,ACME-EU-90037,Klaus Fischer,GP,klaus.fischer@acme-eu-90037.com
+CON-00075,ACME-EU-90038,Luca Bianchi,Compliance Officer,luca.bianchi@acme-eu-90038.com
+CON-00076,ACME-EU-90038,Robert de Jong,Investment Director,robert.de.jong@acme-eu-90038.com
+CON-00077,ACME-EU-90038,Sarah Müller,Compliance Officer,sarah.müller@acme-eu-90038.com
+CON-00078,ACME-EU-90039,Marie Lefebvre,Compliance Officer,marie.lefebvre@acme-eu-90039.com
+CON-00079,ACME-EU-90039,Isabelle Fournier,GP,isabelle.fournier@acme-eu-90039.com
+CON-00080,ACME-EU-90040,Sofia Conti,GP,sofia.conti@acme-eu-90040.com
+CON-00081,ACME-EU-90041,Marco Moretti,Portfolio Manager,marco.moretti@acme-eu-90041.com
+CON-00082,ACME-EU-90041,Sofia Conti,CFO,sofia.conti@acme-eu-90041.com
+CON-00083,ACME-EU-90042,Sarah Müller,Investment Director,sarah.müller@acme-eu-90042.com
+CON-00084,ACME-EU-90042,Sarah Müller,GP,sarah.müller@acme-eu-90042.com
+CON-00085,ACME-EU-90042,Paolo Romano,GP,paolo.romano@acme-eu-90042.com
+CON-00086,ACME-EU-90043,Jean-Pierre Dubois,Portfolio Manager,jean-pierre.dubois@acme-eu-90043.com
+CON-00087,ACME-EU-90043,Isabelle Fournier,Investment Director,isabelle.fournier@acme-eu-90043.com
+CON-00088,ACME-EU-90044,Sarah Müller,Compliance Officer,sarah.müller@acme-eu-90044.com
+CON-00089,ACME-EU-90045,Jean-Pierre Dubois,Investment Director,jean-pierre.dubois@acme-eu-90045.com
+CON-00090,ACME-EU-90045,Marie Lefebvre,CFO,marie.lefebvre@acme-eu-90045.com
+CON-00091,ACME-EU-90046,Luca Bianchi,Portfolio Manager,luca.bianchi@acme-eu-90046.com
+CON-00092,ACME-EU-90046,Luca Bianchi,Compliance Officer,luca.bianchi@acme-eu-90046.com
+CON-00093,ACME-EU-90047,Sarah Müller,Investment Director,sarah.müller@acme-eu-90047.com
+CON-00094,ACME-EU-90047,Marco Moretti,CFO,marco.moretti@acme-eu-90047.com
+CON-00095,ACME-EU-90047,Isabelle Fournier,Compliance Officer,isabelle.fournier@acme-eu-90047.com
+CON-00096,ACME-EU-90048,Sarah Müller,GP,sarah.müller@acme-eu-90048.com
+CON-00097,ACME-EU-90048,Marie Lefebvre,Compliance Officer,marie.lefebvre@acme-eu-90048.com
+CON-00098,ACME-EU-90048,Isabelle Fournier,Investment Director,isabelle.fournier@acme-eu-90048.com
+CON-00099,ACME-EU-90049,Marco Moretti,Portfolio Manager,marco.moretti@acme-eu-90049.com
+CON-00100,ACME-EU-90049,Paolo Romano,Portfolio Manager,paolo.romano@acme-eu-90049.com
+CON-00101,ACME-EU-90049,Elena Rossi,CFO,elena.rossi@acme-eu-90049.com
+CON-00102,ACME-EU-90050,Erik Janssen,Compliance Officer,erik.janssen@acme-eu-90050.com
+CON-00103,ACME-EU-90050,Marco Moretti,Portfolio Manager,marco.moretti@acme-eu-90050.com
+CON-00104,ACME-EU-90050,Robert de Jong,GP,robert.de.jong@acme-eu-90050.com

@@ -2,7 +2,7 @@ import os
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from app.data_gen import (
+from targetingtriage.app.data_gen import (
     generate_accounts, 
     generate_opportunities, 
     generate_snowflake_metrics, 
@@ -82,8 +82,8 @@ def main():
         funds = funds[funds.account_id != acc_id]
         attendance = attendance[attendance.account_id != acc_id]
 
-    # 3. Save to data/synthetic/
-    output_dir = "data/synthetic"
+    # 3. Save to data/raw/
+    output_dir = "data/raw"
     os.makedirs(output_dir, exist_ok=True)
     
     accounts.to_csv(os.path.join(output_dir, "accounts.csv"), index=False)

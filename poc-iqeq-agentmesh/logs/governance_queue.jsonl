@@ -1,0 +1,1 @@
+{"run_id": "cli-poc2", "account_id": "ACME-EU-90003", "conflict_type": "propensity_whitespace_mismatch", "details": "Large whitespace but low buying intent \u2014 review targeting strategy", "ts": "2026-04-13T11:01:07.882835", "status": "pending_review"}

@@ -9,8 +9,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_auc_score, confusion_matrix, classification_report
 from sklearn.calibration import CalibratedClassifierCV
 
-from app.features import compute_features
-from app.constants import FEATURE_ORDER
+from app.core.features import compute_features
+from app.core.constants import FEATURE_ORDER
 
 def main():
     print("Starting Phase 3: Model Training...")

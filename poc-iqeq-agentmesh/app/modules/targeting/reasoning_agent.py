@@ -34,7 +34,7 @@ Return strict JSON:
   }}
 }}"""
 
-async def process_account_reasoning(acc_id, s_res, raw_data, i, total):
+async def process_account_reasoning(acc_id, s_res, raw_data, i, total, trace_id=None):
     accounts_df = raw_data["accounts"]
     acc_info = accounts_df[accounts_df.account_id == acc_id].iloc[0]
     feat = compute_features(acc_id, raw_data)
@@ -48,7 +48,7 @@ async def process_account_reasoning(acc_id, s_res, raw_data, i, total):
         country=acc_info["country"]
     )
     
-    tracker.emit("ag-reason", "processing", message=f"Reasoning for {acc_id} ({i+1}/{total})...")
+    tracker.emit("ag-reason", "processing", message=f"Reasoning for {acc_id} ({i+1}/{total})...", trace_id=trace_id)
     
     try:
         res = await run_standard_chain(REASONING_PROMPT, {
@@ -85,8 +85,8 @@ async def process_account_reasoning(acc_id, s_res, raw_data, i, total):
             }
         }
 
-async def run_reasoning_agent(scoring_results: list, raw_data: dict):
-    tracker.emit("ag-reason", "started", message="Generating contextual rationales via OpenRouter...")
+async def run_reasoning_agent(scoring_results: list, raw_data: dict, trace_id: str = None):
+    tracker.emit("ag-reason", "started", message="Generating contextual rationales via OpenRouter...", trace_id=trace_id)
     
     results = []
     batch_size = 5 # Process 5 accounts at a time
@@ -95,10 +95,10 @@ async def run_reasoning_agent(scoring_results: list, raw_data: dict):
         batch = scoring_results[i : i + batch_size]
         tasks = []
         for j, s_res in enumerate(batch):
-            tasks.append(process_account_reasoning(s_res["account_id"], s_res, raw_data, i + j, len(scoring_results)))
+            tasks.append(process_account_reasoning(s_res["account_id"], s_res, raw_data, i + j, len(scoring_results), trace_id=trace_id))
         
         batch_results = await asyncio.gather(*tasks)
         results.extend(batch_results)
         
-    tracker.emit("ag-reason", "completed", message=f"Contextual reasoning finalized for {len(results)} accounts.")
+    tracker.emit("ag-reason", "completed", message=f"Contextual reasoning finalized for {len(results)} accounts.", trace_id=trace_id)
     return results

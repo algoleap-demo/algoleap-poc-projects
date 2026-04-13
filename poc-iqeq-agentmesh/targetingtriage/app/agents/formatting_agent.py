@@ -4,13 +4,14 @@ from app.schemas import AccountResult, PipelineResponse, NBAAction
 from datetime import datetime
 import uuid
 
-def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw: list, full_raw: dict, model_version: str, run_id: str):
+def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw: list, full_raw: dict, model_version: str, run_id: str, planning_raw: list = None):
     tracker.emit("ag-fmt", "START", "Resolving account identities and NBA mappings...", trace_id=run_id, span_id=str(uuid.uuid4()), agent_type="API", stage="PLAN")
     
     # Map for easy assembly
     scoring_map = {r["account_id"]: r for r in scoring_raw}
     reasoning_map = {r["account_id"]: r for r in reasoning_raw}
     validation_map = {r["account_id"]: r for r in validation_raw}
+    planning_map = {r["account_id"]: r for r in planning_raw} if planning_raw else {}
     
     # Raw accounts for names
     accounts_df = full_raw["accounts"]
@@ -22,6 +23,8 @@ def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw:
         s = scoring_map[acc_id]
         r = reasoning_map[acc_id]
         v = validation_map[acc_id]
+        p = planning_map.get(acc_id, {})
+        
         meta = accounts_map.get(acc_id, {"account_name": acc_id, "contact_person": "Unknown"})
         
         # Deterministic NBA resolution (Requirement 07.3)
@@ -48,7 +51,12 @@ def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw:
             confidence_level=s["confidence_level"],
             conflict_flag=v["conflict_flag"],
             rationale_text=r["rationale_text"],
-            nba_actions=[nba]
+            nba_actions=[nba],
+            # POC 2 Fields
+            brief_text=p.get("brief_text"),
+            call_plan_text=p.get("call_plan_text"),
+            api_score=p.get("api_score"),
+            whitespace_summary=p.get("whitespace_summary")
         )
         account_results.append(acc_res)
         

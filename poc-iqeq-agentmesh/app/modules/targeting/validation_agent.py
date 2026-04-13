@@ -5,7 +5,7 @@ from app.core.progress_tracker import tracker
 from app.core.constants import ML_HIGH_THRESHOLD, ML_LOW_THRESHOLD, LLM_BUCKET_TO_LEVEL
 
 def run_validation_agent(scoring_results: list, reasoning_results: list, run_id: str):
-    tracker.emit("ag-valid", "started", message="Running cross-agent conflict validation...")
+    tracker.emit("ag-valid", "started", message="Running cross-agent conflict validation...", trace_id=run_id)
     
     # Map reasoning results for easy lookup
     reasoning_map = {r["account_id"]: r for r in reasoning_results}

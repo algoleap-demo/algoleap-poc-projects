@@ -8,9 +8,11 @@ class AgentMeshState(TypedDict):
     State definition for the LangGraph Agentic Mesh.
     """
     trace_id: str
+    poc_id: int # 1: Targeting, 2: Planning, 3: Whitespace
     raw_data: Optional[dict]
     scoring_results: List[dict]
     reasoning_results: List[dict]
+    planning_results: List[dict] # Result of POC 2
     validation_results: List[dict]
     final_output: Optional[dict]
     errors: List[str]
@@ -34,6 +36,11 @@ class AccountResult(BaseModel):
     conflict_flag: bool
     rationale_text: str
     nba_actions: List[NBAAction]
+    # POC 2 specific (Optional)
+    brief_text: Optional[str] = None
+    call_plan_text: Optional[str] = None
+    api_score: Optional[float] = None
+    whitespace_summary: Optional[List[dict]] = None
 
 # Final Pipeline Response Schema
 class PipelineResponse(BaseModel):
@@ -61,3 +68,13 @@ class ReasoningOutput(BaseModel):
 class ValidationOutput(BaseModel):
     account_id: str
     conflict_flag: bool
+
+# --- POC 2: Account Planning Schemas ---
+
+class PlanningOutput(BaseModel):
+    account_id: str
+    brief_text: str
+    call_plan_text: str
+    api_score: float
+    total_ws_potential_eur: float
+    whitespace_summary: List[dict]

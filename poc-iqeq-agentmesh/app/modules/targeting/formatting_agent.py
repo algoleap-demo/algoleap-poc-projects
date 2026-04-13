@@ -52,5 +52,5 @@ def run_formatting_agent(scoring_raw: list, reasoning_raw: list, validation_raw:
         model_version=model_version,
         accounts=account_results
     )
-    
+    tracker.emit("ag-fmt", "completed", "Final output validated and formatted.", trace_id=run_id)
     return final_response

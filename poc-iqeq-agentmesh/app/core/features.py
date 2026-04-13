@@ -19,7 +19,7 @@ def compute_features(account_id: str, raw: dict) -> dict:
         return {f: 0.0 for f in [
             "win_rate", "avg_deal_size_eur", "open_opps_count", 
             "service_penetration", "engagement_score", "launch_indicator", 
-            "tier_1_conf_count", "growth_metrics_qoq"
+            "tier_1_conf_count", "growth_metrics_qoq", "revenue_concentration"
         ]}
     metrics = metrics_matches.iloc[0]
 
@@ -51,4 +51,5 @@ def compute_features(account_id: str, raw: dict) -> dict:
         "launch_indicator":    int(launch_indicator),
         "tier_1_conf_count":   int((attended_confs.tier == "tier_1").sum()),
         "growth_metrics_qoq":  float(metrics.growth_metrics_qoq),
+        "revenue_concentration": float(metrics.revenue_concentration),
     }

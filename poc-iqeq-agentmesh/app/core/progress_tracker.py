@@ -7,7 +7,7 @@ class ProgressTracker:
     def __init__(self):
         self.subscribers = []
 
-    async def subscribe(self):
+    async def stream(self):
         queue = asyncio.Queue()
         self.subscribers.append(queue)
         try:

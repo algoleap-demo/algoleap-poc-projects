@@ -19,10 +19,20 @@ OPENROUTER_MODEL = os.getenv("OPENROUTER_MODEL", "google/gemini-2.0-flash-exp:fr
 # Global semaphore to prevent rate limiting (Max 3 concurrent LLM calls)
 LLM_SEMAPHORE = asyncio.Semaphore(3)
 
-def get_model() -> BaseChatModel:
+def is_free_tier() -> bool:
+    """
+    Returns True if the current model is a free-tier model on OpenRouter.
+    """
+    return ":free" in OPENROUTER_MODEL.lower()
+
+def get_model(json_mode: bool = False) -> BaseChatModel:
     """
     Factory to return the prioritized LangChain ChatModel.
     """
+    model_kwargs = {}
+    if json_mode:
+        model_kwargs["response_format"] = {"type": "json_object"}
+
     if GOOGLE_API_KEY:
         return ChatGoogleGenerativeAI(
             model=GEMINI_MODEL, 
@@ -34,7 +44,7 @@ def get_model() -> BaseChatModel:
         return ChatOpenAI(
             model=OPENAI_MODEL, 
             api_key=OPENAI_API_KEY,
-            model_kwargs={"response_format": {"type": "json_object"}}
+            model_kwargs=model_kwargs
         )
         
     if GROQ_API_KEY:
@@ -42,7 +52,7 @@ def get_model() -> BaseChatModel:
             model=GROQ_MODEL,
             api_key=GROQ_API_KEY,
             base_url="https://api.groq.com/openai/v1",
-            model_kwargs={"response_format": {"type": "json_object"}}
+            model_kwargs=model_kwargs
         )
 
     if OPENROUTER_API_KEY and "sk-or-v1" in OPENROUTER_API_KEY:
@@ -50,7 +60,8 @@ def get_model() -> BaseChatModel:
             model=OPENROUTER_MODEL,
             api_key=OPENROUTER_API_KEY,
             base_url="https://openrouter.ai/api/v1",
-            model_kwargs={"response_format": {"type": "json_object"}}
+            max_tokens=2500, # Optimized for credit-constrained sessions
+            model_kwargs=model_kwargs
         )
 
     raise RuntimeError("No valid Online LLM API keys found in .env.")
@@ -59,7 +70,7 @@ async def call_router(prompt: str):
     """
     Legacy-compatible wrapper that now uses the LangChain factory.
     """
-    model = get_model()
+    model = get_model(json_mode=True)
     # LangChain invoke returns a BaseMessage, we extract the content
     response = await model.ainvoke(prompt)
     try:

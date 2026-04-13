@@ -2,8 +2,9 @@
 
 This document tracks the milestones, completed work, and future roadmap for the Targeting & Triage Agent Mesh.
 
-## Current Status: Phase 1 (Targeting & Triage) MVP Complete
-The core pipeline for POC 1 is fully functional with a production-ready dashboard.
+## Current Status: Phase 1 Stable | Phase 2 Transition (Active)
+The core pipeline for POC 1 is fully functional. We are currently migrating the strategic mesh (POC 2) into the unified app structure.
+
 
 ## Completed Milestones
 
@@ -45,9 +46,10 @@ The core pipeline for POC 1 is fully functional with a production-ready dashboar
 - [x] Verified explicit failure reporting and cryptographic audit parity.
 
 ### Phase 2: Account Planning (POC 2)
-- [ ] Implement `Brief Agent LLM` logic to generate 1-page account briefs.
-- [ ] Add `Call Plan Agent` logic for objective and agenda generation.
-- [ ] Update Mesh interactions to reflect POC 2 active path.
+- [x] Implement `Brief Agent LLM` (POC 2) in `app/modules/planning/brief_agent.py`.
+- [x] Implement `Call Plan Agent` (POC 2) in `app/modules/planning/call_plan_agent.py`.
+- [/] Update Mesh interactions to reflect POC 2 active path (Unified Dashboard Overhaul).
+
 
 ### Phase 3: Whitespace Analysis (POC 3)
 - [ ] Implement `Campaign Agent` for whitespace clustering.

@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
-from app.data_gen import (
+from targetingtriage.app.data_gen import (
     generate_accounts, 
     generate_opportunities, 
     generate_snowflake_metrics, 
@@ -9,7 +9,7 @@ from app.data_gen import (
     generate_conferences, 
     generate_conference_attendance
 )
-from app.features import compute_features
+from app.core.features import compute_features
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))

@@ -37,7 +37,12 @@
         .btn { padding: 6px 16px; border-radius: 20px; border: 1.5px solid #E5E7EB; background: #FFF; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 11px; color: #4B5563; transition: 0.2s; white-space: nowrap; }
         .btn span { font-size: 9px; opacity: 0.5; margin-left: 5px; font-weight: 400; }
         .btn.on { border-color: var(--brand-blue); color: var(--brand-blue); background: #EFF6FF; }
-        .btn:hover:not(.on) { border-color: #D1D5DB; background: #F9FAFB; }
+        .btn:hover:not(.on):not(.locked) { border-color: #D1D5DB; background: #F9FAFB; }
+        .btn.locked { opacity: 0.4; cursor: not-allowed; filter: grayscale(1); border-style: dashed; }
+        .btn.locked:hover { background: transparent; }
+        
+        .btn-reset { margin-left: auto; color: #EF4444; border-color: #FEE2E2; }
+        .btn-reset:hover { background: #FEF2F2; border-color: #F87171; }
 
         /* --- Main Layout --- */
         main { display: flex; flex: 1; overflow: hidden; }
@@ -142,14 +147,74 @@
         .nba-link span { transition: 0.3s; display: inline-block; }
         .response-card.active .nba-link span { transform: rotate(90deg); }
 
-        /* --- SVG Mesh Highlight --- */
+        /* --- Governance Workbench --- */
+        #workbench-tray {
+            position: fixed; right: 0; top: 0; bottom: 0; width: 450px;
+            background: #FFF; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            z-index: 1000; display: none; flex-direction: column;
+            animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        
+        .workbench-hdr { background: #111827; padding: 24px; color: #FFF; }
+        .workbench-body { padding: 24px; overflow-y: auto; flex: 1; }
+        
+        .conflict-card { 
+            background: #FEF2F2; border: 1.5px solid #FEE2E2; border-radius: 12px; padding: 20px; margin-bottom: 24px;
+        }
+        .conflict-type-pill { 
+            font-size: 9px; font-weight: 800; padding: 4px 10px; border-radius: 12px; 
+            background: #EF4444; color: #FFF; text-transform: uppercase; margin-bottom: 12px; display: inline-block;
+        }
+        .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+        .data-item { font-size: 11px; }
+        .data-val { font-size: 14px; font-weight: 700; color: #111827; margin-top: 2px; }
+        
+        .btn-gov { 
+            position: absolute; top: 12px; right: 12px; padding: 4px 10px; 
+            background: #FFF; border: 1.5px solid #FEE2E2; color: #EF4444; 
+            font-size: 9px; font-weight: 800; border-radius: 4px; z-index: 5;
+            cursor: pointer; transition: 0.2s;
+        }
+        .btn-gov:hover { background: #EF4444; color: #FFF; border-color: #EF4444; }
+
+        /* --- Animations --- */
         .ag { transition: 0.4s; filter: grayscale(1); opacity: 0.4; }
         .ag-on { filter: grayscale(0); opacity: 1; }
         .ag-active rect { fill: var(--status-executing) !important; stroke: #CA8A04 !important; animation: pulse-glow 1.5s infinite; filter: grayscale(0); opacity: 1; }
         .ag-completed rect { fill: var(--status-completed) !important; stroke: #166534 !important; filter: grayscale(0); opacity: 1; }
         .ag-active text, .ag-completed text { fill: #FFF !important; font-weight: 800; }
+        
         .path-line { transition: 0.5s; stroke: #E5E7EB; stroke-width: 1.5; fill: none; }
         .path-on { stroke: var(--brand-primary); stroke-width: 2; }
+
+        /* --- Visual Lineage Styles --- */
+        .lineage-bar { 
+            display: flex; align-items: center; gap: 10px; 
+            padding: 6px 12px; background: #F8F9FA; border-radius: 8px; 
+            margin-bottom: 12px; border: 1px dashed #E5E7EB;
+        }
+        .lineage-lbl { font-size: 9px; font-weight: 800; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px; }
+        .origin-badge { font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 4px; color: #FFF; }
+        .intent-pill { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: #6B7280; font-weight: 700; }
+        
+        /* --- SVG Mesh Highlight & Pulses --- */
+        .pulse { 
+            stroke: #FBBF24; stroke-width: 3; stroke-dasharray: 10, 100;
+            stroke-dashoffset: 110; animation: dash-pulse 2s linear infinite;
+            filter: drop-shadow(0 0 4px #FBBF24); opacity: 0;
+        }
+        .pulse-on { opacity: 1; }
+        @keyframes dash-pulse { to { stroke-dashoffset: -110; } }
+
+        /* --- Trust Seal --- */
+        .verified-seal {
+            display: flex; align-items: center; gap: 4px;
+            font-size: 8.5px; font-weight: 800; color: #166534;
+            background: #F0FDF4; border: 1px solid #BBF7D0;
+            padding: 2px 6px; border-radius: 4px; cursor: help;
+        }
+        .verified-seal svg { width: 10px; height: 10px; fill: #166534; }
     </style>
     </style>
 </head>
@@ -161,14 +226,15 @@
   <div class="hdr-b">ISO 42001 GOVERNANCE</div>
 </div>
 
-<div class="view-bar">
-  View Mode &rarr; 
-  <div class="btns">
-    <button class="btn on" data-p="1" onclick="pick(1)">Targeting &amp; Triage <span>POC 1</span></button>
-    <button class="btn" data-p="2" onclick="pick(2)">Account Planning <span>POC 2</span></button>
-    <button class="btn" data-p="3" onclick="pick(3)">Whitespace Analysis <span>POC 3</span></button>
-  </div>
-</div>
+    <div class="view-bar">
+        <span>Active Mission: <strong>IQ-EQ Unified Mesh</strong></span>
+        <div class="btns">
+            <button class="btn on" data-p="1" onclick="pick(1)">Targeting & Triage <span>POC 1</span></button>
+            <button class="btn locked" data-p="2" id="btn-poc2" onclick="pick(2)">Account Planning <span>POC 2</span></button>
+            <button class="btn locked" data-p="3" id="btn-poc3" onclick="pick(3)">Whitespace <span>POC 3</span></button>
+        </div>
+        <button class="btn btn-reset" onclick="resetMission()">Reset Mission</button>
+    </div>
 
 <main>
     <div class="canvas-container">
@@ -257,6 +323,17 @@
     </div>
 </main>
 
+<div id="workbench-tray">
+    <div class="workbench-hdr">
+        <div style="font-size:10px;font-weight:800;opacity:0.6;margin-bottom:4px">GOVERNANCE WORKBENCH</div>
+        <div style="font-family:'Outfit';font-size:18px;font-weight:700">Audit & Conflict Review</div>
+    </div>
+    <div id="workbench-content" class="workbench-body"></div>
+    <div style="padding:24px;border-top:1px solid #F3F4F6">
+        <button class="close-btn" onclick="closeWorkbench()">DISMISS & CLOSE</button>
+    </div>
+</div>
+
 <script>
     const logs=document.getElementById('logs'), resp=document.getElementById('resp'), tabs=document.querySelectorAll('.tab'), panes=document.querySelectorAll('.pane-content');
     const ALL_AGENTS=['ag-orch','ag-data','ag-ml','ag-brief','ag-reason','ag-call','ag-camp','ag-valid','ag-fmt'];
@@ -267,11 +344,27 @@
         0: ALL_AGENTS
     };
     let pipelineData = [];
+    let currentPoc = 1; 
+    let hasRun = { 1: false, 2: false, 3: false };
 
     function pick(p){
+        // Sequence Guard: POC 2 and 3 are locked until POC 1 is done
+        if (p !== 1 && !hasRun[1]) {
+            console.log("Mission Sequence Error: Targeting & Triage (POC 1) must complete before downstream actions are enabled.");
+            return;
+        }
+
+        currentPoc = p;
         document.querySelectorAll('.btn').forEach(b=>b.classList.remove('on'));
         const btn=document.querySelector(`.btn[data-p="${p}"]`); if(btn)btn.classList.add('on');
         
+        // Update Tab Label
+        const resultsTab = document.querySelector('.tab[data-target="resp"]');
+        if(p === 1) resultsTab.innerText = "Triage Recommendations";
+        else if(p === 2) resultsTab.innerText = "Account Briefs & Plans";
+        else if(p === 3) resultsTab.innerText = "Whitespace Matrix";
+        else resultsTab.innerText = "Unified View";
+
         // Update Mesh Visibility
         const activeSet = POC_MAP[p];
         ALL_AGENTS.forEach(id=>{
@@ -280,7 +373,30 @@
             else el.classList.remove('ag-on');
         });
 
-        if(p===1) start();
+        // Toggle logic: Only run start() if the module hasn't run yet
+        if (p !== 0 && !hasRun[p]) {
+            start();
+        } else if (hasRun[p]) {
+            // Just switch view, results are already in pipelineData
+            renderResults();
+        }
+    }
+
+    function resetMission() {
+        if(!confirm("Are you sure you want to reset the current mission? All cached results will be cleared.")) return;
+        hasRun = { 1: false, 2: false, 3: false };
+        pipelineData = [];
+        resp.innerHTML = '<div class="empty-state">Mission Cleared. Select "Targeting & Triage" to begin.</div>';
+        logs.innerHTML = '';
+        
+        // Re-lock buttons
+        document.getElementById('btn-poc2').classList.add('locked');
+        document.getElementById('btn-poc3').classList.add('locked');
+        
+        // Reset mesh
+        ALL_AGENTS.forEach(id=>document.getElementById(id).classList.remove('ag-completed', 'ag-active'));
+        
+        pick(1);
     }
 
     tabs.forEach(t=>{ t.onclick=()=>{ tabs.forEach(x=>x.classList.remove('active')); panes.forEach(x=>x.classList.remove('active')); t.classList.add('active'); document.getElementById(t.dataset.target).classList.add('active'); }});
@@ -353,32 +469,77 @@
     };
 
     async function start(){
+        if(currentPoc === 0) return;
         isPipelineDone = false;
         logs.innerHTML=''; resp.innerHTML='<div style="text-align:center;padding:4rem;font-size:11px;color:#9CA3AF">Orchestrating Pipeline...</div>';
         ALL_AGENTS.forEach(id=>document.getElementById(id).classList.remove('ag-active','ag-completed'));
+        
+        msgQueue.push({
+            agent_name: 'ag-orch',
+            status: 'START',
+            message: 'PIPELINE REFRESHING... Initializing secure context for POC ' + currentPoc,
+            trace_id: 'init-' + Date.now()
+        });
+        processQueue();
+        
         const es=new EventSource('/events'); 
         es.onmessage=(e)=>{ 
             msgQueue.push(JSON.parse(e.data));
             processQueue();
         };
+
+        const endpoint = (currentPoc === 1) ? '/score_accounts' : (currentPoc === 2 ? '/plan_accounts' : '/analyze_whitespace');
+
         try {
-            const r=await fetch('/score_accounts',{method:'POST'}); const d=await r.json(); es.close();
-            pipelineData = d.accounts; renderResults(); 
+            const r=await fetch(endpoint,{method:'POST'}); 
+            if(!r.ok) {
+                let errTag = "Server rejected request";
+                if (r.status === 429) errTag = "RATE LIMIT EXCEEDED (Daily Quota reached on Free Tier)";
+                else if (r.status === 402) errTag = "INSUFFICIENT CREDITS (Top-up required on OpenRouter)";
+                else if (r.status === 401) errTag = "AUTHENTICATION FAILED (Invalid API Key)";
+                throw new Error(errTag);
+            }
+            const data=await r.json();
+            pipelineData = data.accounts || data;
+            
+            hasRun[currentPoc] = true;
+            if (currentPoc === 1) {
+                document.getElementById('btn-poc2').classList.remove('locked');
+                document.getElementById('btn-poc3').classList.remove('locked');
+            }
+            
+            renderResults();
             isPipelineDone = true;
-            processQueue(); // Trigger final transition if queue is empty
-        } catch(e){ es.close(); }
+            processQueue(); 
+        } catch(e){ 
+            es.close(); 
+            msgQueue.push({
+                agent_name: 'ag-orch',
+                status: 'FAILED',
+                message: `CRITICAL ERROR: ${e.message}`,
+                trace_id: 'err-' + Date.now()
+            });
+            processQueue();
+        }
     }
 
     function renderResults(){
         resp.innerHTML='';
-        // Sort by ml_score descending
+        if(currentPoc === 1) renderTriage();
+        else if(currentPoc === 2) renderPlanning();
+        else if(currentPoc === 3) renderWhitespace();
+    }
+
+    function renderTriage() {
         pipelineData.sort((a, b) => b.ml_score - a.ml_score);
         pipelineData.forEach(a=>{
             const card=document.createElement('div'); card.className='response-card';
             const scorePct = (a.ml_score * 100).toFixed(1);
             const bucketClass = `bucket-${a.priority_bucket}`;
             const nba = a.nba_actions[0];
+            
             card.innerHTML=`
+                ${a.conflict_flag ? `<button class="btn-gov" onclick="openWorkbench('${a.account_id}')">GOVERNANCE REVIEW</button>` : ''}
                 <div class="card-hdr">
                     <div class="acc-id">${a.account_name}</div>
                     <div class="bucket-badge ${bucketClass}">Bucket ${a.priority_bucket}</div>
@@ -405,6 +566,44 @@
         });
     }
 
+    function renderPlanning() {
+        pipelineData.forEach(a => {
+            const card = document.createElement('div'); card.className = 'response-card';
+            const bucketClass = `bucket-${a.priority_bucket || 'C'}`;
+            const targetScore = (a.ml_score ? (a.ml_score * 100).toFixed(0) : '0') + '%';
+            
+            card.innerHTML = `
+                ${a.conflict_flag ? `<button class="btn-gov" onclick="openWorkbench('${a.account_id}')">GOVERNANCE REVIEW</button>` : ''}
+                <div class="lineage-bar" title="Targeting Rationale: ${a.rationale_text || 'None'}">
+                    <div class="lineage-lbl">Origin:</div>
+                    <div class="origin-badge ${bucketClass}">${a.priority_bucket || 'C'}</div>
+                    <div class="intent-pill">Targeting Intent: ${targetScore}</div>
+                </div>
+                <div class="card-hdr">
+                    <div class="acc-id">${a.account_name}</div>
+                    <div class="bucket-badge" style="background:#1D4ED8">API Score: ${(a.api_score * 100).toFixed(0)}</div>
+                </div>
+                <div class="rationale-box">
+                    <div style="font-size:10px;font-weight:800;color:#9CA3AF;margin-bottom:8px">ACCOUNT BRIEF SUMMARY</div>
+                    <div class="rationale-text">${a.brief_text || 'Brief processing...'}</div>
+                </div>
+                <div class="score-row">
+                    <div class="score-lbl">WS Potential: €${(a.total_ws_potential_eur || 0).toLocaleString()}</div>
+                    <div class="nba-link" style="color:var(--brand-primary)" onclick="toggleNba(event, this)">View Full Plan <span>&rarr;</span></div>
+                </div>
+                <div class="nba-panel">
+                    <div style="font-size:10px;font-weight:800;color:var(--brand-primary);margin-bottom:8px">CALL PLAN ACTIONS</div>
+                    <div class="nba-reasoning" style="font-style:normal;color:#111827;white-space:pre-wrap;">${a.call_plan_text}</div>
+                </div>
+            `;
+            resp.appendChild(card);
+        });
+    }
+
+    function renderWhitespace() {
+        resp.innerHTML = '<div style="text-align:center;padding:4rem;font-size:11px;color:#9CA3AF">Whitespace Heatmap Data Ready for Review. Exporting CSV...</div>';
+    }
+
     function toggleNba(e, btn){
         e.stopPropagation();
         const card = btn.closest('.response-card');
@@ -419,6 +618,57 @@
             panel.classList.add('open');
             card.classList.add('active');
         }
+    }
+
+    function openWorkbench(id) {
+        const a = pipelineData.find(x => x.account_id === id);
+        const tray = document.getElementById('workbench-tray');
+        const content = document.getElementById('workbench-content');
+        
+        content.innerHTML = `
+            <div class="conflict-card">
+                <div class="conflict-type-pill">${a.total_ws_potential_eur > 1000000 ? 'Hidden Gem' : 'Triage Gap'}</div>
+                <div class="acc-id">${a.account_name}</div>
+                <div style="font-size:12px;color:#4B5563;margin-top:8px">The system has identified a significant intelligence mismatch requiring human validation.</div>
+                
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="modal-label">XGBoost Score</div>
+                        <div class="data-val">${(a.ml_score * 100).toFixed(1)}%</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="modal-label">Current Bucket</div>
+                        <div class="data-val" style="color:#F59E0B">Bucket ${a.priority_bucket}</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="modal-label">Whitespace Pot.</div>
+                        <div class="data-val" style="color:#10B981">€${(a.total_ws_potential_eur || 0).toLocaleString()}</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="modal-label">API Health</div>
+                        <div class="data-val">${(a.api_score ? (a.api_score * 100).toFixed(0) : '0')}%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rationale-box">
+                <div class="modal-label">Automated Rationale</div>
+                <div class="rationale-text" style="font-size:12px">"${a.rationale_text}"</div>
+            </div>
+
+            <div style="margin-top:30px">
+                <div class="modal-label">Actions</div>
+                <div style="display:flex;gap:10px;margin-top:10px">
+                    <button class="btn" style="flex:1;background:#3C8943;color:#FFF;border:none">OVERRIDE TO BUCKET A</button>
+                    <button class="btn" style="flex:1" onclick="closeWorkbench()">DISMISS</button>
+                </div>
+            </div>
+        `;
+        tray.style.display = 'flex';
+    }
+
+    function closeWorkbench() {
+        document.getElementById('workbench-tray').style.display = 'none';
     }
     
     // Initial State: Full Mesh View (Visual Only)

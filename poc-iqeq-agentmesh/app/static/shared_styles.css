@@ -1,86 +1,171 @@
 /* 
    Algoleap Shared Design System 
-   Consistent aesthetics for Targetingtriage, Account Planning, and Whitespace Analysis 
+   Consistent aesthetics for Targeting, Planning, and Whitespace Analysis 
+   Version: 2.0 (Premium Light Theme)
 */
 
 :root {
-    --bg-deep: #0a0e14;
-    --bg-card: #151c27;
-    --accent-blue: #3b82f6;
-    --accent-green: #10b981;
-    --accent-yellow: #f59e0b;
-    --text-main: #f3f4f6;
-    --text-dim: #9ca3af;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --glass-bg: rgba(21, 28, 39, 0.7);
+    --brand-primary: #3C8943;
+    --brand-blue: #1D4ED8;
+    --status-executing: #FACC15;
+    --status-completed: #22C55E;
+    --bg-light: #F8F9FA;
+    --bg-card: #FFFFFF;
+    --border-color: #E2E8F0;
+    --text-main: #1e293b;
+    --text-dim: #64748b;
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    background-color: var(--bg-deep);
+    background-color: var(--bg-light);
     color: var(--text-main);
     font-family: var(--font-body);
     margin: 0;
-    overflow: hidden; /* Mesh dashboards use viewport-height layouts */
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
+/* --- Layout Components --- */
+
+main { display: flex; flex: 1; height: calc(100vh - 120px); }
+
+.hdr { 
+    background: #FFFFFF; 
+    padding: 12px 40px; 
+    border-bottom: 1px solid var(--border-color);
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 50; 
+}
+
+.view-bar { 
+    background: #FFFFFF; 
+    border-bottom: 1px solid var(--border-color); 
+    padding: 8px 40px; 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.canvas-container { 
+    flex: 1.2; 
+    padding: 20px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background: #F8FAFC; 
+    position: relative; 
+    overflow: auto;
+}
+
+.data-pane { 
+    flex: 1; 
+    background: #FFFFFF; 
+    border-left: 1px solid var(--border-color); 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* --- Buttons --- */
+
+.btn { 
+    padding: 6px 16px; 
+    border-radius: 20px; 
+    border: 1.5px solid var(--border-color); 
+    background: #FFF; 
+    color: var(--text-dim); 
+    cursor: pointer; 
+    font-family: var(--font-heading); 
+    font-weight: 700; 
+    font-size: 11px; 
+    transition: 0.2s;
+}
+
+.btn.on { 
+    border-color: var(--brand-blue); 
+    color: var(--brand-blue); 
+    background: #EFF6FF; 
+}
+
+.btn.locked { opacity: 0.4; cursor: not-allowed; border-style: dashed; }
+
+.start-btn { 
+    background: var(--brand-primary); 
+    color: #FFF; 
+    border: none; 
+    padding: 8px 20px; 
+    border-radius: 8px; 
+    font-weight: 700; 
+    cursor: pointer; 
     font-family: var(--font-heading);
-    letter-spacing: -0.02em;
+    transition: 0.2s;
 }
 
-/* Glassmorphism Utility */
-.glass-panel {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-}
+.start-btn:hover { background: #2E6A34; box-shadow: 0 4px 12px rgba(60, 137, 67, 0.2); }
 
-/* Typewriter Animation Classes */
-.log-message {
-    opacity: 0;
-    transform: translateY(5px);
-    animation: fadeInUp 0.3s forwards;
-    padding: 8px 12px;
-    border-left: 2px solid var(--accent-blue);
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    background: rgba(59, 130, 246, 0.05);
-}
+/* --- Response Cards --- */
 
-@keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-}
+.pane-content { display: none; padding: 20px; overflow-y: auto; flex: 1; }
+.pane-content.active { display: flex; flex-direction: column; }
 
-/* Unified Mesh Node Styling */
-.mesh-node {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mesh-node.active {
-    stroke: var(--accent-yellow);
-    stroke-width: 3px;
-    filter: drop-shadow(0 0 8px var(--accent-yellow));
-}
-
-.mesh-node.completed {
-    fill: var(--accent-green);
-    stroke: var(--accent-green);
-}
-
-/* Response Cards (Trial Recommendations) */
 .result-card {
-    border-radius: 8px;
-    padding: 16px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    margin-bottom: 12px;
-    transition: transform 0.2s;
+    background: #FFF; 
+    border: 1.5px solid var(--border-color); 
+    border-radius: 12px; 
+    padding: 16px; 
+    margin-bottom: 16px; 
+    transition: 0.2s;
 }
 
-.result-card:hover {
-    transform: translateX(4px);
-    border-color: var(--accent-blue);
+.result-card:hover { transform: translateY(-2px); border-color: var(--brand-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+/* --- Mesh Styling --- */
+
+.ag { transition: 0.4s; filter: grayscale(1); opacity: 0.3; }
+.ag-on { filter: grayscale(0); opacity: 1; }
+
+.ag-active rect { 
+    fill: rgba(250, 204, 21, 0.2) !important; 
+    stroke: #CA8A04 !important; 
+    stroke-width: 3px; 
+    animation: ag-pulse 1.5s infinite; 
 }
+
+.ag-completed rect { 
+    fill: rgba(34, 197, 94, 0.2) !important; 
+    stroke: var(--status-completed) !important; 
+}
+
+@keyframes ag-pulse {
+    0% { filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.4)); }
+    50% { filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.8)); }
+    100% { filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.4)); }
+}
+
+/* --- Logs (Typewriter Style) --- */
+
+.log-entry { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #F1F5F9; }
+.log-hdr { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.log-status { width: 8px; height: 8px; border-radius: 50%; background: #CBD5E1; }
+.log-status.active { background: var(--status-executing); }
+.log-status.done { background: var(--status-completed); }
+.log-agent { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; background: #F1F5F9; padding: 2px 6px; border-radius: 4px; }
+.log-msg { font-size: 13px; color: #475569; line-height: 1.5; }
+
+/* --- Governance Tray --- */
+
+#workbench-tray {
+    position: fixed; right: 0; top: 0; bottom: 0; width: 450px;
+    background: #FFF; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    z-index: 1000; display: none; flex-direction: column;
+    animation: tray-slide 0.4s ease-out;
+}
+
+@keyframes tray-slide { from { transform: translateX(100%); } to { transform: translateX(0); } }

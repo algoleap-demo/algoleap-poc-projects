@@ -2,7 +2,7 @@ import json
 import asyncio
 from app.progress_tracker import tracker
 from app.features import compute_features
-from app.llm_client import call_router
+from app.llm_client import call_router, is_free_tier
 
 BRIEF_PROMPT = """You are the 'Briefing Agent' for IQ-EQ Relationship Managers.
 Your goal is to synthesize account signals into a 1-page executive brief.
@@ -53,6 +53,11 @@ async def process_brief(acc_id, raw_data, i, total):
         }
 
 async def run_brief_agent(accounts: list, raw_data: dict):
+    is_free = is_free_tier()
+    if is_free:
+        tracker.emit("ag-brief", "info", message="Free Tier Active: Optimizing Briefing for Top 15 high-priority accounts.")
+        accounts = accounts[:15]
+
     tracker.emit("ag-brief", "started", message="Initiating contextual briefing synthesis...")
     
     results = []
@@ -60,5 +65,9 @@ async def run_brief_agent(accounts: list, raw_data: dict):
         res = await process_brief(acc_id, raw_data, i, len(accounts))
         results.append(res)
         
+        if is_free and (i + 1) < len(accounts):
+            # Briefs are heavy; play extra nice
+            await asyncio.sleep(1.5)
+            
     tracker.emit("ag-brief", "completed", message=f"Briefing packages finalized for {len(results)} accounts.")
     return results

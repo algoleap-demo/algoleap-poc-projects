@@ -8,7 +8,8 @@ def run_data_agent():
     data_dir = "data/synthetic"
     tables = [
         "accounts", "opportunities", "snowflake_metrics", 
-        "external_funds", "conferences", "conference_attendance"
+        "external_funds", "conferences", "conference_attendance",
+        "contacts", "product_catalog", "account_product_matrix"
     ]
     
     raw_data = {}
@@ -25,7 +26,13 @@ def run_data_agent():
     tracker.emit("ag-data", "processing", message="Validating referential integrity...")
     account_ids = set(raw_data["accounts"].account_id)
     
-    for table in ["opportunities", "snowflake_metrics", "external_funds", "conference_attendance"]:
+    # Shared check for all account-mapped tables
+    acc_mapped_tables = [
+        "opportunities", "snowflake_metrics", "external_funds", 
+        "conference_attendance", "contacts", "account_product_matrix"
+    ]
+    
+    for table in acc_mapped_tables:
         orphans = raw_data[table][~raw_data[table].account_id.isin(account_ids)]
         if not orphans.empty:
             error_msg = f"Data Integrity Error: {len(orphans)} orphaned records in {table}"

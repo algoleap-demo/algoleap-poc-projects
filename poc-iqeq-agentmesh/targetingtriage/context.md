@@ -1,5 +1,8 @@
 # IQ-EQ Agent Mesh: Context & Standards
 
+## Current Status: Phase 1 Stable | Phase 2 Active
+The core pipeline for POC 1 is fully functional. The focus has shifted to deep strategic enablement (POC 2) and aesthetic alignment.
+
 This document establishes the technical, architectural, and design standards for the Algoleap IQ-EQ Agent Mesh POC.
 
 ## 1. Project Mission
@@ -10,7 +13,9 @@ To transform IQ-EQ's targeting and triage process into a high-fidelity, multi-ag
 - **Machine Learning**: XGBoost (Propensity Scorer) using `scikit-learn` and `CalibratedClassifierCV`.
 - **Reasoning Layer**: Agentic Blueprint Router (LLM) for contextual bucket assignment and rationale generation.
 - **Frontend**: Single-page application (SPA) using Vanilla HTML5, CSS3, and JavaScript.
-- **Visualization**: Complex interactive SVG for Agent Mesh status tracking.
+- **Visualization**: Complex interactive SVG for Agent Mesh status tracking with support for multi-agent pod transitions.
+- **Orchestration**: Centralized LangGraph `StateGraph` in `app/main.py` allowing for sequential "Unified Mission" execution.
+
 
 ## 3. Design Standards (Algoleap Premium)
 All UI components must adhere to the high-fidelity Algoleap aesthetic:
@@ -80,6 +85,9 @@ To maintain a premium feel, the following standards are enforced:
 - **Log Rendering**: Sequential, promise-based log queue ensures messages type out one-by-one at 15ms/char, perfectly synchronized with SVG state transitions.
 - **Visual Feedback**: Independent scroll containers for agent logs to prevent workspace jitter and a 50/50 split for balanced data/mesh viewing.
 
+- [/] Final Governance Workbench review loop implementation (Manual Review Tray).
+- [x] Aesthetic Overhaul: Integrated "Algoleap Premium Light" design system across the unified dashboard.
+- [x] Unified Master Orchestrator: Centralized state management for cross-agent lifecycle control.
 
 ## 5. Directory Structure
 - `/app`: Implementation of agents, schemas, and core logic.
