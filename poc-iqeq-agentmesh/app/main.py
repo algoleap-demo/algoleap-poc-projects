@@ -12,6 +12,7 @@ from langgraph.graph import END, StateGraph
 from pydantic import BaseModel
 
 # Core Infrastructure
+from app.core.llm_client import error_detail_for_http, explain_llm_error
 from app.core.progress_tracker import tracker
 # Modular POC Orchestrators
 from app.modules.planning.planning_orchestrator import run_account_planning
@@ -179,10 +180,11 @@ async def execute_mission():
                 trace_id=run_id,
             )
         except Exception as e:
+            code, user_msg = explain_llm_error(e)
             tracker.emit(
                 "ag-orch",
                 "FAILED",
-                message=f"Unified mission failed: {e}",
+                message=f"Unified mission failed ({code}): {user_msg}",
                 trace_id=run_id,
             )
 
@@ -196,6 +198,22 @@ async def get_mission_results():
         "planning": mission_store["planning_results"],
         "whitespace": mission_store["whitespace_results"],
     }
+
+
+@app.post("/mission/reset")
+async def reset_mission():
+    """Clear server-side mission state so the dashboard can start again from Targeting / Triage."""
+    mission_store["targeting_results"] = {}
+    mission_store["planning_results"] = {}
+    mission_store["whitespace_results"] = {}
+    mission_store["run_id"] = None
+    tracker.emit(
+        "ag-orch",
+        "INFO",
+        "Mission state reset. Open Targeting & Triage to start a new run.",
+        trace_id=None,
+    )
+    return {"status": "reset", "message": "Mission cleared. Begin from Targeting & Triage."}
 
 
 @app.post("/run/poc1")
@@ -261,13 +279,14 @@ async def run_poc3(body: AnalyzeWhitespaceRequest = AnalyzeWhitespaceRequest()):
             embed_parent=False,
         )
     except Exception as e:
+        detail = error_detail_for_http(e)
         tracker.emit(
             "ag-orch",
             "FAILED",
-            message=f"Whitespace mission failed: {e}",
+            message=f"Whitespace mission failed ({detail['error_code']}): {detail['user_message']}",
             trace_id=run_id,
         )
-        raise HTTPException(status_code=502, detail=str(e)) from e
+        raise HTTPException(status_code=502, detail=detail) from e
     mission_store["whitespace_results"] = results
     tracker.emit(
         "ag-orch",

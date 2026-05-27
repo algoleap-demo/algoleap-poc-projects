@@ -1,5 +1,5 @@
 from app.core.progress_tracker import tracker
-from app.core.llm_client import format_chain_failure, run_planning_chain
+from app.core.llm_client import explain_llm_error, format_chain_failure, run_planning_chain
 
 PLAN_PROMPT = """You are the 'Call Plan Strategist' for IQ-EQ.
 Your goal is to turn a strategic account brief into tactical discovery questions and objectives.
@@ -82,13 +82,17 @@ async def process_call_plan(acc_id, brief_markdown, raw_data, i, total, trace_id
             "call_plan_markdown": res.get("call_plan_markdown", "### Plan Unavailable")
         }
     except Exception as e:
+        err_code, user_msg = explain_llm_error(e)
         detail = format_chain_failure(e)
         return {
             "account_id": acc_id,
             "call_plan_markdown": _offline_call_plan_markdown(
                 acc_id, contacts_str, ", ".join(gap_names)
             )
-            + f"\n\n---\n**Model note:** Live drafting failed — {detail[:480]}",
+            + (
+                f"\n\n---\n**Model note:** Call plan drafting could not reach the model ({err_code}). "
+                f"{user_msg} Technical: {detail[:400]}"
+            ),
         }
 
 async def run_call_plan_agent(briefs: list, raw_data: dict, trace_id: str = None):

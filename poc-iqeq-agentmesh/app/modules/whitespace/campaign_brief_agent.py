@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional
 import pandas as pd
 
 from app.core.features_poc2 import relationship_depth
-from app.core.llm_client import run_poc3_campaign_chain
+from app.core.llm_client import explain_llm_error, format_chain_failure, run_poc3_campaign_chain
 from app.core.progress_tracker import tracker
 
 CAMPAIGN_BRIEF_PROMPT = """You are the Campaign Brief Agent for IQ-EQ FAM/PIAO whitespace analysis.
@@ -147,10 +147,15 @@ async def run_campaign_brief_agent(
         try:
             llm_out = await run_poc3_campaign_chain(CAMPAIGN_BRIEF_PROMPT, payload)
         except Exception as e:
+            code, user_msg = explain_llm_error(e)
+            tech = format_chain_failure(e)[:280]
             tracker.emit(
                 "ag-camp",
                 "processing",
-                message=f"Campaign brief LLM failed for cluster {cluster_id}; using structured fallback. ({e})",
+                message=(
+                    f"Campaign brief LLM failed for cluster {cluster_id} ({code}: {user_msg}); "
+                    f"using structured fallback."
+                ),
                 trace_id=trace_id,
                 agent_type="LLM",
                 stage="DECISION",
@@ -164,7 +169,8 @@ async def run_campaign_brief_agent(
                     f"Cluster {cluster_id} ({len(members)} accounts): lead with dominant lines "
                     f"{', '.join(dom_products)}. Sequence: (1) executive hook on growth/admin burden, "
                     f"(2) quantify upside using cluster totals, (3) propose a working session to rank plays, "
-                    f"(4) secure owners and a dated follow-up. (Offline brief — model error: {str(e)[:200]})"
+                    f"(4) secure owners and a dated follow-up. "
+                    f"(Offline brief — {code}: {user_msg} Technical: {tech})"
                 ),
                 "primary_cta": "Book a 45-minute whitespace prioritization session with the account team.",
             }

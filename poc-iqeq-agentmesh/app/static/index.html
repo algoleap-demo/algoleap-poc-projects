@@ -22,7 +22,10 @@
         <div style="width:1px; height:22px; background:#E2E8F0"></div>
         <div style="font-family:var(--font-heading); font-size:16px; font-weight:700; color:var(--text-main)">Unified Agent Mesh Dashboard</div>
     </div>
-    <div style="font-family:'JetBrains Mono'; font-size:9px; font-weight:700; color:var(--brand-primary); padding:4px 10px; border:1px solid #BBF7D0; background:#F0FDF4; border-radius:15px">ISO 42001 COMPLIANT</div>
+    <div style="display:flex; align-items:center; gap:12px">
+        <button type="button" id="btn-reset-mission" style="font-family:var(--font-body,Inter),sans-serif; font-size:12px; font-weight:600; padding:8px 14px; border-radius:8px; border:1px solid #CBD5E1; background:#FFF; color:#334155; cursor:pointer" title="Clear all mission results and start again from Targeting &amp; Triage">Reset mission</button>
+        <div style="font-family:'JetBrains Mono'; font-size:9px; font-weight:700; color:var(--brand-primary); padding:4px 10px; border:1px solid #BBF7D0; background:#F0FDF4; border-radius:15px">ISO 42001 COMPLIANT</div>
+    </div>
 </div>
 
 <div class="view-bar">
@@ -147,8 +150,37 @@
             .replace(/\bPOC1\b/gi, 'Targeting');
     }
 
+    function parseErrorDetail(detail) {
+        if (detail == null) return '';
+        if (typeof detail === 'string') return detail;
+        if (typeof detail === 'object' && !Array.isArray(detail)) {
+            if (detail.user_message) {
+                var code = detail.error_code ? '[' + detail.error_code + '] ' : '';
+                var tail = detail.technical_summary
+                    ? '\n' + String(detail.technical_summary).slice(0, 500)
+                    : '';
+                return sanitizeLogText(code + detail.user_message + tail);
+            }
+            if (detail.message) return sanitizeLogText(String(detail.message));
+            try { return JSON.stringify(detail); } catch (e) { return String(detail); }
+        }
+        if (Array.isArray(detail)) {
+            return detail.map(function (x) {
+                if (x && typeof x === 'object' && x.msg) return x.msg;
+                try { return JSON.stringify(x); } catch (e2) { return String(x); }
+            }).join('; ');
+        }
+        return String(detail);
+    }
+
     function maybeStartMissionForTab(n) {
-        if (pipelineRunning || pipelineHalted) return;
+        if (pipelineRunning) return;
+        if (pipelineHalted) {
+            if ((n === 1 && !poc1Done) || (n === 2 && poc1Done && !poc2Done) || (n === 3 && poc2Done && !poc3Done)) {
+                runStep(n);
+            }
+            return;
+        }
         if (n === 1 && !poc1Done) runStep(1);
         else if (n === 2 && poc1Done && !poc2Done) runStep(2);
         else if (n === 3 && poc2Done && !poc3Done) runStep(3);
@@ -206,7 +238,7 @@
         const hint = document.getElementById('mission-hint');
         if (!hint) return;
         if (pipelineHalted) {
-            hint.textContent = 'Execution halted due to an error. Fix the issue and use the same tab to retry.';
+            hint.textContent = 'Execution halted. Click this tab again to retry only this mission, or use Reset mission to start over from Targeting & Triage.';
             hint.style.display = 'block';
             return;
         }
@@ -232,7 +264,7 @@
 
     function loadMeshSvg() {
         const host = document.getElementById('mesh-host');
-        fetch('/static/mesh_architecture.svg')
+        fetch('/static/mesh_architecture.svg?t=' + Date.now())
             .then(r => { if (!r.ok) throw new Error('mesh svg'); return r.text(); })
             .then(svg => {
                 host.innerHTML = svg;
@@ -409,13 +441,13 @@
             fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body })
                 .then(async function (r) {
                     if (!r.ok) {
-                        var detail = r.statusText;
+                        var detail = r.status + ' ' + r.statusText;
                         try {
                             var j = await r.json();
                             if (j && j.detail != null)
-                                detail = typeof j.detail === 'string' ? j.detail : JSON.stringify(j.detail);
+                                detail = parseErrorDetail(j.detail);
                         } catch (e2) {}
-                        throw new Error(detail);
+                        throw new Error(detail || 'Request failed');
                     }
                     return r.json().catch(function () { return {}; });
                 })
@@ -560,6 +592,39 @@
 
     window.closeWorkbench = function () { document.getElementById('workbench-tray').style.display = 'none'; };
     window.runStep = runStep;
+
+    function resetMissionFromTriage() {
+        if (pipelineRunning) return;
+        fetch('/mission/reset', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function () {
+                poc1Done = poc2Done = poc3Done = false;
+                pipelineHalted = false;
+                pipelineRunning = false;
+                [1, 2, 3].forEach(function (i) {
+                    var lp = document.getElementById('logs-poc' + i);
+                    if (lp) lp.innerHTML = '';
+                });
+                logTypingChain = Promise.resolve();
+                resetMeshAnim();
+                var t = document.getElementById('targeting-view');
+                var p = document.getElementById('planning-view');
+                var w = document.getElementById('whitespace-view');
+                if (t) t.innerHTML = '';
+                if (p) p.innerHTML = '';
+                if (w) w.innerHTML = '';
+                selectPocTab(1);
+                updatePocTabLocks();
+                updateMissionHint();
+                document.getElementById('mission-status').textContent = 'Idle. Run missions in order using the tabs below.';
+            })
+            .catch(function (e) {
+                addLog({ agent_name: 'ag-orch', status: 'FAILED', message: sanitizeLogText('Reset failed: ' + String(e.message || e)) });
+            });
+    }
+
+    var btnReset = document.getElementById('btn-reset-mission');
+    if (btnReset) btnReset.addEventListener('click', resetMissionFromTriage);
 
     bindPocTabs();
     selectPocTab(1);

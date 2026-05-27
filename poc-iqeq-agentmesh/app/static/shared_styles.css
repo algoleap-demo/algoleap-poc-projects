@@ -324,6 +324,7 @@ main.dashboard-grid {
 #mesh-host.mesh-phase-triage #ag-camp {
     display: none !important;
 }
+#mesh-host.mesh-phase-planning #ag-ml,
 #mesh-host.mesh-phase-planning #ag-reason,
 #mesh-host.mesh-phase-planning #ag-camp {
     display: none !important;

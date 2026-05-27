@@ -5,7 +5,11 @@ import json
 from typing import Dict, List, Tuple
 
 from app.core.progress_tracker import tracker
-from app.core.llm_client import format_chain_failure, run_planning_chain
+from app.core.llm_client import (
+    explain_llm_error,
+    format_chain_failure,
+    run_planning_chain,
+)
 
 ACCOUNT_BRIEF_PROMPT = """You are the Account Brief Agent for IQ-EQ FAM/PIAO account planning.
 
@@ -157,9 +161,13 @@ async def process_brief(
             "call_plan_markdown": cplan,
         }
     except Exception as e:
+        err_code, user_msg = explain_llm_error(e)
         detail = format_chain_failure(e)
         brief, cplan = _offline_brief_and_call_plan(acc_id, acc_info, score_row)
-        note = f"\n\n---\n*Model note:* Live brief generation failed — {detail[:420]}"
+        note = (
+            f"\n\n---\n*Model note:* Brief generation could not reach the model ({err_code}). "
+            f"{user_msg} Technical: {detail[:360]}"
+        )
         return {
             "account_id": acc_id,
             "brief_text": brief + note,

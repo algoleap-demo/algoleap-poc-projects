@@ -70,29 +70,25 @@
 <!-- orch → data (vertical, no label on box) -->
 <line class="mesh-conn show-triage show-planning show-whitespace" x1="585" y1="72" x2="585" y2="102" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 
-<!-- data → row2 spine -->
-<line class="mesh-conn show-triage show-planning show-whitespace" x1="584" y1="140" x2="584" y2="177" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
-
 <!-- Triage: spine → ML → reason → valid -->
-<line class="mesh-conn show-triage" x1="584" y1="177" x2="379" y2="177" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
-<polyline class="mesh-conn show-triage" points="379,196 379,212 404,212 404,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-triage" points="584,140 584,149 379,149 379,158" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-triage" points="379,196 379,207 404,207 404,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 <polyline class="mesh-conn show-triage" points="404,256 404,268 584,268 584,278" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 
-<!-- Planning: ML → WS → brief → call → valid -->
-<line class="mesh-conn show-planning" x1="584" y1="177" x2="379" y2="177" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
-<line class="mesh-conn show-planning" x1="468" y1="177" x2="478" y2="177" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<!-- Planning: spine → Whitespace Scoring → Brief → Call → valid (POC2 has no ML propensity step) -->
+<polyline class="mesh-conn show-planning" points="584,140 584,149 567,149 567,158" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 <line class="mesh-conn show-planning" x1="656" y1="177" x2="666" y2="177" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
-<polyline class="mesh-conn show-planning" points="772,196 772,218 637,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-planning" points="772,196 772,207 637,207 637,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 <polyline class="mesh-conn show-planning" points="637,256 637,268 584,268 584,278" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 
 <!-- Whitespace: spine → WS → campaign → valid -->
-<line class="mesh-conn show-whitespace" x1="584" y1="177" x2="567" y2="177" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
-<polyline class="mesh-conn show-whitespace" points="656,177 817,177 817,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-whitespace" points="584,140 584,149 567,149 567,158" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-whitespace" points="567,196 567,207 817,207 817,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 <polyline class="mesh-conn show-whitespace" points="817,256 817,268 584,268 584,278" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 
 <!-- Shared: valid → fmt -->
 <line class="mesh-conn show-triage show-planning show-whitespace" x1="584" y1="316" x2="584" y2="338" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
 
 <!-- Output: Formatting → Orchestration (left gutter, dotted) -->
-<polyline class="mesh-conn show-triage show-planning show-whitespace" points="584,338 268,338 268,42 585,42" fill="none" stroke="#22C55E" stroke-width="1.6" stroke-dasharray="6 5" stroke-linecap="round" stroke-linejoin="round"/>
+<polyline class="mesh-conn show-triage show-planning show-whitespace" points="584,376 584,388 268,388 268,50 278,50" fill="none" stroke="#22C55E" stroke-width="1.6" stroke-dasharray="6 5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
