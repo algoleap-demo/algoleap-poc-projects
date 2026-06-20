@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoleap &middot; IQ-EQ Agent Mesh</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-primary: #3C8943;
+            --brand-blue: #1D4ED8;
+            --status-executing: #FACC15;
+            --status-completed: #22C55E;
+            --bg-light: #F9FAFB;
+            --border-color: #E5E7EB;
+            --acc-id-color: #111827;
+        }
+
+        @keyframes pulse-glow {
+            0% { filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.4)); opacity: 1; }
+            50% { filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.8)); opacity: 0.9; }
+            100% { filter: drop-shadow(0 0 5px rgba(250, 204, 21, 0.4)); opacity: 1; }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: #111827; height: 100vh; display: flex; flex-direction: column; overflow: hidden; -webkit-font-smoothing: antialiased; }
+
+        /* --- Header --- */
+        .hdr { background: #FFFFFF; padding: 12px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); z-index: 20; }
+        .hdr-l { display: flex; align-items: center; gap: 20px; }
+        .logo { height: 32px; width: auto; }
+        .hdr-t { font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 700; color: #111827; }
+        .hdr-b { font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 4px 12px; border: 1px solid #E5E7EB; border-radius: 20px; color: #6B7280; }
+
+        .view-bar { background: #fff; border-bottom: 1px solid var(--border-color); padding: 5px 40px; display: flex; align-items: center; gap: 15px; z-index: 10; font-size: 10px; color: #9CA3AF; font-weight: 700; text-transform: uppercase; }
+        .btns { display: flex; gap: 10px; margin-left: 10px; }
+        .btn { padding: 6px 16px; border-radius: 20px; border: 1.5px solid #E5E7EB; background: #FFF; cursor: pointer; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 11px; color: #4B5563; transition: 0.2s; white-space: nowrap; }
+        .btn span { font-size: 9px; opacity: 0.5; margin-left: 5px; font-weight: 400; }
+        .btn.on { border-color: var(--brand-blue); color: var(--brand-blue); background: #EFF6FF; }
+        .btn:hover:not(.on):not(.locked) { border-color: #D1D5DB; background: #F9FAFB; }
+        .btn.locked { opacity: 0.4; cursor: not-allowed; filter: grayscale(1); border-style: dashed; }
+        .btn.locked:hover { background: transparent; }
+        
+        .btn-reset { margin-left: auto; color: #EF4444; border-color: #FEE2E2; }
+        .btn-reset:hover { background: #FEF2F2; border-color: #F87171; }
+
+        /* --- Main Layout --- */
+        main { display: flex; flex: 1; overflow: hidden; }
+        .canvas-container { flex: 1; min-width: 0; padding: 20px; display: flex; justify-content: center; align-items: center; overflow: auto; background: #F8F9FB; position: relative; }
+        svg.mesh { 
+            width: 100%; 
+            max-width: 1000px; 
+            height: auto; 
+            max-height: 95%;
+            overflow: visible; 
+        }
+
+        .data-pane { flex: 1; min-width: 0; background: #FFF; border-left: 1px solid var(--border-color); display: flex; flex-direction: column; }
+        .tabs { display: flex; background: #FFF; border-bottom: 2px solid #F3F4F6; }
+        .tab { flex: 1; text-align: center; padding: 14px 0; font-size: 11px; font-weight: 800; cursor: pointer; color: #9CA3AF; border-bottom: 2px solid transparent; letter-spacing: 0.5px; }
+        .tab.active { color: var(--brand-primary); border-bottom-color: var(--brand-primary); }
+        .pane-content { display: none; height: calc(100vh - 120px); overflow-y: scroll; padding: 20px; scrollbar-width: thin; scrollbar-color: #E5E7EB transparent; }
+        .pane-content.active { display: flex; flex-direction: column; }
+
+        /* --- Response Cards (New Styled) --- */
+        .response-card { 
+            background: #FFF; border: 1.5px solid #F3F4F6; border-radius: 12px; padding: 16px; margin-bottom: 16px; 
+            transition: 0.2s; position: relative; cursor: pointer;
+        }
+        .response-card:hover { transform: translateY(-2px); border-color: var(--brand-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+        
+        .card-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .acc-id { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 16px; color: var(--acc-id-color); letter-spacing: -0.3px; }
+        .bucket-badge { background: #3C8943; color: #FFF; font-size: 10px; font-weight: 800; padding: 4px 12px; border-radius: 20px; }
+        .bucket-B { background: #F59E0B; }
+        .bucket-C { background: #6B7280; }
+
+        .rationale-box { background: #F8F9FB; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+        .rationale-text { font-family: 'Inter', sans-serif; font-size: 12.5px; color: #4B5563; line-height: 1.6; font-weight: 400; }
+
+        .score-row { display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 800; }
+        .score-lbl { color: var(--brand-primary); }
+        .nba-link { color: var(--brand-blue); text-transform: uppercase; font-size: 10px; text-decoration: underline; cursor: pointer; }
+
+        /* --- Agent Logs --- */
+        .trace-card { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #F3F4F6; }
+        .trace-hdr { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+        .trace-status { width: 8px; height: 8px; border-radius: 50%; background: #D1D5DB; }
+        .trace-status.active { background: var(--status-executing); }
+        .trace-status.done { background: var(--status-completed); }
+        .trace-agent { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: #374151; background: #F3F4F6; padding: 3px 8px; border-radius: 4px; }
+        .trace-desc { font-family: 'Inter', sans-serif; font-size: 13.5px; color: #4B5563; line-height: 1.5; font-weight: 400; }
+
+        /* --- Modal --- */
+        #modal-overlay { 
+            display: none; position: fixed; inset: 0; background: rgba(17, 24, 39, 0.4); 
+            backdrop-filter: blur(4px); z-index: 1000; align-items: center; justify-content: center; 
+        }
+        .modal { 
+            background: #FFF; width: 90%; max-width: 480px; border-radius: 16px; 
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); overflow: hidden; animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-hdr { background: var(--brand-primary); padding: 20px; color: #FFF; position: relative; }
+        .modal-body { padding: 24px; }
+        .modal-nba-box { background: #F0FDF4; border: 1.5px solid #DCFCE7; padding: 18px; border-radius: 12px; margin-bottom: 20px; }
+        .modal-label { font-size: 10px; font-weight: 800; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+        .modal-val { font-size: 14px; color: #111827; font-weight: 700; margin-bottom: 16px; }
+        .close-btn { 
+            display: block; width: 100%; padding: 14px; background: #F3F4F6; border: none; 
+            border-radius: 10px; cursor: pointer; font-weight: 800; color: #4B5563; transition: 0.2s;
+        }
+        .close-btn:hover { background: #E5E7EB; }
+
+        .nba-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #F0FDF4;
+            border-radius: 8px;
+            border: 0px solid #DCFCE7;
+            margin: 0;
+        }
+        .nba-panel.open {
+            max-height: 500px;
+            padding: 16px;
+            border-width: 1.5px;
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+        .nba-hdr-row {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--brand-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nba-desc { font-size: 13px; color: #374151; margin-bottom: 12px; font-weight: 500; font-family: 'Roboto', sans-serif; }
+        .nba-reasoning { font-size: 11.5px; color: #6B7280; font-style: italic; line-height: 1.4; }
+        .nba-contact { font-size: 11px; color: #9CA3AF; margin-top: 10px; font-weight: 700; }
+        
+        /* Rotate arrow on Link */
+        .nba-link span { transition: 0.3s; display: inline-block; }
+        .response-card.active .nba-link span { transform: rotate(90deg); }
+
+        /* --- Governance Workbench --- */
+        #workbench-tray {
+            position: fixed; right: 0; top: 0; bottom: 0; width: 450px;
+            background: #FFF; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            z-index: 1000; display: none; flex-direction: column;
+            animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes slideInRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        
+        .workbench-hdr { background: #111827; padding: 24px; color: #FFF; }
+        .workbench-body { padding: 24px; overflow-y: auto; flex: 1; }
+        
+        .conflict-card { 
+            background: #FEF2F2; border: 1.5px solid #FEE2E2; border-radius: 12px; padding: 20px; margin-bottom: 24px;
+        }
+        .conflict-type-pill { 
+            font-size: 9px; font-weight: 800; padding: 4px 10px; border-radius: 12px; 
+            background: #EF4444; color: #FFF; text-transform: uppercase; margin-bottom: 12px; display: inline-block;
+        }
+        .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+        .data-item { font-size: 11px; }
+        .data-val { font-size: 14px; font-weight: 700; color: #111827; margin-top: 2px; }
+        
+        .btn-gov { 
+            position: absolute; top: 12px; right: 12px; padding: 4px 10px; 
+            background: #FFF; border: 1.5px solid #FEE2E2; color: #EF4444; 
+            font-size: 9px; font-weight: 800; border-radius: 4px; z-index: 5;
+            cursor: pointer; transition: 0.2s;
+        }
+        .btn-gov:hover { background: #EF4444; color: #FFF; border-color: #EF4444; }
+
+        /* --- Animations --- */
+        .ag { transition: 0.4s; filter: grayscale(1); opacity: 0.4; }
+        .ag-on { filter: grayscale(0); opacity: 1; }
+        .ag-active rect { fill: var(--status-executing) !important; stroke: #CA8A04 !important; animation: pulse-glow 1.5s infinite; filter: grayscale(0); opacity: 1; }
+        .ag-completed rect { fill: var(--status-completed) !important; stroke: #166534 !important; filter: grayscale(0); opacity: 1; }
+        .ag-active text, .ag-completed text { fill: #FFF !important; font-weight: 800; }
+        
+        .path-line { transition: 0.5s; stroke: #E5E7EB; stroke-width: 1.5; fill: none; }
+        .path-on { stroke: var(--brand-primary); stroke-width: 2; }
+
+        /* --- Visual Lineage Styles --- */
+        .lineage-bar { 
+            display: flex; align-items: center; gap: 10px; 
+            padding: 6px 12px; background: #F8F9FA; border-radius: 8px; 
+            margin-bottom: 12px; border: 1px dashed #E5E7EB;
+        }
+        .lineage-lbl { font-size: 9px; font-weight: 800; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px; }
+        .origin-badge { font-size: 9px; font-weight: 800; padding: 2px 8px; border-radius: 4px; color: #FFF; }
+        .intent-pill { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: #6B7280; font-weight: 700; }
+        
+        /* --- SVG Mesh Highlight & Pulses --- */
+        .pulse { 
+            stroke: #FBBF24; stroke-width: 3; stroke-dasharray: 10, 100;
+            stroke-dashoffset: 110; animation: dash-pulse 2s linear infinite;
+            filter: drop-shadow(0 0 4px #FBBF24); opacity: 0;
+        }
+        .pulse-on { opacity: 1; }
+        @keyframes dash-pulse { to { stroke-dashoffset: -110; } }
+
+        /* --- Trust Seal --- */
+        .verified-seal {
+            display: flex; align-items: center; gap: 4px;
+            font-size: 8.5px; font-weight: 800; color: #166534;
+            background: #F0FDF4; border: 1px solid #BBF7D0;
+            padding: 2px 6px; border-radius: 4px; cursor: help;
+        }
+        .verified-seal svg { width: 10px; height: 10px; fill: #166534; }
+    </style>
+    </style>
+</head>
+<body>
+
+
+<div class="hdr">
+  <div class="hdr-l"><img src="/assets/Algoleap_logo.png" alt="Algoleap" class="logo"><div style="width:1px;height:24px;background:#E5E7EB"></div><div class="hdr-t">IQ-EQ Agent Mesh Dashboard</div></div>
+  <div class="hdr-b">ISO 42001 GOVERNANCE</div>
+</div>
+
+    <div class="view-bar">
+        <span>Active Mission: <strong>IQ-EQ Unified Mesh</strong></span>
+        <div class="btns">
+            <button class="btn on" data-p="1" onclick="pick(1)">Targeting & Triage <span>POC 1</span></button>
+            <button class="btn locked" data-p="2" id="btn-poc2" onclick="pick(2)">Account Planning <span>POC 2</span></button>
+            <button class="btn locked" data-p="3" id="btn-poc3" onclick="pick(3)">Whitespace <span>POC 3</span></button>
+        </div>
+        <button class="btn btn-reset" onclick="resetMission()">Reset Mission</button>
+    </div>
+
+<main>
+    <div class="canvas-container">
+        <svg class="mesh" viewBox="0 0 1000 850" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#E5E7EB" stroke-width="1.6"/></marker>
+                <marker id="arr-on" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#3C8943" stroke-width="1.6"/></marker>
+            </defs>
+
+            <!-- Shared Agent Pool Background -->
+            <rect x="280" y="100" width="700" height="710" rx="16" fill="none" stroke="#F1F5F9" stroke-width="2" stroke-dasharray="10 5"/>
+            <text x="630" y="125" font-size="10" font-weight="800" fill="#CBD5E1" text-anchor="middle" style="letter-spacing:1px">SHARED AGENT POOL</text>
+
+            <!-- Orchestrator (Top Horizontal) -->
+            <g id="ag-orch" class="ag ag-on" style="transform:translate(320px, 20px)">
+                <rect width="620" height="60" rx="12" fill="#FFF" stroke="#E5E7EB" stroke-width="2"/>
+                <path d="M0,12 Q0,0 12,0 L14,0 L14,60 L0,60 Z" fill="#1D4ED8"/>
+                <text font-weight="800" font-size="14" fill="#1D4ED8" x="25" y="36" text-anchor="start">Orchestration Agent</text>
+                <text font-size="9" fill="#94A3B8" x="600" y="36" text-anchor="end">PIPELINE MASTER CONTROL</text>
+            </g>
+
+            <!-- Initiative Arrow: Orch -> Data -->
+            <line x1="630" y1="80" x2="630" y2="140" class="path-line path-on" marker-end="url(#arr-on)"/>
+            <text x="640" y="115" font-size="9" font-weight="700" fill="#3C8943">INITIATE</text>
+
+            <!-- Path Indicators (Connections) -->
+            <path id="path-1" class="path-line" d="M250 180 H300 V180 H330"/>
+            
+            <!-- STEP 1: Data -->
+            <g id="ag-data" class="ag ag-on" style="transform:translate(320px, 150px)">
+                <rect width="620" height="60" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Data Agent Layer</text>
+            </g>
+
+            <!-- STEP 2: ML & Brief -->
+            <g id="ag-ml" class="ag ag-on" style="transform:translate(320px, 260px)">
+                <rect width="300" height="80" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="150" y="45" text-anchor="middle">ML / Whitespace Scoring</text>
+            </g>
+            <g id="ag-brief" class="ag" style="transform:translate(640px, 260px)">
+                <rect width="300" height="80" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="150" y="45" text-anchor="middle">Briefing Layer LLM</text>
+            </g>
+
+            <!-- STEP 3: Reasoning, Call Plan, Campaign -->
+            <g id="ag-reason" class="ag ag-on" style="transform:translate(320px, 390px)">
+                <rect width="190" height="100" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="11" fill="#374151" x="95" y="55" text-anchor="middle">Reasoning Agent LLM</text>
+            </g>
+            <g id="ag-call" class="ag" style="transform:translate(535px, 390px)">
+                <rect width="190" height="100" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="11" fill="#374151" x="95" y="55" text-anchor="middle">Call Plan Agent LLM</text>
+            </g>
+            <g id="ag-camp" class="ag" style="transform:translate(750px, 390px)">
+                <rect width="190" height="100" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="11" fill="#374151" x="95" y="55" text-anchor="middle">Campaign Agent LLM</text>
+            </g>
+
+            <!-- STEP 4: Validation -->
+            <g id="ag-valid" class="ag ag-on" style="transform:translate(320px, 540px)">
+                <rect width="620" height="60" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Validation Agent</text>
+            </g>
+
+            <!-- STEP 5: Formatting -->
+            <g id="ag-fmt" class="ag ag-on" style="transform:translate(320px, 640px)">
+                <rect width="620" height="60" rx="10" fill="#FFF" stroke="#E5E7EB" stroke-width="1.5"/>
+                <text font-weight="700" font-size="12" fill="#374151" x="310" y="35" text-anchor="middle">Formatting Agent</text>
+            </g>
+
+            <!-- Return Arrow: Fmt -> Orch -->
+            <path id="path-return" class="path-line path-on" d="M320 670 H290 V50 H320" marker-end="url(#arr-on)" style="stroke-dasharray: 4 2"/>
+            <text x="285" y="350" font-size="9" font-weight="700" fill="#3C8943" transform="rotate(-90, 285, 350)" text-anchor="middle">RETURN PAYLOAD</text>
+
+            <!-- Connection lines (P1 focus) -->
+            <line x1="630" y1="210" x2="630" y2="250" class="path-line path-on" marker-end="url(#arr-on)"/>
+            <line x1="470" y1="340" x2="470" y2="380" class="path-line path-on" marker-end="url(#arr-on)"/>
+            <line x1="415" y1="490" x2="415" y2="540" class="path-line path-on" marker-end="url(#arr-on)"/>
+            <line x1="630" y1="600" x2="630" y2="640" class="path-line path-on" marker-end="url(#arr-on)"/>
+        </svg>
+    </div>
+    <div class="data-pane">
+        <div class="tabs"><div class="tab active" data-target="logs">AGENT LOGS</div><div class="tab" data-target="resp">TRIAL RECOMMENDATIONS</div></div>
+        <div id="logs" class="pane-content active"></div>
+        <div id="resp" class="pane-content"></div>
+    </div>
+</main>
+
+<div id="workbench-tray">
+    <div class="workbench-hdr">
+        <div style="font-size:10px;font-weight:800;opacity:0.6;margin-bottom:4px">GOVERNANCE WORKBENCH</div>
+        <div style="font-family:'Outfit';font-size:18px;font-weight:700">Audit & Conflict Review</div>
+    </div>
+    <div id="workbench-content" class="workbench-body"></div>
+    <div style="padding:24px;border-top:1px solid #F3F4F6">
+        <button class="close-btn" onclick="closeWorkbench()">DISMISS & CLOSE</button>
+    </div>
+</div>
+
+<script>
+    const logs=document.getElementById('logs'), resp=document.getElementById('resp'), tabs=document.querySelectorAll('.tab'), panes=document.querySelectorAll('.pane-content');
+    const ALL_AGENTS=['ag-orch','ag-data','ag-ml','ag-brief','ag-reason','ag-call','ag-camp','ag-valid','ag-fmt'];
+    const POC_MAP = {
+        1: ['ag-orch','ag-data','ag-ml','ag-reason','ag-valid','ag-fmt'],
+        2: ['ag-orch','ag-data','ag-brief','ag-call','ag-valid','ag-fmt'],
+        3: ['ag-orch','ag-data','ag-ml','ag-camp','ag-valid','ag-fmt'],
+        0: ALL_AGENTS
+    };
+    let pipelineData = [];
+    let currentPoc = 1; 
+    let hasRun = { 1: false, 2: false, 3: false };
+
+    function pick(p){
+        // Sequence Guard: POC 2 and 3 are locked until POC 1 is done
+        if (p !== 1 && !hasRun[1]) {
+            console.log("Mission Sequence Error: Targeting & Triage (POC 1) must complete before downstream actions are enabled.");
+            return;
+        }
+
+        currentPoc = p;
+        document.querySelectorAll('.btn').forEach(b=>b.classList.remove('on'));
+        const btn=document.querySelector(`.btn[data-p="${p}"]`); if(btn)btn.classList.add('on');
+        
+        // Update Tab Label
+        const resultsTab = document.querySelector('.tab[data-target="resp"]');
+        if(p === 1) resultsTab.innerText = "Triage Recommendations";
+        else if(p === 2) resultsTab.innerText = "Account Briefs & Plans";
+        else if(p === 3) resultsTab.innerText = "Whitespace Matrix";
+        else resultsTab.innerText = "Unified View";
+
+        // Update Mesh Visibility
+        const activeSet = POC_MAP[p];
+        ALL_AGENTS.forEach(id=>{
+            const el=document.getElementById(id);
+            if(activeSet.includes(id)) el.classList.add('ag-on');
+            else el.classList.remove('ag-on');
+        });
+
+        // Toggle logic: Only run start() if the module hasn't run yet
+        if (p !== 0 && !hasRun[p]) {
+            start();
+        } else if (hasRun[p]) {
+            // Just switch view, results are already in pipelineData
+            renderResults();
+        }
+    }
+
+    function resetMission() {
+        if(!confirm("Are you sure you want to reset the current mission? All cached results will be cleared.")) return;
+        hasRun = { 1: false, 2: false, 3: false };
+        pipelineData = [];
+        resp.innerHTML = '<div class="empty-state">Mission Cleared. Select "Targeting & Triage" to begin.</div>';
+        logs.innerHTML = '';
+        
+        // Re-lock buttons
+        document.getElementById('btn-poc2').classList.add('locked');
+        document.getElementById('btn-poc3').classList.add('locked');
+        
+        // Reset mesh
+        ALL_AGENTS.forEach(id=>document.getElementById(id).classList.remove('ag-completed', 'ag-active'));
+        
+        pick(1);
+    }
+
+    tabs.forEach(t=>{ t.onclick=()=>{ tabs.forEach(x=>x.classList.remove('active')); panes.forEach(x=>x.classList.remove('active')); t.classList.add('active'); document.getElementById(t.dataset.target).classList.add('active'); }});
+
+    function updStatus(id,s){ 
+        const n=document.getElementById(id); 
+        if(!n)return; 
+        if(s==='START') {
+            n.classList.remove('ag-completed');
+            n.classList.add('ag-active');
+        } else if(s==='END') {
+            n.classList.remove('ag-active');
+            n.classList.add('ag-completed');
+        }
+    }
+
+    const typeWriter = (el, text, speed=15) => {
+        return new Promise(resolve => {
+            let i = 0;
+            el.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    el.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    resolve();
+                }
+            }
+            type();
+        });
+    };
+
+    let msgQueue = [];
+    let isProcessing = false;
+    let isPipelineDone = false;
+
+    const processQueue = async () => {
+        if (isProcessing || msgQueue.length === 0) return;
+        isProcessing = true;
+        while (msgQueue.length > 0) {
+            const l = msgQueue.shift();
+            const c=document.createElement('div'); 
+            c.className='trace-card'; 
+            const statusClass = l.status === 'START' ? 'active' : (l.status === 'END' ? 'done' : '');
+            const msgText = l.message || l.trace_id || "";
+            c.innerHTML=`
+                <div class="trace-hdr">
+                    <div class="trace-status ${statusClass}"></div>
+                    <div class="trace-agent">${l.agent_name.toUpperCase()}</div>
+                    <div style="font-size:9px;color:#9CA3AF;margin-left:auto">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'})}</div>
+                </div>
+                <div class="trace-desc"></div>
+            `;
+            logs.appendChild(c); 
+            logs.scrollTop=logs.scrollHeight; 
+            
+            // Turn YELLOW immediately on START
+            if(l.status === 'START') updStatus(l.agent_name, l.status);
+            
+            await typeWriter(c.querySelector('.trace-desc'), msgText);
+            
+            // Turn GREEN only AFTER typing finishes on END
+            if(l.status === 'END') updStatus(l.agent_name, l.status);
+        }
+        isProcessing = false;
+        if(isPipelineDone) {
+            setTimeout(() => { tabs[1].click(); isPipelineDone = false; }, 1000);
+        }
+    };
+
+    async function start(){
+        if(currentPoc === 0) return;
+        isPipelineDone = false;
+        logs.innerHTML=''; resp.innerHTML='<div style="text-align:center;padding:4rem;font-size:11px;color:#9CA3AF">Orchestrating Pipeline...</div>';
+        ALL_AGENTS.forEach(id=>document.getElementById(id).classList.remove('ag-active','ag-completed'));
+        
+        msgQueue.push({
+            agent_name: 'ag-orch',
+            status: 'START',
+            message: 'PIPELINE REFRESHING... Initializing secure context for POC ' + currentPoc,
+            trace_id: 'init-' + Date.now()
+        });
+        processQueue();
+        
+        const es=new EventSource('/events'); 
+        es.onmessage=(e)=>{ 
+            msgQueue.push(JSON.parse(e.data));
+            processQueue();
+        };
+
+        const endpoint = (currentPoc === 1) ? '/score_accounts' : (currentPoc === 2 ? '/plan_accounts' : '/analyze_whitespace');
+
+        try {
+            const r=await fetch(endpoint,{method:'POST'}); 
+            if(!r.ok) {
+                let errTag = "Server rejected request";
+                if (r.status === 429) errTag = "RATE LIMIT EXCEEDED (Daily Quota reached on Free Tier)";
+                else if (r.status === 402) errTag = "INSUFFICIENT CREDITS (Top-up required on OpenRouter)";
+                else if (r.status === 401) errTag = "AUTHENTICATION FAILED (Invalid API Key)";
+                throw new Error(errTag);
+            }
+            const data=await r.json();
+            pipelineData = data.accounts || data;
+            
+            hasRun[currentPoc] = true;
+            if (currentPoc === 1) {
+                document.getElementById('btn-poc2').classList.remove('locked');
+                document.getElementById('btn-poc3').classList.remove('locked');
+            }
+            
+            renderResults();
+            isPipelineDone = true;
+            processQueue(); 
+        } catch(e){ 
+            es.close(); 
+            msgQueue.push({
+                agent_name: 'ag-orch',
+                status: 'FAILED',
+                message: `CRITICAL ERROR: ${e.message}`,
+                trace_id: 'err-' + Date.now()
+            });
+            processQueue();
+        }
+    }
+
+    function renderResults(){
+        resp.innerHTML='';
+        if(currentPoc === 1) renderTriage();
+        else if(currentPoc === 2) renderPlanning();
+        else if(currentPoc === 3) renderWhitespace();
+    }
+
+    function renderTriage() {
+        pipelineData.sort((a, b) => b.ml_score - a.ml_score);
+        pipelineData.forEach(a=>{
+            const card=document.createElement('div'); card.className='response-card';
+            const scorePct = (a.ml_score * 100).toFixed(1);
+            const bucketClass = `bucket-${a.priority_bucket}`;
+            const nba = a.nba_actions[0];
+            
+            card.innerHTML=`
+                ${a.conflict_flag ? `<button class="btn-gov" onclick="openWorkbench('${a.account_id}')">GOVERNANCE REVIEW</button>` : ''}
+                <div class="card-hdr">
+                    <div class="acc-id">${a.account_name}</div>
+                    <div class="bucket-badge ${bucketClass}">Bucket ${a.priority_bucket}</div>
+                </div>
+                <div class="rationale-box">
+                    <div class="rationale-text">${a.rationale_text}</div>
+                </div>
+                <div class="score-row">
+                    <div class="score-lbl">Score: ${scorePct}%</div>
+                    <div class="nba-link" onclick="toggleNba(event, this)">Next Best Action <span>&rarr;</span></div>
+                </div>
+                <div class="nba-panel">
+                    <div class="nba-hdr-row">
+                        <span>Action: ${nba.action_type.replace('_',' ')}</span>
+                        <span>Due: ${nba.due_in_days}d</span>
+                    </div>
+                    <div class="nba-desc">${nba.description}</div>
+                    <div style="font-size:9px;color:#9CA3AF;text-transform:uppercase;margin-bottom:4px">Why this action?</div>
+                    <div class="nba-reasoning">"${nba.reasoning}"</div>
+                    <div class="nba-contact">Contact: ${a.contact_person}</div>
+                </div>
+            `;
+            resp.appendChild(card);
+        });
+    }
+
+    function renderPlanning() {
+        pipelineData.forEach(a => {
+            const card = document.createElement('div'); card.className = 'response-card';
+            const bucketClass = `bucket-${a.priority_bucket || 'C'}`;
+            const targetScore = (a.ml_score ? (a.ml_score * 100).toFixed(0) : '0') + '%';
+            
+            card.innerHTML = `
+                ${a.conflict_flag ? `<button class="btn-gov" onclick="openWorkbench('${a.account_id}')">GOVERNANCE REVIEW</button>` : ''}
+                <div class="lineage-bar" title="Targeting Rationale: ${a.rationale_text || 'None'}">
+                    <div class="lineage-lbl">Origin:</div>
+                    <div class="origin-badge ${bucketClass}">${a.priority_bucket || 'C'}</div>
+                    <div class="intent-pill">Targeting Intent: ${targetScore}</div>
+                </div>
+                <div class="card-hdr">
+                    <div class="acc-id">${a.account_name}</div>
+                    <div class="bucket-badge" style="background:#1D4ED8">API Score: ${(a.api_score * 100).toFixed(0)}</div>
+                </div>
+                <div class="rationale-box">
+                    <div style="font-size:10px;font-weight:800;color:#9CA3AF;margin-bottom:8px">ACCOUNT BRIEF SUMMARY</div>
+                    <div class="rationale-text">${a.brief_text || 'Brief processing...'}</div>
+                </div>
+                <div class="score-row">
+                    <div class="score-lbl">WS Potential: €${(a.total_ws_potential_eur || 0).toLocaleString()}</div>
+                    <div class="nba-link" style="color:var(--brand-primary)" onclick="toggleNba(event, this)">View Full Plan <span>&rarr;</span></div>
+                </div>
+                <div class="nba-panel">
+                    <div style="font-size:10px;font-weight:800;color:var(--brand-primary);margin-bottom:8px">CALL PLAN ACTIONS</div>
+                    <div class="nba-reasoning" style="font-style:normal;color:#111827;white-space:pre-wrap;">${a.call_plan_text}</div>
+                </div>
+            `;
+            resp.appendChild(card);
+        });
+    }
+
+    function renderWhitespace() {
+        resp.innerHTML = '<div style="text-align:center;padding:4rem;font-size:11px;color:#9CA3AF">Whitespace Heatmap Data Ready for Review. Exporting CSV...</div>';
+    }
+
+    function toggleNba(e, btn){
+        e.stopPropagation();
+        const card = btn.closest('.response-card');
+        const panel = card.querySelector('.nba-panel');
+        const isOpen = panel.classList.contains('open');
+        
+        // Close others for accordion effect (optional, keeping it for focus)
+        document.querySelectorAll('.nba-panel').forEach(p => p.classList.remove('open'));
+        document.querySelectorAll('.response-card').forEach(c => c.classList.remove('active'));
+
+        if(!isOpen) {
+            panel.classList.add('open');
+            card.classList.add('active');
+        }
+    }
+
+    function openWorkbench(id) {
+        const a = pipelineData.find(x => x.account_id === id);
+        const tray = document.getElementById('workbench-tray');
+        const content = document.getElementById('workbench-content');
+        
+        content.innerHTML = `
+            <div class="conflict-card">
+                <div class="conflict-type-pill">${a.total_ws_potential_eur > 1000000 ? 'Hidden Gem' : 'Triage Gap'}</div>
+                <div class="acc-id">${a.account_name}</div>
+                <div style="font-size:12px;color:#4B5563;margin-top:8px">The system has identified a significant intelligence mismatch requiring human validation.</div>
+                
+                <div class="data-grid">
+                    <div class="data-item">
+                        <div class="modal-label">XGBoost Score</div>
+                        <div class="data-val">${(a.ml_score * 100).toFixed(1)}%</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="modal-label">Current Bucket</div>
+                        <div class="data-val" style="color:#F59E0B">Bucket ${a.priority_bucket}</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="modal-label">Whitespace Pot.</div>
+                        <div class="data-val" style="color:#10B981">€${(a.total_ws_potential_eur || 0).toLocaleString()}</div>
+                    </div>
+                    <div class="data-item">
+                        <div class="modal-label">API Health</div>
+                        <div class="data-val">${(a.api_score ? (a.api_score * 100).toFixed(0) : '0')}%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rationale-box">
+                <div class="modal-label">Automated Rationale</div>
+                <div class="rationale-text" style="font-size:12px">"${a.rationale_text}"</div>
+            </div>
+
+            <div style="margin-top:30px">
+                <div class="modal-label">Actions</div>
+                <div style="display:flex;gap:10px;margin-top:10px">
+                    <button class="btn" style="flex:1;background:#3C8943;color:#FFF;border:none">OVERRIDE TO BUCKET A</button>
+                    <button class="btn" style="flex:1" onclick="closeWorkbench()">DISMISS</button>
+                </div>
+            </div>
+        `;
+        tray.style.display = 'flex';
+    }
+
+    function closeWorkbench() {
+        document.getElementById('workbench-tray').style.display = 'none';
+    }
+    
+    // Initial State: Full Mesh View (Visual Only)
+    pick(0);
+</script>
+</body>
+</html>

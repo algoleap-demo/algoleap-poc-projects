@@ -1,0 +1,32 @@
+---
+description: IQ-EQ POC project rules — auto-applied to all Antigravity sessions
+---
+
+# IQ-EQ Mission Compliance
+This project is governed by the **Antigravity Mission Standards**. 
+Authoritative Manifest: 👉 **[.agent/MISSION_STANDARDS.md](file:///.agent/MISSION_STANDARDS.md)**
+
+# IQ-EQ POC Context
+- Client: IQ-EQ
+- Architecture: **LangGraph StateGraph** (Mandatory for all POCs)
+- Stack: FastAPI + Vanilla JS/CSS + LangChain/LangGraph
+- LLM Standards: **Zero Safety Net** (Prioritize Gemini/GPT-4, Explicit failure on timeout)
+
+# Resilience Requirements
+- **Retries**: All graph nodes MUST use `@retry` with exponential backoff (Stop after 3 attempts).
+- **Rate Limiting**: All LLM calls MUST pass through the global `LLM_SEMAPHORE` (Limit: 3).
+- **Auditing**: Every state transition must be hashed (SHA-256) and logged to `logs/audit.jsonl`.
+- **Telemetry**: State dictionary MUST include a `telemetry` key to capture per-node latency.
+
+# Scope Boundaries
+- Only create or modify files inside `app/`, `data/`, and `logs/`.
+- All inter-agent data must be Pydantic-validated.
+
+# Naming Conventions
+- Agent Logs: `ag-[shortname]` (e.g., `ag-orch`, `ag-brief`, `ag-plan`).
+- Graph States: `[agent_name]_results` (e.g., `targeting_results`).
+
+# UI/UX Excellence
+- Typography: `Outfit` (Headers), `Inter` (Body).
+- Layout: 50/50 Balanced Split.
+- Branded: Use `app/static/shared_styles.css` for consistent Algoleap aesthetics.

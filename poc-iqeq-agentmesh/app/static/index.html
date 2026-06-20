@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoleap · IQ-EQ Unified Agent Mesh</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@600;700;800&family=Inter:wght@300;400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/shared_styles.css">
+    <style>
+        .mission-hint {
+            font-size: 12px; color: var(--text-dim); padding: 10px 12px; margin-bottom: 10px;
+            background: #F8FAFC; border: 1px dashed var(--border-color); border-radius: 10px; line-height: 1.45;
+        }
+        #whitespace-view { width: 100%; }
+    </style>
+</head>
+<body>
+
+<div class="hdr">
+    <div style="display:flex; align-items:center; gap:15px">
+        <img src="/static/assets/algoleap-logo.svg" alt="Algoleap" width="132" height="32" style="display:block">
+        <div style="width:1px; height:22px; background:#E2E8F0"></div>
+        <div style="font-family:var(--font-heading); font-size:16px; font-weight:700; color:var(--text-main)">Unified Agent Mesh Dashboard</div>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px">
+        <button type="button" id="btn-reset-mission" style="font-family:var(--font-body,Inter),sans-serif; font-size:12px; font-weight:600; padding:8px 14px; border-radius:8px; border:1px solid #CBD5E1; background:#FFF; color:#334155; cursor:pointer" title="Clear all mission results and start again from Targeting &amp; Triage">Reset mission</button>
+        <div style="font-family:'JetBrains Mono'; font-size:9px; font-weight:700; color:var(--brand-primary); padding:4px 10px; border:1px solid #BBF7D0; background:#F0FDF4; border-radius:15px">ISO 42001 COMPLIANT</div>
+    </div>
+</div>
+
+<div class="view-bar">
+    <div class="mission-status-line">
+        <span id="mission-status-prefix">TARGETING &amp; TRIAGE — </span><span style="color:var(--text-main); text-transform:none; font-weight:600; letter-spacing:0" id="mission-status">Idle. Run missions in order using the tabs below.</span>
+    </div>
+    <div class="poc-tabs" role="tablist" aria-label="Mission views">
+        <button type="button" class="poc-tab active" data-poc="1" role="tab" aria-selected="true">TARGETING &amp; TRIAGE</button>
+        <button type="button" class="poc-tab" data-poc="2" role="tab" aria-selected="false" disabled>ACCOUNT PLANNING</button>
+        <button type="button" class="poc-tab poc-tab-p3" data-poc="3" role="tab" aria-selected="false" disabled>WHITESPACE</button>
+    </div>
+</div>
+
+<main class="dashboard-grid">
+    <div class="mesh-panel">
+        <div id="mesh-host" aria-label="Agent mesh architecture"></div>
+    </div>
+
+    <div class="data-pane">
+        <div class="data-pane-split">
+            <div class="pane-logs">
+                <div id="logs-section-label" class="pane-section-label">TARGETING &amp; TRIAGE — AGENT LOG</div>
+                <div id="logs-poc1" class="log-panel"></div>
+                <div id="logs-poc2" class="log-panel" hidden></div>
+                <div id="logs-poc3" class="log-panel" hidden></div>
+            </div>
+            <div class="pane-output">
+                <div id="output-section-label" class="pane-section-label">TARGETING &amp; TRIAGE — OUTPUT</div>
+                <div class="output-stack">
+                    <div id="output-gate-msg" class="output-gate-msg" hidden>Results unlock when this mission’s agent log has finished.</div>
+                    <div id="output-body">
+                        <div id="mission-hint" class="mission-hint"></div>
+                        <div id="targeting-view" style="display:none"></div>
+                        <div id="planning-view" style="display:none"></div>
+                        <div id="whitespace-view" style="display:none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="workbench-tray">
+    <div style="background:#1e293b; padding:20px; color:#FFF">
+        <div style="font-size:10px; font-weight:800; opacity:0.6; margin-bottom:5px">GOVERNANCE WORKBENCH</div>
+        <div style="font-family:var(--font-heading); font-size:18px; font-weight:700">Audit & Conflict Resolution</div>
+    </div>
+    <div id="workbench-content" style="padding:20px; flex:1; overflow-y:auto"></div>
+    <button style="margin:20px; padding:12px; border:none; border-radius:8px; cursor:pointer; font-weight:700" onclick="closeWorkbench()">DISMISS</button>
+</div>
+
+<script>
+(function () {
+    const AGENT_ALIASES = { 'ag-ws-score': 'ag-ws', 'ag-plan': 'ag-call' };
+    const TAB_NAMES = ['TARGETING & TRIAGE', 'ACCOUNT PLANNING', 'WHITESPACE'];
+
+    let poc1Done = false;
+    let poc2Done = false;
+    let poc3Done = false;
+    let activeEs = null;
+    let pipelineRunning = false;
+    let pipelineHalted = false;
+    let selectedTab = 1;
+    let logTargetPoc = 1;
+    let logTypingChain = Promise.resolve();
+
+    function setMeshPhase(phase) {
+        const host = document.getElementById('mesh-host');
+        if (!host) return;
+        host.classList.remove('mesh-phase-triage', 'mesh-phase-planning', 'mesh-phase-whitespace', 'mesh-phase-all');
+        host.classList.add('mesh-phase-' + phase);
+    }
+
+    function syncMeshForTab() {
+        if (selectedTab === 1) setMeshPhase('triage');
+        else if (selectedTab === 2) setMeshPhase('planning');
+        else if (selectedTab === 3) setMeshPhase('whitespace');
+    }
+
+    function updateOutputHeadings() {
+        const idx = selectedTab - 1;
+        const name = TAB_NAMES[idx] || TAB_NAMES[0];
+        const logLbl = document.getElementById('logs-section-label');
+        const outLbl = document.getElementById('output-section-label');
+        const prefix = document.getElementById('mission-status-prefix');
+        if (logLbl) logLbl.textContent = name + ' — AGENT LOG';
+        if (outLbl) outLbl.textContent = name + ' — OUTPUT';
+        if (prefix) prefix.textContent = name + ' — ';
+    }
+
+    function setOutputLocked(locked) {
+        const gate = document.getElementById('output-gate-msg');
+        const body = document.getElementById('output-body');
+        if (gate) {
+            if (locked) {
+                gate.removeAttribute('hidden');
+                gate.style.display = 'block';
+            } else {
+                gate.setAttribute('hidden', '');
+                gate.style.display = 'none';
+            }
+        }
+        if (body) {
+            if (locked) {
+                body.setAttribute('hidden', '');
+                body.style.display = 'none';
+            } else {
+                body.removeAttribute('hidden');
+                body.style.display = 'flex';
+            }
+        }
+    }
+
+    function sanitizeLogText(s) {
+        if (s == null || s === '') return '';
+        return String(s)
+            .replace(/\bPOC\s*3\b/gi, 'Whitespace')
+            .replace(/\bPOC\s*2\b/gi, 'Account Planning')
+            .replace(/\bPOC\s*1\b/gi, 'Targeting')
+            .replace(/\bPOC3\b/gi, 'Whitespace')
+            .replace(/\bPOC2\b/gi, 'Account Planning')
+            .replace(/\bPOC1\b/gi, 'Targeting');
+    }
+
+    function parseErrorDetail(detail) {
+        if (detail == null) return '';
+        if (typeof detail === 'string') return detail;
+        if (typeof detail === 'object' && !Array.isArray(detail)) {
+            if (detail.user_message) {
+                var code = detail.error_code ? '[' + detail.error_code + '] ' : '';
+                var tail = detail.technical_summary
+                    ? '\n' + String(detail.technical_summary).slice(0, 500)
+                    : '';
+                return sanitizeLogText(code + detail.user_message + tail);
+            }
+            if (detail.message) return sanitizeLogText(String(detail.message));
+            try { return JSON.stringify(detail); } catch (e) { return String(detail); }
+        }
+        if (Array.isArray(detail)) {
+            return detail.map(function (x) {
+                if (x && typeof x === 'object' && x.msg) return x.msg;
+                try { return JSON.stringify(x); } catch (e2) { return String(x); }
+            }).join('; ');
+        }
+        return String(detail);
+    }
+
+    function maybeStartMissionForTab(n) {
+        if (pipelineRunning) return;
+        if (pipelineHalted) {
+            if ((n === 1 && !poc1Done) || (n === 2 && poc1Done && !poc2Done) || (n === 3 && poc2Done && !poc3Done)) {
+                runStep(n);
+            }
+            return;
+        }
+        if (n === 1 && !poc1Done) runStep(1);
+        else if (n === 2 && poc1Done && !poc2Done) runStep(2);
+        else if (n === 3 && poc2Done && !poc3Done) runStep(3);
+    }
+
+    function selectPocTab(n) {
+        if (n === 2 && !poc1Done) return;
+        if (n === 3 && !poc2Done) return;
+        selectedTab = n;
+        document.querySelectorAll('.poc-tab').forEach(btn => {
+            const isSel = parseInt(btn.dataset.poc, 10) === n;
+            btn.classList.toggle('active', isSel);
+            btn.setAttribute('aria-selected', isSel ? 'true' : 'false');
+        });
+        [1, 2, 3].forEach(i => {
+            const lp = document.getElementById('logs-poc' + i);
+            if (lp) lp.hidden = i !== n;
+        });
+        syncMeshForTab();
+        updateOutputForTab();
+        updateOutputHeadings();
+        updateMissionHint();
+    }
+
+    function bindPocTabs() {
+        document.querySelectorAll('.poc-tab').forEach(btn => {
+            if (btn.dataset.bound === '1') return;
+            btn.dataset.bound = '1';
+            btn.addEventListener('click', () => {
+                if (btn.disabled) return;
+                const n = parseInt(btn.dataset.poc, 10);
+                selectPocTab(n);
+                maybeStartMissionForTab(n);
+            });
+        });
+    }
+
+    function updatePocTabLocks() {
+        const t2 = document.querySelector('.poc-tab[data-poc="2"]');
+        const t3 = document.querySelector('.poc-tab[data-poc="3"]');
+        if (t2) t2.disabled = !poc1Done;
+        if (t3) t3.disabled = !poc2Done;
+    }
+
+    function updateOutputForTab() {
+        const t = document.getElementById('targeting-view');
+        const p = document.getElementById('planning-view');
+        const w = document.getElementById('whitespace-view');
+        if (t) t.style.display = selectedTab === 1 ? 'block' : 'none';
+        if (p) p.style.display = selectedTab === 2 ? 'block' : 'none';
+        if (w) w.style.display = selectedTab === 3 ? 'block' : 'none';
+    }
+
+    function updateMissionHint() {
+        const hint = document.getElementById('mission-hint');
+        if (!hint) return;
+        if (pipelineHalted) {
+            hint.textContent = 'Execution halted. Click this tab again to retry only this mission, or use Reset mission to start over from Targeting & Triage.';
+            hint.style.display = 'block';
+            return;
+        }
+        if (selectedTab === 1) {
+            hint.textContent = poc1Done
+                ? 'Targeting complete. Open the Account Planning tab to continue.'
+                : 'Click the Targeting & Triage tab to start. Output unlocks when the log finishes.';
+        } else if (selectedTab === 2) {
+            hint.textContent = !poc1Done
+                ? 'Run Targeting first (first tab).'
+                : (poc2Done
+                    ? 'Account Planning complete. Open the Whitespace tab to continue.'
+                    : 'Click the Account Planning tab to run briefs and call plans.');
+        } else {
+            hint.textContent = !poc2Done
+                ? 'Run Account Planning first (middle tab).'
+                : (poc3Done
+                    ? 'Whitespace complete. Switch tabs to review outputs.'
+                    : 'Click the Whitespace tab to run matrix scoring and campaign briefs.');
+        }
+        hint.style.display = 'block';
+    }
+
+    function loadMeshSvg() {
+        const host = document.getElementById('mesh-host');
+        fetch('/static/mesh_architecture.svg?t=' + Date.now())
+            .then(r => { if (!r.ok) throw new Error('mesh svg'); return r.text(); })
+            .then(svg => {
+                host.innerHTML = svg;
+                syncMeshForTab();
+                updatePocTabLocks();
+                updateMissionHint();
+            })
+            .catch(() => {
+                host.innerHTML = '<p style="padding:16px;color:#64748b">Load /mesh_architecture.svg failed. Ensure static file exists.</p>';
+            });
+    }
+
+    function getLogPanel() {
+        return document.getElementById('logs-poc' + logTargetPoc) || document.getElementById('logs-poc1');
+    }
+
+    function meshAgentId(raw) {
+        return AGENT_ALIASES[raw] || raw;
+    }
+
+    function setMeshNode(agentName, phase) {
+        const id = meshAgentId(agentName);
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.classList.remove('ag-active', 'ag-completed', 'ag-error');
+        if (phase === 'active') el.classList.add('ag-active');
+        if (phase === 'done') el.classList.add('ag-completed');
+        if (phase === 'error') el.classList.add('ag-error');
+    }
+
+    function resetMeshAnim() {
+        document.querySelectorAll('#mesh-host svg .ag').forEach(el => {
+            el.classList.remove('ag-active', 'ag-completed', 'ag-error');
+        });
+        const host = document.getElementById('mesh-host');
+        host.classList.remove('mesh-halted', 'mesh-error');
+    }
+
+    function isBusyStatus(st) {
+        const u = (st || '').toUpperCase();
+        return u === 'START' || u === 'STARTED' || u === 'PROCESSING' || u === 'INFO';
+    }
+
+    function isErrorStatus(st) {
+        const u = String(st || '').toUpperCase();
+        return u === 'FAILED' || u === 'ERROR' || u === 'FAILURE';
+    }
+
+    function addLog(l) {
+        const item = document.createElement('div');
+        item.className = 'log-entry';
+        const err = isErrorStatus(l.status);
+        const busy = !err && isBusyStatus(l.status);
+        const agentUpper = (l.agent_name || '—').toUpperCase();
+        const statusUpper = String(l.status || '—').toUpperCase();
+        item.innerHTML = `
+            <div class="log-hdr">
+                <div class="log-status ${err ? 'active' : busy ? 'active' : 'done'}" style="${err ? 'background:#EF4444' : ''}"></div>
+                <div style="margin-left:auto; font-size:9px; color:#94A3B8">${(l.timestamp || '').slice(11, 19) || new Date().toLocaleTimeString()}</div>
+            </div>
+            <div class="log-label">${agentUpper} · ${statusUpper}</div>
+            <div class="log-msg"></div>
+        `;
+        const msgEl = item.querySelector('.log-msg');
+        const full = sanitizeLogText(l.message || '');
+        const logPanel = getLogPanel();
+        if (logPanel) {
+            logPanel.appendChild(item);
+            logPanel.scrollTop = logPanel.scrollHeight;
+        }
+
+        const chunk = err ? 8 : 2;
+        const delayMs = err ? 10 : 26;
+        const labelPauseMs = err ? 40 : 100;
+        logTypingChain = logTypingChain.then(function () {
+            return new Promise(function (resolve) {
+                setTimeout(function () {
+                    var i = 0;
+                    function tick() {
+                        if (i >= full.length) {
+                            resolve();
+                            return;
+                        }
+                        var next = Math.min(i + chunk, full.length);
+                        msgEl.textContent = full.slice(0, next);
+                        i = next;
+                        if (logPanel) logPanel.scrollTop = logPanel.scrollHeight;
+                        setTimeout(tick, delayMs);
+                    }
+                    tick();
+                }, labelPauseMs);
+            });
+        });
+
+        const mid = meshAgentId(l.agent_name);
+        const el = mid && document.getElementById(mid);
+        if (el) {
+            if (err) {
+                setMeshNode(l.agent_name, 'error');
+                const host = document.getElementById('mesh-host');
+                host.classList.add('mesh-halted', 'mesh-error');
+                pipelineHalted = true;
+                pipelineRunning = false;
+                updateMissionHint();
+            } else if (busy) {
+                setMeshNode(l.agent_name, 'active');
+            } else {
+                setMeshNode(l.agent_name, 'done');
+            }
+        }
+        if (l.agent_name === 'ag-orch' && l.message) {
+            document.getElementById('mission-status').textContent = sanitizeLogText(l.message);
+        }
+    }
+
+    function escapeHtml(s) {
+        const d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+    }
+
+    function runWithSse(url, opts) {
+        return new Promise((resolve, reject) => {
+            pipelineRunning = true;
+            if (activeEs) try { activeEs.close(); } catch (e) {}
+            const es = new EventSource('/events');
+            activeEs = es;
+            const doneMsg = opts && opts.doneSubstring;
+            let settled = false;
+
+            function finish(ok, val) {
+                if (settled) return;
+                settled = true;
+                try { es.close(); } catch (e) {}
+                activeEs = null;
+                pipelineRunning = false;
+                if (ok) resolve(val);
+                else reject(val);
+            }
+
+            es.onmessage = (e) => {
+                try {
+                    const log = JSON.parse(e.data);
+                    addLog(log);
+                    if (pipelineHalted) {
+                        finish(false, new Error(log.message || 'Pipeline error'));
+                        return;
+                    }
+                    if (doneMsg && log.agent_name === 'ag-orch') {
+                        const raw = String(log.message || '');
+                        const st = String(log.status || '').toUpperCase();
+                        const endLike = st === 'END' || st === 'COMPLETED' || st === 'COMPLETE';
+                        const step = opts && opts.pocStep;
+                        let matchesDone = raw.includes(doneMsg);
+                        if (!matchesDone && endLike && step === 1) {
+                            matchesDone = /targeting.*complete|poc\s*1.*complete|complete.*account planning/i.test(raw);
+                        }
+                        if (!matchesDone && endLike && step === 2) {
+                            matchesDone = /account planning.*complete|poc\s*2.*complete|complete.*whitespace/i.test(raw);
+                        }
+                        if (!matchesDone && endLike && step === 3) {
+                            matchesDone = /whitespace.*complete|poc\s*3.*complete/i.test(raw);
+                        }
+                        if (matchesDone) finish(true);
+                    }
+                    if (log.agent_name === 'ag-orch' && String(log.status || '').toUpperCase() === 'FAILED')
+                        finish(false, new Error(log.message || 'Pipeline failed'));
+                    if (isErrorStatus(log.status) && log.agent_name && log.agent_name !== 'ag-orch')
+                        finish(false, new Error(log.message || ('Agent ' + log.agent_name + ' failed')));
+                } catch (err) { console.error(err); }
+            };
+
+            const body = opts && opts.body ? JSON.stringify(opts.body) : '{}';
+            fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body })
+                .then(async function (r) {
+                    if (!r.ok) {
+                        var detail = r.status + ' ' + r.statusText;
+                        try {
+                            var j = await r.json();
+                            if (j && j.detail != null)
+                                detail = parseErrorDetail(j.detail);
+                        } catch (e2) {}
+                        throw new Error(detail || 'Request failed');
+                    }
+                    return r.json().catch(function () { return {}; });
+                })
+                .then(data => { finish(true, data); })
+                .catch(err => finish(false, err));
+        });
+    }
+
+    function renderTargeting(data) {
+        const container = document.getElementById('targeting-view');
+        const t = data && data.accounts ? data : (data && data.targeting_results) || {};
+        const accounts = t.accounts || [];
+        container.innerHTML = '<h3 style="margin-bottom:15px;font-family:var(--font-heading)">Targeting results</h3>';
+        accounts.forEach(acc => {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            card.innerHTML = `
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px">
+                    <div style="font-weight:800; color:var(--brand-blue)">${acc.account_id}</div>
+                    <div style="font-size:10px; font-weight:800; background:#F1F5F9; padding:2px 8px; border-radius:10px">BUCKET ${acc.priority_bucket}</div>
+                </div>
+                <div style="font-weight:700; margin-bottom:4px">${acc.account_name || ''}</div>
+                <div style="font-size:12px; color:var(--text-dim); margin-bottom:12px">${acc.contact_person || ''}</div>
+                <div style="display:flex; gap:10px">
+                    <div style="flex:1; font-size:10px"><div style="opacity:0.6">Propensity</div><div style="font-weight:700">${((acc.ml_score || 0) * 100).toFixed(1)}%</div></div>
+                    <div style="flex:1; font-size:10px"><div style="opacity:0.6">Confidence</div><div style="font-weight:700">${((acc.confidence_level || 0) * 100).toFixed(1)}%</div></div>
+                </div>`;
+            container.appendChild(card);
+        });
+    }
+
+    function briefToSafeHtml(text) {
+        return escapeHtml(text || '').replace(/\n/g, '<br>');
+    }
+
+    function renderPlanning(data) {
+        const container = document.getElementById('planning-view');
+        const p = data || {};
+        const rows = p.results || p.accounts || [];
+        container.innerHTML = '<h3 style="margin-bottom:15px;font-family:var(--font-heading)">Strategic planning</h3>';
+        rows.forEach(res => {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            card.innerHTML = `
+                <div style="display:flex; justify-content:space-between; margin-bottom:8px">
+                    <div style="font-weight:800; color:var(--brand-primary)">${escapeHtml(res.account_id || '')}</div>
+                    ${res.conflict_flag ? '<div style="font-size:9px; font-weight:800; color:#EF4444; background:#FEF2F2; padding:2px 8px; border-radius:10px">CONFLICT</div>' : ''}
+                </div>
+                <div style="font-weight:700; margin-bottom:2px">${escapeHtml(res.account_name || '')}</div>
+                <div style="font-size:11px; color:var(--text-dim); margin-bottom:15px">${escapeHtml(res.contact_person || '')}</div>
+                <details style="font-size:12px; cursor:pointer"><summary style="font-weight:700; color:var(--brand-primary)">Strategic brief</summary>
+                    <div style="padding:15px 0; line-height:1.6; border-top:1px solid #F1F5F9; margin-top:10px">${briefToSafeHtml(res.brief_markdown || res.brief_text || '')}</div></details>
+                <details style="font-size:12px; cursor:pointer; margin-top:10px"><summary style="font-weight:700; color:var(--brand-blue)">Tactical call plan</summary>
+                    <div style="padding:15px 0; line-height:1.6; border-top:1px solid #F1F5F9; margin-top:10px">${briefToSafeHtml(res.call_plan_markdown || res.call_plan_text || '')}</div></details>`;
+            container.appendChild(card);
+        });
+    }
+
+    function renderWhitespace(w) {
+        const container = document.getElementById('whitespace-view');
+        if (!w || !w.top_accounts) {
+            container.innerHTML = '<p style="color:var(--text-dim)">No whitespace payload yet. Run the Whitespace tab.</p>';
+            return;
+        }
+        let html = '<h3 style="margin-bottom:12px;font-family:var(--font-heading)">Whitespace analysis</h3>';
+        html += `<p style="font-size:12px;margin-bottom:12px;color:var(--text-dim)">Export: <code>${escapeHtml(w.export_csv_path || '')}</code> · Total potential EUR: <strong>${(w.total_potential_eur || 0).toLocaleString()}</strong></p>`;
+        (w.campaign_briefs || []).forEach(b => {
+            html += `<div class="result-card"><div style="font-weight:800;color:#7C3AED">Cluster ${b.cluster_id}</div>
+                <p style="margin:8px 0;font-size:13px"><strong>Angle:</strong> ${escapeHtml(b.messaging_angle || '')}</p>
+                <p style="font-size:12px;white-space:pre-wrap">${escapeHtml(b.campaign_brief_text || '').slice(0, 1200)}</p>
+                <p style="margin-top:8px;font-size:12px"><strong>CTA:</strong> ${escapeHtml(b.primary_cta || '')}</p></div>`;
+        });
+        html += '<h4 style="margin:16px 0 8px;font-family:var(--font-heading)">Top accounts</h4>';
+        (w.top_accounts || []).slice(0, 12).forEach(a => {
+            html += `<div class="result-card" style="padding:12px"><strong>${a.account_id}</strong> · potential €${(a.total_ws_potential_eur || 0).toLocaleString()} · cluster ${a.cluster_id}</div>`;
+        });
+        container.innerHTML = html;
+    }
+
+    async function refreshResults() {
+        const resp = await fetch('/mission_results');
+        const data = await resp.json();
+        if (data.targeting && data.targeting.accounts) renderTargeting(data.targeting);
+        if (data.planning && (data.planning.results || data.planning.accounts)) renderPlanning(data.planning);
+        if (data.whitespace && data.whitespace.top_accounts) renderWhitespace(data.whitespace);
+        updateOutputForTab();
+    }
+
+    async function runStep(n) {
+        pipelineHalted = false;
+        pipelineRunning = true;
+        logTargetPoc = n;
+        selectPocTab(n);
+
+        const host = document.getElementById('mesh-host');
+        host.classList.remove('mesh-halted', 'mesh-error');
+        host.classList.add('mesh-running');
+        setOutputLocked(true);
+
+        const lp = document.getElementById('logs-poc' + n);
+        if (lp) lp.innerHTML = '';
+        logTypingChain = Promise.resolve();
+        resetMeshAnim();
+        updatePocTabLocks();
+
+        if (n === 1) setMeshPhase('triage');
+        else if (n === 2) setMeshPhase('planning');
+        else setMeshPhase('whitespace');
+
+        const tabName = TAB_NAMES[n - 1] || '';
+        document.getElementById('mission-status').textContent = 'Running — ' + tabName + '…';
+
+        const doneStrings = {
+            1: 'Targeting mission complete',
+            2: 'Account Planning mission complete',
+            3: 'Whitespace mission complete'
+        };
+        try {
+            await runWithSse('/run/poc' + n, { doneSubstring: doneStrings[n], pocStep: n });
+            if (n === 1) poc1Done = true;
+            if (n === 2) poc2Done = true;
+            if (n === 3) poc3Done = true;
+            await refreshResults();
+            updatePocTabLocks();
+            updateMissionHint();
+            syncMeshForTab();
+        } catch (e) {
+            if (!pipelineHalted) {
+                pipelineHalted = true;
+                host.classList.add('mesh-halted', 'mesh-error');
+                setMeshNode('ag-orch', 'error');
+                addLog({ agent_name: 'ag-orch', status: 'FAILED', message: sanitizeLogText(String(e.message || e)) });
+            }
+            document.getElementById('mission-status').textContent = 'FAILED — ' + sanitizeLogText(String(e.message || e));
+        } finally {
+            pipelineRunning = false;
+            host.classList.remove('mesh-running');
+            setOutputLocked(false);
+            updatePocTabLocks();
+        }
+    }
+
+    window.closeWorkbench = function () { document.getElementById('workbench-tray').style.display = 'none'; };
+    window.runStep = runStep;
+
+    function resetMissionFromTriage() {
+        if (pipelineRunning) return;
+        fetch('/mission/reset', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' })
+            .then(function (r) { return r.json().catch(function () { return {}; }); })
+            .then(function () {
+                poc1Done = poc2Done = poc3Done = false;
+                pipelineHalted = false;
+                pipelineRunning = false;
+                [1, 2, 3].forEach(function (i) {
+                    var lp = document.getElementById('logs-poc' + i);
+                    if (lp) lp.innerHTML = '';
+                });
+                logTypingChain = Promise.resolve();
+                resetMeshAnim();
+                var t = document.getElementById('targeting-view');
+                var p = document.getElementById('planning-view');
+                var w = document.getElementById('whitespace-view');
+                if (t) t.innerHTML = '';
+                if (p) p.innerHTML = '';
+                if (w) w.innerHTML = '';
+                selectPocTab(1);
+                updatePocTabLocks();
+                updateMissionHint();
+                document.getElementById('mission-status').textContent = 'Idle. Run missions in order using the tabs below.';
+            })
+            .catch(function (e) {
+                addLog({ agent_name: 'ag-orch', status: 'FAILED', message: sanitizeLogText('Reset failed: ' + String(e.message || e)) });
+            });
+    }
+
+    var btnReset = document.getElementById('btn-reset-mission');
+    if (btnReset) btnReset.addEventListener('click', resetMissionFromTriage);
+
+    bindPocTabs();
+    selectPocTab(1);
+    updatePocTabLocks();
+    loadMeshSvg();
+})();
+</script>
+</body>
+</html>

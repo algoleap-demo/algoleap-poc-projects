@@ -1,0 +1,7 @@
+product_id,product_name,product_line,expansion_potential,region_fit
+P-FA,Fund Administration,Fund Admin,Low,"DE,FR,IT,ES,NL,BE,CH,LU"
+P-DEP,Depositary Services,Depositary,Medium,"DE,FR,IT,ES,NL,BE,CH,LU"
+P-GRC,"Governance, Risk & Compliance",Middle Office,High,"DE,FR,IT,ES,NL,BE,CH,LU"
+P-KYC,KYC/AML Outsourcing,Compliance,Medium,"DE,FR,IT,ES,NL,BE,CH,LU"
+P-ESG,ESG Reporting,ESG Reporting,High,"DE,FR,NL,BE,CH,LU"
+P-CORP,Corporate Secretarial,Corporate Secretarial,Low,"DE,FR,ES,NL,BE,CH,LU"

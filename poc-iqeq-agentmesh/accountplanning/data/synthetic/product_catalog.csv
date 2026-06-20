@@ -1,0 +1,9 @@
+product_id,product_line,asset_class_fit,expansion_potential,typical_deal_size_eur,region_fit
+PROD-01,Fund Admin,Mixed,Low,100000,"DE,FR,LU"
+PROD-02,Middle Office,"PE, RE",High,250000,"DE,UK,CH"
+PROD-03,ESG Reporting,Mixed,High,150000,"FR,DE,NL"
+PROD-04,AIFMD,"PE, Hedge",Medium,120000,"LU,IE"
+PROD-05,Depositary,"PE, RE",Medium,180000,"LU,DE"
+PROD-06,Tax Services,Private Client,Medium,80000,"CH,ES,IT"
+PROD-07,Private Client,Private Client,Low,200000,"UK,CH"
+PROD-08,Transfer Agency,Mixed,Low,90000,"LU,IE"

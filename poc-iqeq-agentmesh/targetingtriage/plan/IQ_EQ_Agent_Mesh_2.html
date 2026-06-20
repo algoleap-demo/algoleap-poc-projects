@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IQ-EQ Agent Mesh</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Syne',sans-serif;background:#F8F9FB;color:#111827;min-height:100vh;display:flex;flex-direction:column;}
+.hdr{background:#111827;color:white;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.hdr-t{font-size:17px;font-weight:800;letter-spacing:-.3px;}
+.hdr-s{font-size:10.5px;color:#6B7280;margin-top:2px;font-family:'JetBrains Mono',monospace;}
+.hdr-b{font-family:'JetBrains Mono',monospace;font-size:10px;padding:5px 13px;border:1px solid #374151;border-radius:20px;color:#6B7280;}
+.bar{background:#fff;border-bottom:1px solid #E5E7EB;padding:14px 40px;display:flex;align-items:center;gap:18px;flex-shrink:0;}
+.bar-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#9CA3AF;white-space:nowrap;}
+.btns{display:flex;gap:8px;}
+.btn{display:flex;align-items:center;gap:7px;padding:8px 16px;border-radius:7px;border:2px solid #D1D5DB;background:#F9FAFB;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:#6B7280;transition:all .18s;white-space:nowrap;}
+.btn:hover{background:#fff;}
+.dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.sl{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:400;opacity:.55;}
+.btn[data-p="1"].on{border-color:#2563EB;color:#2563EB;background:#EFF6FF;box-shadow:0 0 0 3px #BFDBFE55;}
+.btn[data-p="2"].on{border-color:#0D9488;color:#0D9488;background:#F0FDF9;box-shadow:0 0 0 3px #99F6E455;}
+.btn[data-p="3"].on{border-color:#7C3AED;color:#7C3AED;background:#F5F3FF;box-shadow:0 0 0 3px #DDD6FE55;}
+.btn[data-p="0"].on{border-color:#1D4ED8;color:#1D4ED8;background:#EFF6FF;box-shadow:0 0 0 3px #BFDBFE55;}
+.main{display:flex;flex:1;}
+.canvas{flex:1;padding:28px 24px;overflow:auto;}
+svg.mesh{display:block;width:100%;height:auto;overflow:visible;}
+.ag{transition:opacity .25s ease;}
+.leg{width:180px;flex-shrink:0;border-left:1px solid #E5E7EB;padding:20px 16px;background:#fff;}
+.leg h3{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#9CA3AF;margin-bottom:10px;}
+.li{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:11px;color:#6B7280;font-weight:600;}
+.ld{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
+.ldiv{border-top:1px solid #E5E7EB;margin:12px 0;}
+.lnote{font-size:10px;color:#9CA3AF;line-height:1.85;font-family:'JetBrains Mono',monospace;}
+.foot{background:#fff;border-top:1px solid #E5E7EB;padding:9px 40px;font-size:10.5px;color:#6B7280;font-family:'JetBrains Mono',monospace;display:flex;gap:24px;flex-wrap:wrap;flex-shrink:0;}
+.foot strong{color:#111827;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <div class="hdr-t">IQ-EQ &middot; Agent Mesh Architecture</div>
+    <div class="hdr-s">FAM/PIAO Continental Europe &middot; Single Orchestration Agent &middot; Shared Agent Pool &middot; ISO 42001</div>
+  </div>
+  <div class="hdr-b">3 POC &middot; 1 ORCHESTRATOR &middot; 7 AGENTS</div>
+</div>
+
+<div class="bar">
+  <span class="bar-l">User selects &rarr;</span>
+  <div class="btns">
+    <button class="btn" data-p="1" onclick="pick(1)"><span class="dot"></span>Targeting &amp; Triage<span class="sl">POC 1</span></button>
+    <button class="btn" data-p="2" onclick="pick(2)"><span class="dot"></span>Account Planning<span class="sl">POC 2</span></button>
+    <button class="btn" data-p="3" onclick="pick(3)"><span class="dot"></span>Whitespace Analysis<span class="sl">POC 3</span></button>
+    <button class="btn on" data-p="0" onclick="pick(0)"><span class="dot"></span>Full Agent Mesh<span class="sl">All POCs</span></button>
+  </div>
+</div>
+
+<div class="main">
+<div class="canvas">
+
+<svg class="mesh" viewBox="0 0 900 920" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#9CA3AF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <marker id="aB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#1D4ED8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <marker id="aR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#6366F1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <marker id="aO" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M1 1.5L8.5 5L1 8.5" fill="none" stroke="#EA580C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<!-- USER CHOICE BUTTONS -->
+<g id="ub1" class="ag">
+  <rect x="290" y="16" width="160" height="42" rx="7" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="11" fill="#1D4ED8" x="370" y="33" text-anchor="middle" dominant-baseline="central">Targeting &amp; Triage</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#3B82F6" x="370" y="50" text-anchor="middle" dominant-baseline="central">POC 1</text>
+</g>
+<g id="ub2" class="ag">
+  <rect x="462" y="16" width="160" height="42" rx="7" fill="#F0FDF9" stroke="#99F6E4" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="11" fill="#0D9488" x="542" y="33" text-anchor="middle" dominant-baseline="central">Account Planning</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#0D9488" x="542" y="50" text-anchor="middle" dominant-baseline="central">POC 2</text>
+</g>
+<g id="ub3" class="ag">
+  <rect x="634" y="16" width="178" height="42" rx="7" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="11" fill="#7C3AED" x="723" y="33" text-anchor="middle" dominant-baseline="central">Whitespace Analysis</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#7C3AED" x="723" y="50" text-anchor="middle" dominant-baseline="central">POC 3</text>
+</g>
+
+<!-- Converge to Orch -->
+<polyline points="370,58 370,76 145,76" fill="none" stroke="#C9D0DC" stroke-width="1.2"/>
+<polyline points="542,58 542,76 145,76" fill="none" stroke="#C9D0DC" stroke-width="1.2"/>
+<polyline points="723,58 723,76 145,76" fill="none" stroke="#C9D0DC" stroke-width="1.2"/>
+<line x1="145" y1="76" x2="145" y2="100" stroke="#1D4ED8" stroke-width="1.8" marker-end="url(#aB)"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#6366F1" x="153" y="89" dominant-baseline="central">user intent</text>
+
+<!-- ============================================================
+     ORCHESTRATION AGENT — SINGLE TALL BOX
+     Left column x=16..260, y=100..800
+     Top half:  receives + plans  (y=100..390)
+     Mid label: "SAME SINGLE INSTANCE"
+     Bot half:  collects + assembles (y=390..800)
+============================================================ -->
+<g id="ag-orch" class="ag">
+  <!-- outer box -->
+  <rect x="16" y="100" width="244" height="700" rx="10" fill="#EFF6FF" stroke="#1D4ED8" stroke-width="2.5"/>
+  <!-- dark header -->
+  <path d="M16,110 Q16,100 26,100 L250,100 Q260,100 260,110 L260,150 L16,150 Z" fill="#1D4ED8"/>
+  <text font-family="Syne" font-weight="800" font-size="13" fill="white" x="138" y="121" text-anchor="middle" dominant-baseline="central">Orchestration Agent</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#BFDBFE" x="138" y="140" text-anchor="middle" dominant-baseline="central">Single instance &middot; hub of the mesh</text>
+
+  <!-- TOP HALF label -->
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#1D4ED8" letter-spacing="0.07em" x="138" y="164" text-anchor="middle">RECEIVES INTENT + PLANS</text>
+  <line x1="30" y1="172" x2="246" y2="172" stroke="#BFDBFE" stroke-width="1"/>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#374151" x="32" y="189" dominant-baseline="central">1. Receives user intent</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#374151" x="32" y="207" dominant-baseline="central">2. Interprets request type</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#374151" x="32" y="225" dominant-baseline="central">3. Plans agent sequence</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#374151" x="32" y="243" dominant-baseline="central">4. Delegates to agent pool</text>
+  <line x1="30" y1="257" x2="246" y2="257" stroke="#BFDBFE" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#6B7280" x="32" y="270" dominant-baseline="central">POC 1: Data&#8594;MLScore&#8594;</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#9CA3AF" x="32" y="284" dominant-baseline="central"> Reasoning&#8594;Validate&#8594;Format</text>
+  <line x1="30" y1="294" x2="246" y2="294" stroke="#BFDBFE" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#6B7280" x="32" y="307" dominant-baseline="central">POC 2: Data&#8594;Brief&#8594;</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#9CA3AF" x="32" y="321" dominant-baseline="central"> CallPlan&#8594;Validate&#8594;Format</text>
+  <line x1="30" y1="331" x2="246" y2="331" stroke="#BFDBFE" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#6B7280" x="32" y="344" dominant-baseline="central">POC 3: Data&#8594;WSScore&#8594;</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#9CA3AF" x="32" y="358" dominant-baseline="central"> Campaign&#8594;Validate&#8594;Format</text>
+
+  <!-- MID DIVIDER with "SAME SINGLE INSTANCE" label -->
+  <line x1="16" y1="376" x2="260" y2="376" stroke="#1D4ED8" stroke-width="1.8"/>
+  <rect x="34" y="368" width="192" height="16" rx="4" fill="#1D4ED8"/>
+  <text font-family="JetBrains Mono" font-size="7" fill="white" letter-spacing="0.06em" x="130" y="376" text-anchor="middle" dominant-baseline="central">&#x2191; SAME SINGLE INSTANCE &#x2191;</text>
+
+  <!-- BOT HALF label -->
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#1D4ED8" letter-spacing="0.07em" x="138" y="396" text-anchor="middle">COLLECTS RETURNS + ASSEMBLES</text>
+  <line x1="30" y1="404" x2="246" y2="404" stroke="#BFDBFE" stroke-width="1"/>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#374151" x="32" y="421" dominant-baseline="central">5. Receives Formatting payload</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#374151" x="32" y="439" dominant-baseline="central">6. Assembles final response</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#374151" x="32" y="457" dominant-baseline="central">7. Applies governance checks</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#374151" x="32" y="475" dominant-baseline="central">8. Returns result to user &#x2193;</text>
+  <line x1="30" y1="489" x2="246" y2="489" stroke="#BFDBFE" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#EA580C" x="32" y="502" dominant-baseline="central">ISO 42001 governance:</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#9CA3AF" x="32" y="516" dominant-baseline="central">conflict_flag = True &#8594;</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#9CA3AF" x="32" y="530" dominant-baseline="central"> Governance Workbench</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#9CA3AF" x="32" y="544" dominant-baseline="central"> for human review, then</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#9CA3AF" x="32" y="558" dominant-baseline="central"> approved to Formatting.</text>
+</g>
+
+<!-- AGENT POOL outline -->
+<rect x="278" y="100" width="614" height="700" rx="10" fill="none" stroke="#E5E7EB" stroke-width="1.5" stroke-dasharray="7 4"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#9CA3AF" letter-spacing="0.06em" x="585" y="116" text-anchor="middle">SHARED AGENT POOL</text>
+
+<!-- STEP 1: Data Agent -->
+<text font-family="JetBrains Mono" font-size="8" fill="#9CA3AF" x="290" y="132" dominant-baseline="central">STEP 1 &middot; ALL POCs</text>
+<g id="ag-data" class="ag">
+  <rect x="290" y="140" width="588" height="50" rx="8" fill="#F0FDF9" stroke="#0D9488" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="12" fill="#0D9488" x="474" y="158" text-anchor="middle" dominant-baseline="central">Data Agent</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#0D9488" x="474" y="176" text-anchor="middle" dominant-baseline="central">Retrieves &middot; validates &middot; joins accounts &middot; contacts &middot; product_matrix &middot; product_catalog &middot; CSV/DB</text>
+  <rect x="782" y="145" width="34" height="14" rx="3" fill="#BFDBFE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#1D4ED8" x="799" y="152" text-anchor="middle" dominant-baseline="central">POC1</text>
+  <rect x="820" y="145" width="34" height="14" rx="3" fill="#99F6E4"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#0D9488" x="837" y="152" text-anchor="middle" dominant-baseline="central">POC2</text>
+  <rect x="858" y="145" width="34" height="14" rx="3" fill="#DDD6FE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#7C3AED" x="875" y="152" text-anchor="middle" dominant-baseline="central">POC3</text>
+</g>
+
+<!-- STEP 2 -->
+<line x1="290" y1="198" x2="878" y2="198" stroke="#E5E7EB" stroke-width="1"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#9CA3AF" x="290" y="210" dominant-baseline="central">STEP 2</text>
+<g id="ag-ml" class="ag">
+  <rect x="290" y="218" width="376" height="62" rx="8" fill="#FFFBEB" stroke="#D97706" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="11.5" fill="#D97706" x="478" y="238" text-anchor="middle" dominant-baseline="central">ML / Whitespace Scoring Agent</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#D97706" x="478" y="253" text-anchor="middle" dominant-baseline="central">POC 1: XGBoost &#8594; ml_score + confidence_level + PTB signals</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#92400E" x="478" y="268" text-anchor="middle" dominant-baseline="central">POC 3: ws_score &middot; expected_rev_eur &middot; ws_intensity (0-1)</text>
+  <rect x="293" y="221" width="34" height="14" rx="3" fill="#BFDBFE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#1D4ED8" x="310" y="228" text-anchor="middle" dominant-baseline="central">POC1</text>
+  <rect x="332" y="221" width="34" height="14" rx="3" fill="#DDD6FE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#7C3AED" x="349" y="228" text-anchor="middle" dominant-baseline="central">POC3</text>
+</g>
+<g id="ag-brief" class="ag">
+  <rect x="678" y="218" width="200" height="62" rx="8" fill="#FFFBEB" stroke="#D97706" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="11.5" fill="#D97706" x="778" y="238" text-anchor="middle" dominant-baseline="central">Brief Agent  LLM</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#D97706" x="778" y="253" text-anchor="middle" dominant-baseline="central">1-page account brief</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#92400E" x="778" y="268" text-anchor="middle" dominant-baseline="central">brief_text + api_score</text>
+  <rect x="681" y="221" width="34" height="14" rx="3" fill="#99F6E4"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#0D9488" x="698" y="228" text-anchor="middle" dominant-baseline="central">POC2</text>
+</g>
+
+<!-- STEP 3 -->
+<line x1="290" y1="290" x2="878" y2="290" stroke="#E5E7EB" stroke-width="1"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#9CA3AF" x="290" y="302" dominant-baseline="central">STEP 3</text>
+<g id="ag-reason" class="ag">
+  <rect x="290" y="310" width="238" height="60" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="11" fill="#7C3AED" x="409" y="330" text-anchor="middle" dominant-baseline="central">Reasoning Agent  LLM</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#7C3AED" x="409" y="346" text-anchor="middle" dominant-baseline="central">Priority A/B/C + rationale_text</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#6D28D9" x="409" y="360" text-anchor="middle" dominant-baseline="central">priority_bucket per account</text>
+  <rect x="293" y="313" width="34" height="14" rx="3" fill="#BFDBFE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#1D4ED8" x="310" y="320" text-anchor="middle" dominant-baseline="central">POC1</text>
+</g>
+<g id="ag-call" class="ag">
+  <rect x="542" y="310" width="220" height="60" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="11" fill="#7C3AED" x="652" y="330" text-anchor="middle" dominant-baseline="central">Call Plan Agent  LLM</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#7C3AED" x="652" y="346" text-anchor="middle" dominant-baseline="central">Objectives &middot; Agenda &middot; Cross-Sell</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#6D28D9" x="652" y="360" text-anchor="middle" dominant-baseline="central">call_plan per contact</text>
+  <rect x="545" y="313" width="34" height="14" rx="3" fill="#99F6E4"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#0D9488" x="562" y="320" text-anchor="middle" dominant-baseline="central">POC2</text>
+</g>
+<g id="ag-camp" class="ag">
+  <rect x="776" y="310" width="102" height="60" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="10.5" fill="#7C3AED" x="827" y="326" text-anchor="middle" dominant-baseline="central">Campaign</text>
+  <text font-family="Syne" font-weight="700" font-size="10.5" fill="#7C3AED" x="827" y="340" text-anchor="middle" dominant-baseline="central">Agent LLM</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#6D28D9" x="827" y="354" text-anchor="middle" dominant-baseline="central">WS clusters</text>
+  <text font-family="JetBrains Mono" font-size="7.5" fill="#6D28D9" x="827" y="366" text-anchor="middle" dominant-baseline="central">+ briefs</text>
+  <rect x="779" y="313" width="34" height="14" rx="3" fill="#DDD6FE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#7C3AED" x="796" y="320" text-anchor="middle" dominant-baseline="central">POC3</text>
+</g>
+
+<!-- STEP 4: Validation -->
+<line x1="290" y1="380" x2="878" y2="380" stroke="#E5E7EB" stroke-width="1"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#9CA3AF" x="290" y="392" dominant-baseline="central">STEP 4 &middot; ALL POCs &middot; SHARED</text>
+<g id="ag-valid" class="ag">
+  <rect x="290" y="400" width="588" height="50" rx="8" fill="#FFF1F1" stroke="#DC2626" stroke-width="2"/>
+  <text font-family="Syne" font-weight="700" font-size="12" fill="#DC2626" x="474" y="418" text-anchor="middle" dominant-baseline="central">Validation Agent</text>
+  <text font-family="JetBrains Mono" font-size="8.5" fill="#DC2626" x="474" y="436" text-anchor="middle" dominant-baseline="central">ML vs LLM conflict &middot; propensity vs whitespace &middot; product-region fit &middot; anomaly detection</text>
+  <rect x="782" y="405" width="34" height="14" rx="3" fill="#BFDBFE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#1D4ED8" x="799" y="412" text-anchor="middle" dominant-baseline="central">POC1</text>
+  <rect x="820" y="405" width="34" height="14" rx="3" fill="#99F6E4"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#0D9488" x="837" y="412" text-anchor="middle" dominant-baseline="central">POC2</text>
+  <rect x="858" y="405" width="34" height="14" rx="3" fill="#DDD6FE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#7C3AED" x="875" y="412" text-anchor="middle" dominant-baseline="central">POC3</text>
+</g>
+
+<!-- Validation True -> ISO Gov -->
+<line x1="878" y1="425" x2="898" y2="425" stroke="#EA580C" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="898" y1="425" x2="898" y2="490" stroke="#EA580C" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="898" y1="490" x2="880" y2="490" stroke="#EA580C" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#aO)"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#EA580C" x="902" y="457" dominant-baseline="central">True</text>
+<g id="ag-gov" class="ag">
+  <rect x="690" y="468" width="188" height="46" rx="8" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.8"/>
+  <text font-family="Syne" font-weight="700" font-size="11" fill="#EA580C" x="784" y="485" text-anchor="middle" dominant-baseline="central">ISO 42001 Governance</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#C2410C" x="784" y="501" text-anchor="middle" dominant-baseline="central">Human Override &middot; Audit Logged</text>
+</g>
+<line x1="690" y1="491" x2="674" y2="491" stroke="#EA580C" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="674" y1="491" x2="674" y2="542" stroke="#EA580C" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#aO)"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#EA580C" x="666" y="517" text-anchor="end" dominant-baseline="central">approved</text>
+
+<!-- STEP 5: Formatting -->
+<line x1="290" y1="528" x2="878" y2="528" stroke="#E5E7EB" stroke-width="1"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#9CA3AF" x="290" y="540" dominant-baseline="central">STEP 5 &middot; ALL POCs &middot; SHARED</text>
+<g id="ag-fmt" class="ag">
+  <rect x="290" y="548" width="588" height="66" rx="8" fill="#F0FDF4" stroke="#16A34A" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="12" fill="#16A34A" x="474" y="566" text-anchor="middle" dominant-baseline="central">Formatting Agent</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#16A34A" x="474" y="582" text-anchor="middle" dominant-baseline="central">POC1: account_id &middot; priority_bucket &middot; ml_score &middot; confidence_level &middot; conflict_flag &middot; rationale &middot; NBA</text>
+  <text font-family="JetBrains Mono" font-size="8" fill="#15803D" x="474" y="598" text-anchor="middle" dominant-baseline="central">POC2: brief_text &middot; call_plan &middot; whitespace_summary &middot; api_score | POC3: heatmap grid &middot; ranked accounts &middot; CSV</text>
+  <rect x="782" y="553" width="34" height="14" rx="3" fill="#BFDBFE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#1D4ED8" x="799" y="560" text-anchor="middle" dominant-baseline="central">POC1</text>
+  <rect x="820" y="553" width="34" height="14" rx="3" fill="#99F6E4"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#0D9488" x="837" y="560" text-anchor="middle" dominant-baseline="central">POC2</text>
+  <rect x="858" y="553" width="34" height="14" rx="3" fill="#DDD6FE"/>
+  <text font-family="JetBrains Mono" font-weight="700" font-size="7.5" fill="#7C3AED" x="875" y="560" text-anchor="middle" dominant-baseline="central">POC3</text>
+</g>
+
+<line x1="260" y1="165" x2="290" y2="165" stroke="#9CA3AF" stroke-width="1.4" marker-end="url(#a0)"/>
+<text font-family="JetBrains Mono" font-size="7.5" fill="#9CA3AF" x="261" y="159" dominant-baseline="central">delegate</text>
+
+
+<!-- Internal step flow -->
+<line x1="474" y1="190" x2="474" y2="218" stroke="#9CA3AF" stroke-width="1.2" marker-end="url(#a0)"/>
+<line x1="778" y1="190" x2="778" y2="218" stroke="#9CA3AF" stroke-width="1.2" marker-end="url(#a0)"/>
+<line x1="409" y1="280" x2="409" y2="310" stroke="#9CA3AF" stroke-width="1.2" marker-end="url(#a0)"/>
+<line x1="652" y1="280" x2="652" y2="310" stroke="#9CA3AF" stroke-width="1.2" marker-end="url(#a0)"/>
+<line x1="827" y1="280" x2="827" y2="310" stroke="#9CA3AF" stroke-width="1.2" marker-end="url(#a0)"/>
+<line x1="409" y1="370" x2="409" y2="390" stroke="#9CA3AF" stroke-width="1.1"/>
+<line x1="652" y1="370" x2="652" y2="390" stroke="#9CA3AF" stroke-width="1.1"/>
+<line x1="827" y1="370" x2="827" y2="390" stroke="#9CA3AF" stroke-width="1.1"/>
+<line x1="290" y1="390" x2="878" y2="390" stroke="#9CA3AF" stroke-width="0.8"/>
+<line x1="584" y1="390" x2="584" y2="400" stroke="#9CA3AF" stroke-width="1.4" marker-end="url(#a0)"/>
+<line x1="474" y1="450" x2="474" y2="548" stroke="#9CA3AF" stroke-width="1.4" marker-end="url(#a0)"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#9CA3AF" x="480" y="499" dominant-baseline="central">False</text>
+
+
+<!-- Single clean return: Formatting Agent -> Orchestration Agent -->
+<!-- Left edge of Formatting box (x=290, y=581) back to Orch right edge (x=260) -->
+<line x1="290" y1="581" x2="260" y2="581" stroke="#6366F1" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#aR)"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#6366F1" x="274" y="573" text-anchor="middle" dominant-baseline="central">payload</text>
+<!-- RESPONSE TO USER -->
+<line x1="138" y1="800" x2="138" y2="820" stroke="#1D4ED8" stroke-width="1.8" marker-end="url(#aB)"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#1D4ED8" x="146" y="811" dominant-baseline="central">final response</text>
+<g id="resp-node" class="ag">
+  <rect x="16" y="820" width="862" height="56" rx="10" fill="#F8F9FB" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text font-family="Syne" font-weight="700" font-size="13" fill="#374151" x="447" y="836" text-anchor="middle" dominant-baseline="central">Response to User</text>
+  <rect x="26" y="851" width="256" height="17" rx="4" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
+  <text font-family="JetBrains Mono" font-size="8" fill="#1D4ED8" x="154" y="859" text-anchor="middle" dominant-baseline="central">POC 1 &middot; Priority A/B/C &middot; ml_score &middot; rationale &middot; NBA</text>
+  <rect x="292" y="851" width="272" height="17" rx="4" fill="#F0FDF9" stroke="#99F6E4" stroke-width="1"/>
+  <text font-family="JetBrains Mono" font-size="8" fill="#0D9488" x="428" y="859" text-anchor="middle" dominant-baseline="central">POC 2 &middot; Account brief &middot; Call plan &middot; Whitespace summary</text>
+  <rect x="574" y="851" width="294" height="17" rx="4" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1"/>
+  <text font-family="JetBrains Mono" font-size="8" fill="#7C3AED" x="721" y="859" text-anchor="middle" dominant-baseline="central">POC 3 &middot; Whitespace grid &middot; Campaign briefs &middot; CSV export</text>
+</g>
+
+</svg>
+</div>
+
+<div class="leg">
+  <h3>Agent Types</h3>
+  <div class="li"><div class="ld" style="background:#1D4ED8"></div>Orchestrator (x1)</div>
+  <div class="li"><div class="ld" style="background:#0D9488"></div>Data Agent</div>
+  <div class="li"><div class="ld" style="background:#D97706"></div>ML / Scoring</div>
+  <div class="li"><div class="ld" style="background:#7C3AED"></div>LLM Reasoning</div>
+  <div class="li"><div class="ld" style="background:#DC2626"></div>Validation</div>
+  <div class="li"><div class="ld" style="background:#16A34A"></div>Formatting</div>
+  <div class="li"><div class="ld" style="background:#EA580C"></div>ISO 42001 Gov.</div>
+  <div class="ldiv"></div>
+  <h3>POC Tags</h3>
+  <div class="li"><div class="ld" style="background:#BFDBFE;border:1px solid #2563EB"></div>POC 1</div>
+  <div class="li"><div class="ld" style="background:#99F6E4;border:1px solid #0D9488"></div>POC 2</div>
+  <div class="li"><div class="ld" style="background:#DDD6FE;border:1px solid #7C3AED"></div>POC 3</div>
+  <div class="ldiv"></div>
+  <h3>Arrows</h3>
+  <div class="lnote">grey &#8594; Orch sends to Data<br>indigo &#8592; Format returns to Orch<br>orange &#8594; ISO 42001 flag</div>
+  <div class="ldiv"></div>
+  <h3>Key Design</h3>
+  <div class="lnote">One Orchestrator<br>No per-POC planners<br>Receives at top<br>Assembles at bottom<br>Same single instance<br><br>Shared:<br>Data, Validation<br>Formatting<br><br>ISO 42001 built-in</div>
+</div>
+</div>
+
+<div class="foot">
+  <span><strong>Architecture:</strong> ONE Orchestration Agent sends to Data Agent. Flow runs linearly through the pool. Only Formatting Agent returns payload back to Orchestrator. Not two instances.</span>
+  <span><strong>Shared:</strong> Data Agent, Validation Agent, Formatting Agent — used by all 3 POCs</span>
+  <span><strong>POC-specific:</strong> ML/WS Scoring (POC1+3), Brief (POC2), Reasoning (POC1), Call Plan (POC2), Campaign (POC3)</span>
+</div>
+
+<script>
+const DIMABLE=['ub1','ub2','ub3','ag-data','ag-ml','ag-brief','ag-reason','ag-call','ag-camp','ag-valid','ag-gov','ag-fmt','resp-node'];
+const CFG={poc1:['ub2','ub3','ag-brief','ag-call','ag-camp'],poc2:['ub1','ub3','ag-ml','ag-reason','ag-camp'],poc3:['ub1','ub2','ag-brief','ag-reason','ag-call'],all:[]};
+function pick(p){
+  const k=p===0?'all':'poc'+p;
+  document.querySelectorAll('.btn').forEach(b=>b.classList.remove('on'));
+  document.querySelector('.btn[data-p="'+p+'"]').classList.add('on');
+  const h=CFG[k];
+  DIMABLE.forEach(id=>{const el=document.getElementById(id);if(el)el.style.opacity=h.includes(id)?'0.1':'1';});
+}
+pick(0);
+</script>
+</body>
+</html>

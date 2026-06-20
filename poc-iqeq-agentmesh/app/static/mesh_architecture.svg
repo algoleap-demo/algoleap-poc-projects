@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg class="mesh" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+<!-- Connectors: dotted only, no arrowheads; routing avoids agent title areas -->
+
+<!-- Orchestration Agent -->
+<g id="ag-orch" class="ag">
+  <rect x="278" y="28" width="614" height="44" rx="8" fill="#1D4ED8" stroke="#1E40AF" stroke-width="2"/>
+  <text font-family="Syne" font-weight="800" font-size="13" fill="#FFFFFF" x="585" y="50" text-anchor="middle" dominant-baseline="central">Orchestration Agent</text>
+</g>
+
+<!-- Shared pool -->
+<rect x="278" y="78" width="614" height="356" rx="10" fill="none" stroke="#E5E7EB" stroke-width="1.5" stroke-dasharray="7 4"/>
+<text font-family="JetBrains Mono" font-size="8" fill="#9CA3AF" letter-spacing="0.06em" x="585" y="92" text-anchor="middle">SHARED AGENT POOL</text>
+
+<!-- Data -->
+<g id="ag-data" class="ag">
+  <rect x="290" y="102" width="588" height="38" rx="8" fill="#F0FDF9" stroke="#0D9488" stroke-width="1.5"/>
+  <text class="mesh-node-title mesh-node-title-data" font-family="Syne" font-weight="700" font-size="12" fill="#0D9488" x="584" y="121" text-anchor="middle" dominant-baseline="central">Data Agent</text>
+</g>
+
+<!-- ML | Whitespace scoring | Brief -->
+<g id="ag-ml" class="ag">
+  <rect x="290" y="158" width="178" height="38" rx="8" fill="#FFFBEB" stroke="#D97706" stroke-width="1.5"/>
+  <text class="mesh-node-title" font-family="Syne" font-weight="700" font-size="10.5" fill="#D97706" x="379" y="177" text-anchor="middle" dominant-baseline="central">ML Propensity Agent</text>
+</g>
+<g id="ag-ws" class="ag">
+  <rect x="478" y="158" width="178" height="38" rx="8" fill="#FFFBEB" stroke="#B45309" stroke-width="1.5"/>
+  <text class="mesh-node-title" font-family="Syne" font-weight="700" font-size="10.5" fill="#B45309" x="567" y="177" text-anchor="middle" dominant-baseline="central">Whitespace Scoring Agent</text>
+</g>
+<g id="ag-brief" class="ag">
+  <rect x="666" y="158" width="212" height="38" rx="8" fill="#FFFBEB" stroke="#D97706" stroke-width="1.5"/>
+  <text class="mesh-node-title" font-family="Syne" font-weight="700" font-size="10.5" fill="#D97706" x="772" y="177" text-anchor="middle" dominant-baseline="central">Brief Agent</text>
+</g>
+
+<!-- Reason | Call | Campaign -->
+<g id="ag-reason" class="ag">
+  <rect x="290" y="218" width="228" height="38" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+  <text class="mesh-node-title" font-family="Syne" font-weight="700" font-size="10.5" fill="#7C3AED" x="404" y="237" text-anchor="middle" dominant-baseline="central">Reasoning Agent</text>
+</g>
+<g id="ag-call" class="ag">
+  <rect x="528" y="218" width="218" height="38" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+  <text class="mesh-node-title" font-family="Syne" font-weight="700" font-size="10.5" fill="#7C3AED" x="637" y="237" text-anchor="middle" dominant-baseline="central">Call Plan Agent</text>
+</g>
+<g id="ag-camp" class="ag">
+  <rect x="756" y="218" width="122" height="38" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+  <text class="mesh-node-title" font-family="Syne" font-weight="700" font-size="10" fill="#7C3AED" x="817" y="237" text-anchor="middle" dominant-baseline="central">Campaign Agent</text>
+</g>
+
+<g id="ag-valid" class="ag">
+  <rect x="290" y="278" width="588" height="38" rx="8" fill="#FFF1F1" stroke="#DC2626" stroke-width="2"/>
+  <text class="mesh-node-title" font-family="Syne" font-weight="700" font-size="12" fill="#DC2626" x="584" y="297" text-anchor="middle" dominant-baseline="central">Validation Agent</text>
+</g>
+
+<g id="ag-fmt" class="ag">
+  <rect x="290" y="338" width="588" height="38" rx="8" fill="#F0FDF4" stroke="#16A34A" stroke-width="1.5"/>
+  <text class="mesh-node-title" font-family="Syne" font-weight="700" font-size="12" fill="#16A34A" x="584" y="357" text-anchor="middle" dominant-baseline="central">Formatting Agent</text>
+</g>
+
+<!-- Governance branch (hidden in UI) -->
+<g id="flow-gov-branch" class="mesh-gov-branch" style="display:none">
+<line x1="878" y1="297" x2="898" y2="297" stroke="#EA580C" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="898" y1="297" x2="898" y2="350" stroke="#EA580C" stroke-width="1.4" stroke-dasharray="4 3"/>
+<line x1="898" y1="350" x2="880" y2="350" stroke="#EA580C" stroke-width="1.4" stroke-dasharray="4 3"/>
+<g id="ag-gov" class="ag">
+  <rect x="690" y="360" width="188" height="40" rx="8" fill="#FFF7ED" stroke="#EA580C" stroke-width="1.8"/>
+  <text font-family="Syne" font-weight="700" font-size="11" fill="#EA580C" x="784" y="380" text-anchor="middle" dominant-baseline="central">ISO 42001 Governance</text>
+</g>
+</g>
+
+<!-- orch → data (vertical, no label on box) -->
+<line class="mesh-conn show-triage show-planning show-whitespace" x1="585" y1="72" x2="585" y2="102" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+
+<!-- Triage: spine → ML → reason → valid -->
+<polyline class="mesh-conn show-triage" points="584,140 584,149 379,149 379,158" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-triage" points="379,196 379,207 404,207 404,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-triage" points="404,256 404,268 584,268 584,278" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+
+<!-- Planning: spine → Whitespace Scoring → Brief → Call → valid (POC2 has no ML propensity step) -->
+<polyline class="mesh-conn show-planning" points="584,140 584,149 567,149 567,158" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<line class="mesh-conn show-planning" x1="656" y1="177" x2="666" y2="177" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-planning" points="772,196 772,207 637,207 637,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-planning" points="637,256 637,268 584,268 584,278" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+
+<!-- Whitespace: spine → WS → campaign → valid -->
+<polyline class="mesh-conn show-whitespace" points="584,140 584,149 567,149 567,158" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-whitespace" points="567,196 567,207 817,207 817,218" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+<polyline class="mesh-conn show-whitespace" points="817,256 817,268 584,268 584,278" fill="none" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+
+<!-- Shared: valid → fmt -->
+<line class="mesh-conn show-triage show-planning show-whitespace" x1="584" y1="316" x2="584" y2="338" stroke="#94A3B8" stroke-width="1.6" stroke-dasharray="6 5"/>
+
+<!-- Output: Formatting → Orchestration (left gutter, dotted) -->
+<polyline class="mesh-conn show-triage show-planning show-whitespace" points="584,376 584,388 268,388 268,50 278,50" fill="none" stroke="#22C55E" stroke-width="1.6" stroke-dasharray="6 5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

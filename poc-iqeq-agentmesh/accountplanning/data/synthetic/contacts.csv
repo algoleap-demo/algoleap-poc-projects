@@ -1,0 +1,197 @@
+contact_id,account_id,full_name,role,seniority,email,engagement_score,product_interests
+CNT-9000100,ACME-EU-90001,Elena Muller,Head of Ops,VP,elena.muller@acmeCNT-9000100.example,0.26,"PROD-03,PROD-01"
+CNT-9000101,ACME-EU-90001,Elena De Vries,Other,VP,elena.de vries@acmeCNT-9000101.example,0.7,PROD-02
+CNT-9000102,ACME-EU-90001,Marta Lopez,Compliance,Individual Contributor,marta.lopez@acmeCNT-9000102.example,0.2,PROD-01
+CNT-9000200,ACME-EU-90002,Lars Rossi,Compliance,VP,lars.rossi@acmeCNT-9000200.example,0.13,PROD-01
+CNT-9000201,ACME-EU-90002,Luca Dubois,Compliance,C-Level,luca.dubois@acmeCNT-9000201.example,0.32,PROD-01
+CNT-9000202,ACME-EU-90002,Hans Schmidt,Head of Ops,Director,hans.schmidt@acmeCNT-9000202.example,0.24,PROD-02
+CNT-9000203,ACME-EU-90002,Sven Schmidt,COO,VP,sven.schmidt@acmeCNT-9000203.example,0.28,PROD-03
+CNT-9000300,ACME-EU-90003,Luca De Vries,Head of Ops,C-Level,luca.de vries@acmeCNT-9000300.example,0.54,"PROD-02,PROD-03"
+CNT-9000301,ACME-EU-90003,Marta Schmidt,COO,Manager,marta.schmidt@acmeCNT-9000301.example,0.78,"PROD-01,PROD-01"
+CNT-9000302,ACME-EU-90003,Sven Muller,CFO,VP,sven.muller@acmeCNT-9000302.example,0.8,PROD-02
+CNT-9000303,ACME-EU-90003,Sven Muller,CFO,C-Level,sven.muller@acmeCNT-9000303.example,0.66,PROD-02
+CNT-9000304,ACME-EU-90003,Marta Muller,Other,Director,marta.muller@acmeCNT-9000304.example,0.32,"PROD-01,PROD-02"
+CNT-9000400,ACME-EU-90004,Dieter Garcia,Portfolio Manager,C-Level,dieter.garcia@acmeCNT-9000400.example,0.87,"PROD-03,PROD-03"
+CNT-9000401,ACME-EU-90004,Anna Lefebvre,Portfolio Manager,Individual Contributor,anna.lefebvre@acmeCNT-9000401.example,0.36,PROD-01
+CNT-9000402,ACME-EU-90004,Dieter Jansen,Other,VP,dieter.jansen@acmeCNT-9000402.example,0.73,PROD-01
+CNT-9000500,ACME-EU-90005,Anna Schmidt,Compliance,VP,anna.schmidt@acmeCNT-9000500.example,0.29,"PROD-01,PROD-01"
+CNT-9000501,ACME-EU-90005,Luca Lopez,COO,C-Level,luca.lopez@acmeCNT-9000501.example,0.62,"PROD-03,PROD-01"
+CNT-9000502,ACME-EU-90005,Hans Rossi,CEO,Individual Contributor,hans.rossi@acmeCNT-9000502.example,0.25,"PROD-03,PROD-03"
+CNT-9000503,ACME-EU-90005,Luca Schmidt,CEO,C-Level,luca.schmidt@acmeCNT-9000503.example,0.76,PROD-01
+CNT-9000600,ACME-EU-90006,Sofia Dubois,COO,VP,sofia.dubois@acmeCNT-9000600.example,0.37,"PROD-01,PROD-03"
+CNT-9000601,ACME-EU-90006,Sofia Rossi,CEO,C-Level,sofia.rossi@acmeCNT-9000601.example,0.83,PROD-01
+CNT-9000602,ACME-EU-90006,Marta Dubois,IT,Individual Contributor,marta.dubois@acmeCNT-9000602.example,0.75,PROD-02
+CNT-9000700,ACME-EU-90007,Sofia Dubois,COO,VP,sofia.dubois@acmeCNT-9000700.example,0.32,PROD-03
+CNT-9000701,ACME-EU-90007,Sofia Garcia,Other,Director,sofia.garcia@acmeCNT-9000701.example,0.41,PROD-03
+CNT-9000702,ACME-EU-90007,Lars Lefebvre,Compliance,Individual Contributor,lars.lefebvre@acmeCNT-9000702.example,0.19,"PROD-02,PROD-03"
+CNT-9000800,ACME-EU-90008,Marta Jansen,CFO,VP,marta.jansen@acmeCNT-9000800.example,0.82,"PROD-02,PROD-02"
+CNT-9000801,ACME-EU-90008,Sven Dubois,Head of Ops,C-Level,sven.dubois@acmeCNT-9000801.example,0.39,"PROD-01,PROD-01"
+CNT-9000802,ACME-EU-90008,Luca De Vries,Compliance,C-Level,luca.de vries@acmeCNT-9000802.example,0.86,PROD-02
+CNT-9000803,ACME-EU-90008,Lars Lopez,CFO,VP,lars.lopez@acmeCNT-9000803.example,0.69,PROD-02
+CNT-9000900,ACME-EU-90009,Lars Dubois,Portfolio Manager,C-Level,lars.dubois@acmeCNT-9000900.example,0.3,PROD-01
+CNT-9000901,ACME-EU-90009,Luca Lopez,CEO,Manager,luca.lopez@acmeCNT-9000901.example,0.93,"PROD-02,PROD-01"
+CNT-9000902,ACME-EU-90009,Anna Jansen,Other,Director,anna.jansen@acmeCNT-9000902.example,0.43,PROD-03
+CNT-9001000,ACME-EU-90010,Lars Rossi,Head of Ops,VP,lars.rossi@acmeCNT-9001000.example,0.7,PROD-02
+CNT-9001001,ACME-EU-90010,Sven Jansen,CEO,Manager,sven.jansen@acmeCNT-9001001.example,0.74,PROD-02
+CNT-9001002,ACME-EU-90010,Sofia Lefebvre,Head of Ops,VP,sofia.lefebvre@acmeCNT-9001002.example,0.53,"PROD-03,PROD-03"
+CNT-9001100,ACME-EU-90011,Anna Jansen,IT,VP,anna.jansen@acmeCNT-9001100.example,0.16,PROD-02
+CNT-9001101,ACME-EU-90011,Clara Bianchi,Compliance,Manager,clara.bianchi@acmeCNT-9001101.example,0.67,"PROD-03,PROD-01"
+CNT-9001102,ACME-EU-90011,Elena Schmidt,COO,VP,elena.schmidt@acmeCNT-9001102.example,0.13,PROD-02
+CNT-9001200,ACME-EU-90012,Sven Bianchi,Head of Ops,VP,sven.bianchi@acmeCNT-9001200.example,0.21,"PROD-01,PROD-01"
+CNT-9001201,ACME-EU-90012,Luca Lefebvre,Compliance,Director,luca.lefebvre@acmeCNT-9001201.example,0.7,PROD-03
+CNT-9001202,ACME-EU-90012,Anna De Vries,Portfolio Manager,Director,anna.de vries@acmeCNT-9001202.example,0.24,"PROD-02,PROD-02"
+CNT-9001203,ACME-EU-90012,Clara Rossi,IT,VP,clara.rossi@acmeCNT-9001203.example,0.29,PROD-02
+CNT-9001300,ACME-EU-90013,Sven De Vries,CFO,C-Level,sven.de vries@acmeCNT-9001300.example,0.72,PROD-01
+CNT-9001301,ACME-EU-90013,Luca De Vries,Other,VP,luca.de vries@acmeCNT-9001301.example,0.76,"PROD-01,PROD-01"
+CNT-9001302,ACME-EU-90013,Lars Bianchi,COO,Manager,lars.bianchi@acmeCNT-9001302.example,0.73,PROD-02
+CNT-9001303,ACME-EU-90013,Sofia Lefebvre,Compliance,Director,sofia.lefebvre@acmeCNT-9001303.example,0.79,PROD-03
+CNT-9001304,ACME-EU-90013,Sven Rossi,Compliance,Director,sven.rossi@acmeCNT-9001304.example,0.36,PROD-03
+CNT-9001400,ACME-EU-90014,Elena Schmidt,CEO,C-Level,elena.schmidt@acmeCNT-9001400.example,0.1,"PROD-02,PROD-02"
+CNT-9001401,ACME-EU-90014,Hans Schmidt,CEO,VP,hans.schmidt@acmeCNT-9001401.example,0.67,"PROD-03,PROD-02"
+CNT-9001402,ACME-EU-90014,Elena Muller,Compliance,Manager,elena.muller@acmeCNT-9001402.example,0.69,PROD-02
+CNT-9001500,ACME-EU-90015,Clara Bianchi,Compliance,C-Level,clara.bianchi@acmeCNT-9001500.example,0.59,"PROD-03,PROD-03"
+CNT-9001501,ACME-EU-90015,Anna Schmidt,Head of Ops,Individual Contributor,anna.schmidt@acmeCNT-9001501.example,0.28,"PROD-02,PROD-01"
+CNT-9001502,ACME-EU-90015,Sven Lopez,CFO,Individual Contributor,sven.lopez@acmeCNT-9001502.example,0.43,PROD-02
+CNT-9001503,ACME-EU-90015,Clara Schmidt,CFO,C-Level,clara.schmidt@acmeCNT-9001503.example,0.17,"PROD-03,PROD-01"
+CNT-9001504,ACME-EU-90015,Dieter De Vries,Head of Ops,Individual Contributor,dieter.de vries@acmeCNT-9001504.example,0.85,PROD-03
+CNT-9001600,ACME-EU-90016,Sven Muller,Head of Ops,C-Level,sven.muller@acmeCNT-9001600.example,0.84,"PROD-01,PROD-02"
+CNT-9001601,ACME-EU-90016,Lars Rossi,COO,Manager,lars.rossi@acmeCNT-9001601.example,0.52,PROD-01
+CNT-9001602,ACME-EU-90016,Marta Bianchi,Portfolio Manager,Manager,marta.bianchi@acmeCNT-9001602.example,0.16,PROD-01
+CNT-9001603,ACME-EU-90016,Marta Jansen,Other,Individual Contributor,marta.jansen@acmeCNT-9001603.example,0.6,PROD-03
+CNT-9001604,ACME-EU-90016,Sven Garcia,COO,VP,sven.garcia@acmeCNT-9001604.example,0.67,PROD-01
+CNT-9001700,ACME-EU-90017,Anna Lopez,Compliance,VP,anna.lopez@acmeCNT-9001700.example,0.24,"PROD-03,PROD-02"
+CNT-9001701,ACME-EU-90017,Lars Lefebvre,Compliance,Individual Contributor,lars.lefebvre@acmeCNT-9001701.example,0.31,"PROD-02,PROD-01"
+CNT-9001702,ACME-EU-90017,Anna Rossi,COO,C-Level,anna.rossi@acmeCNT-9001702.example,0.82,PROD-02
+CNT-9001703,ACME-EU-90017,Sven Schmidt,Portfolio Manager,C-Level,sven.schmidt@acmeCNT-9001703.example,0.84,PROD-01
+CNT-9001800,ACME-EU-90018,Lars Rossi,Compliance,VP,lars.rossi@acmeCNT-9001800.example,0.41,"PROD-01,PROD-01"
+CNT-9001801,ACME-EU-90018,Sofia Lefebvre,Head of Ops,Manager,sofia.lefebvre@acmeCNT-9001801.example,0.17,PROD-03
+CNT-9001802,ACME-EU-90018,Sven Bianchi,Compliance,Manager,sven.bianchi@acmeCNT-9001802.example,0.85,PROD-02
+CNT-9001803,ACME-EU-90018,Clara Dubois,CEO,Director,clara.dubois@acmeCNT-9001803.example,0.88,"PROD-02,PROD-02"
+CNT-9001804,ACME-EU-90018,Sofia Lefebvre,CFO,C-Level,sofia.lefebvre@acmeCNT-9001804.example,0.47,PROD-02
+CNT-9001900,ACME-EU-90019,Luca Bianchi,IT,C-Level,luca.bianchi@acmeCNT-9001900.example,0.56,"PROD-01,PROD-03"
+CNT-9001901,ACME-EU-90019,Sven Garcia,COO,C-Level,sven.garcia@acmeCNT-9001901.example,0.78,"PROD-01,PROD-03"
+CNT-9001902,ACME-EU-90019,Clara De Vries,CEO,Manager,clara.de vries@acmeCNT-9001902.example,0.9,PROD-03
+CNT-9001903,ACME-EU-90019,Hans Garcia,IT,C-Level,hans.garcia@acmeCNT-9001903.example,0.13,"PROD-02,PROD-03"
+CNT-9002000,ACME-EU-90020,Lars Jansen,Compliance,VP,lars.jansen@acmeCNT-9002000.example,0.32,PROD-01
+CNT-9002001,ACME-EU-90020,Sofia Dubois,COO,VP,sofia.dubois@acmeCNT-9002001.example,0.65,PROD-01
+CNT-9002002,ACME-EU-90020,Marta Dubois,COO,Director,marta.dubois@acmeCNT-9002002.example,0.49,"PROD-03,PROD-03"
+CNT-9002003,ACME-EU-90020,Hans De Vries,Other,Individual Contributor,hans.de vries@acmeCNT-9002003.example,0.55,"PROD-02,PROD-01"
+CNT-9002100,ACME-EU-90021,Sofia Lopez,CFO,VP,sofia.lopez@acmeCNT-9002100.example,0.63,PROD-02
+CNT-9002101,ACME-EU-90021,Dieter Rossi,Other,Manager,dieter.rossi@acmeCNT-9002101.example,0.4,PROD-02
+CNT-9002102,ACME-EU-90021,Clara Schmidt,COO,C-Level,clara.schmidt@acmeCNT-9002102.example,0.15,PROD-03
+CNT-9002103,ACME-EU-90021,Clara Jansen,IT,VP,clara.jansen@acmeCNT-9002103.example,0.92,"PROD-03,PROD-03"
+CNT-9002200,ACME-EU-90022,Anna Muller,Head of Ops,VP,anna.muller@acmeCNT-9002200.example,0.37,"PROD-02,PROD-01"
+CNT-9002201,ACME-EU-90022,Luca De Vries,Other,Manager,luca.de vries@acmeCNT-9002201.example,0.93,PROD-02
+CNT-9002202,ACME-EU-90022,Hans Lefebvre,CFO,Director,hans.lefebvre@acmeCNT-9002202.example,0.48,PROD-01
+CNT-9002203,ACME-EU-90022,Marta Rossi,Compliance,Manager,marta.rossi@acmeCNT-9002203.example,0.54,"PROD-03,PROD-02"
+CNT-9002300,ACME-EU-90023,Clara Jansen,CEO,C-Level,clara.jansen@acmeCNT-9002300.example,0.93,"PROD-01,PROD-02"
+CNT-9002301,ACME-EU-90023,Sven Rossi,COO,C-Level,sven.rossi@acmeCNT-9002301.example,0.49,PROD-01
+CNT-9002302,ACME-EU-90023,Hans Lefebvre,Portfolio Manager,Individual Contributor,hans.lefebvre@acmeCNT-9002302.example,0.21,"PROD-01,PROD-03"
+CNT-9002303,ACME-EU-90023,Elena Rossi,CFO,Individual Contributor,elena.rossi@acmeCNT-9002303.example,0.17,PROD-02
+CNT-9002400,ACME-EU-90024,Anna Lopez,COO,C-Level,anna.lopez@acmeCNT-9002400.example,0.23,PROD-03
+CNT-9002401,ACME-EU-90024,Hans Lefebvre,Portfolio Manager,Individual Contributor,hans.lefebvre@acmeCNT-9002401.example,0.8,"PROD-03,PROD-02"
+CNT-9002402,ACME-EU-90024,Anna Dubois,CEO,Individual Contributor,anna.dubois@acmeCNT-9002402.example,0.82,PROD-03
+CNT-9002403,ACME-EU-90024,Elena Jansen,Head of Ops,Director,elena.jansen@acmeCNT-9002403.example,0.84,"PROD-02,PROD-03"
+CNT-9002404,ACME-EU-90024,Luca Bianchi,Other,Director,luca.bianchi@acmeCNT-9002404.example,0.31,"PROD-03,PROD-02"
+CNT-9002500,ACME-EU-90025,Hans Lopez,COO,VP,hans.lopez@acmeCNT-9002500.example,0.24,PROD-03
+CNT-9002501,ACME-EU-90025,Clara Lopez,Compliance,C-Level,clara.lopez@acmeCNT-9002501.example,0.76,PROD-01
+CNT-9002502,ACME-EU-90025,Elena De Vries,Head of Ops,C-Level,elena.de vries@acmeCNT-9002502.example,0.57,"PROD-03,PROD-01"
+CNT-9002503,ACME-EU-90025,Elena Schmidt,Head of Ops,Manager,elena.schmidt@acmeCNT-9002503.example,0.31,"PROD-01,PROD-03"
+CNT-9002504,ACME-EU-90025,Clara De Vries,IT,Director,clara.de vries@acmeCNT-9002504.example,0.22,PROD-03
+CNT-9002600,ACME-EU-90026,Sven Muller,Other,C-Level,sven.muller@acmeCNT-9002600.example,0.55,"PROD-02,PROD-03"
+CNT-9002601,ACME-EU-90026,Hans Rossi,CFO,VP,hans.rossi@acmeCNT-9002601.example,0.79,"PROD-02,PROD-03"
+CNT-9002602,ACME-EU-90026,Elena Garcia,IT,C-Level,elena.garcia@acmeCNT-9002602.example,0.26,PROD-01
+CNT-9002603,ACME-EU-90026,Sven Lefebvre,Head of Ops,Director,sven.lefebvre@acmeCNT-9002603.example,0.36,PROD-03
+CNT-9002700,ACME-EU-90027,Hans Garcia,IT,C-Level,hans.garcia@acmeCNT-9002700.example,0.89,PROD-03
+CNT-9002701,ACME-EU-90027,Sven Jansen,Compliance,Individual Contributor,sven.jansen@acmeCNT-9002701.example,0.12,PROD-01
+CNT-9002702,ACME-EU-90027,Sofia Rossi,Portfolio Manager,Manager,sofia.rossi@acmeCNT-9002702.example,0.11,"PROD-01,PROD-02"
+CNT-9002703,ACME-EU-90027,Sven De Vries,CFO,VP,sven.de vries@acmeCNT-9002703.example,0.66,PROD-01
+CNT-9002800,ACME-EU-90028,Marta Garcia,Other,VP,marta.garcia@acmeCNT-9002800.example,0.77,"PROD-03,PROD-01"
+CNT-9002801,ACME-EU-90028,Elena Garcia,CEO,VP,elena.garcia@acmeCNT-9002801.example,0.16,PROD-01
+CNT-9002802,ACME-EU-90028,Sven Jansen,Portfolio Manager,VP,sven.jansen@acmeCNT-9002802.example,0.51,"PROD-01,PROD-02"
+CNT-9002803,ACME-EU-90028,Marta Muller,Other,Director,marta.muller@acmeCNT-9002803.example,0.33,"PROD-01,PROD-03"
+CNT-9002900,ACME-EU-90029,Clara Lefebvre,Other,C-Level,clara.lefebvre@acmeCNT-9002900.example,0.6,PROD-02
+CNT-9002901,ACME-EU-90029,Hans Schmidt,Compliance,Individual Contributor,hans.schmidt@acmeCNT-9002901.example,0.56,"PROD-01,PROD-03"
+CNT-9002902,ACME-EU-90029,Clara De Vries,COO,Individual Contributor,clara.de vries@acmeCNT-9002902.example,0.74,PROD-01
+CNT-9002903,ACME-EU-90029,Hans Bianchi,IT,Director,hans.bianchi@acmeCNT-9002903.example,0.87,"PROD-03,PROD-03"
+CNT-9002904,ACME-EU-90029,Luca Lefebvre,CFO,C-Level,luca.lefebvre@acmeCNT-9002904.example,0.26,"PROD-02,PROD-03"
+CNT-9003000,ACME-EU-90030,Dieter Dubois,CEO,VP,dieter.dubois@acmeCNT-9003000.example,0.59,"PROD-01,PROD-02"
+CNT-9003001,ACME-EU-90030,Anna De Vries,Compliance,Director,anna.de vries@acmeCNT-9003001.example,0.66,PROD-03
+CNT-9003002,ACME-EU-90030,Hans Garcia,CFO,VP,hans.garcia@acmeCNT-9003002.example,0.57,PROD-03
+CNT-9003003,ACME-EU-90030,Dieter Muller,CFO,Director,dieter.muller@acmeCNT-9003003.example,0.16,"PROD-01,PROD-03"
+CNT-9003100,ACME-EU-90031,Sofia Rossi,CEO,VP,sofia.rossi@acmeCNT-9003100.example,0.52,PROD-03
+CNT-9003101,ACME-EU-90031,Dieter Rossi,IT,Individual Contributor,dieter.rossi@acmeCNT-9003101.example,0.74,"PROD-03,PROD-02"
+CNT-9003102,ACME-EU-90031,Sofia Muller,IT,C-Level,sofia.muller@acmeCNT-9003102.example,0.51,"PROD-01,PROD-03"
+CNT-9003200,ACME-EU-90032,Marta Garcia,CFO,C-Level,marta.garcia@acmeCNT-9003200.example,0.64,PROD-01
+CNT-9003201,ACME-EU-90032,Sofia Bianchi,Portfolio Manager,Director,sofia.bianchi@acmeCNT-9003201.example,0.29,PROD-02
+CNT-9003202,ACME-EU-90032,Hans Muller,COO,Individual Contributor,hans.muller@acmeCNT-9003202.example,0.62,PROD-03
+CNT-9003203,ACME-EU-90032,Marta Schmidt,Portfolio Manager,Manager,marta.schmidt@acmeCNT-9003203.example,0.33,PROD-01
+CNT-9003204,ACME-EU-90032,Luca Lefebvre,CEO,Director,luca.lefebvre@acmeCNT-9003204.example,0.89,PROD-01
+CNT-9003300,ACME-EU-90033,Sven De Vries,Head of Ops,C-Level,sven.de vries@acmeCNT-9003300.example,0.57,"PROD-03,PROD-01"
+CNT-9003301,ACME-EU-90033,Elena Jansen,Other,Manager,elena.jansen@acmeCNT-9003301.example,0.56,"PROD-03,PROD-01"
+CNT-9003302,ACME-EU-90033,Sven Rossi,IT,Manager,sven.rossi@acmeCNT-9003302.example,0.54,PROD-02
+CNT-9003400,ACME-EU-90034,Elena Garcia,IT,VP,elena.garcia@acmeCNT-9003400.example,0.17,PROD-01
+CNT-9003401,ACME-EU-90034,Lars Lefebvre,CFO,Individual Contributor,lars.lefebvre@acmeCNT-9003401.example,0.25,"PROD-01,PROD-01"
+CNT-9003402,ACME-EU-90034,Clara Muller,CEO,Manager,clara.muller@acmeCNT-9003402.example,0.33,"PROD-03,PROD-03"
+CNT-9003403,ACME-EU-90034,Clara Garcia,Head of Ops,Director,clara.garcia@acmeCNT-9003403.example,0.1,PROD-03
+CNT-9003500,ACME-EU-90035,Sven De Vries,COO,C-Level,sven.de vries@acmeCNT-9003500.example,0.73,PROD-03
+CNT-9003501,ACME-EU-90035,Luca Bianchi,Other,Manager,luca.bianchi@acmeCNT-9003501.example,0.84,"PROD-03,PROD-03"
+CNT-9003502,ACME-EU-90035,Hans Bianchi,Compliance,C-Level,hans.bianchi@acmeCNT-9003502.example,0.57,"PROD-02,PROD-03"
+CNT-9003600,ACME-EU-90036,Anna Lefebvre,CEO,VP,anna.lefebvre@acmeCNT-9003600.example,0.57,PROD-01
+CNT-9003601,ACME-EU-90036,Elena Dubois,IT,C-Level,elena.dubois@acmeCNT-9003601.example,0.32,"PROD-03,PROD-01"
+CNT-9003602,ACME-EU-90036,Marta Rossi,CFO,Director,marta.rossi@acmeCNT-9003602.example,0.42,"PROD-01,PROD-01"
+CNT-9003603,ACME-EU-90036,Clara Bianchi,COO,C-Level,clara.bianchi@acmeCNT-9003603.example,0.16,PROD-01
+CNT-9003700,ACME-EU-90037,Elena Rossi,CFO,C-Level,elena.rossi@acmeCNT-9003700.example,0.13,PROD-03
+CNT-9003701,ACME-EU-90037,Dieter Lefebvre,Other,VP,dieter.lefebvre@acmeCNT-9003701.example,0.49,"PROD-03,PROD-03"
+CNT-9003702,ACME-EU-90037,Dieter Lefebvre,Other,C-Level,dieter.lefebvre@acmeCNT-9003702.example,0.64,"PROD-03,PROD-02"
+CNT-9003800,ACME-EU-90038,Luca Rossi,Head of Ops,VP,luca.rossi@acmeCNT-9003800.example,0.19,"PROD-01,PROD-03"
+CNT-9003801,ACME-EU-90038,Luca Schmidt,Other,Director,luca.schmidt@acmeCNT-9003801.example,0.28,"PROD-02,PROD-03"
+CNT-9003802,ACME-EU-90038,Sven Lefebvre,COO,Director,sven.lefebvre@acmeCNT-9003802.example,0.44,PROD-03
+CNT-9003803,ACME-EU-90038,Hans Dubois,Portfolio Manager,Director,hans.dubois@acmeCNT-9003803.example,0.64,"PROD-03,PROD-03"
+CNT-9003804,ACME-EU-90038,Sofia Lopez,Compliance,VP,sofia.lopez@acmeCNT-9003804.example,0.21,PROD-03
+CNT-9003900,ACME-EU-90039,Hans Dubois,Compliance,C-Level,hans.dubois@acmeCNT-9003900.example,0.83,"PROD-02,PROD-02"
+CNT-9003901,ACME-EU-90039,Lars Lefebvre,CEO,VP,lars.lefebvre@acmeCNT-9003901.example,0.32,PROD-03
+CNT-9003902,ACME-EU-90039,Sven De Vries,Other,C-Level,sven.de vries@acmeCNT-9003902.example,0.24,"PROD-03,PROD-01"
+CNT-9004000,ACME-EU-90040,Sofia Dubois,CEO,C-Level,sofia.dubois@acmeCNT-9004000.example,0.83,PROD-03
+CNT-9004001,ACME-EU-90040,Clara Dubois,Head of Ops,Manager,clara.dubois@acmeCNT-9004001.example,0.47,PROD-02
+CNT-9004002,ACME-EU-90040,Sofia Schmidt,COO,C-Level,sofia.schmidt@acmeCNT-9004002.example,0.69,"PROD-01,PROD-03"
+CNT-9004003,ACME-EU-90040,Clara Jansen,COO,VP,clara.jansen@acmeCNT-9004003.example,0.24,PROD-01
+CNT-9004100,ACME-EU-90041,Sofia Rossi,IT,VP,sofia.rossi@acmeCNT-9004100.example,0.64,PROD-03
+CNT-9004101,ACME-EU-90041,Elena De Vries,Head of Ops,Individual Contributor,elena.de vries@acmeCNT-9004101.example,0.56,PROD-02
+CNT-9004102,ACME-EU-90041,Hans Schmidt,COO,Director,hans.schmidt@acmeCNT-9004102.example,0.67,PROD-02
+CNT-9004103,ACME-EU-90041,Sven Lefebvre,Compliance,Individual Contributor,sven.lefebvre@acmeCNT-9004103.example,0.24,"PROD-01,PROD-01"
+CNT-9004200,ACME-EU-90042,Anna Rossi,Compliance,VP,anna.rossi@acmeCNT-9004200.example,0.25,"PROD-01,PROD-03"
+CNT-9004201,ACME-EU-90042,Elena Jansen,Other,Individual Contributor,elena.jansen@acmeCNT-9004201.example,0.58,PROD-03
+CNT-9004202,ACME-EU-90042,Sven Schmidt,COO,Individual Contributor,sven.schmidt@acmeCNT-9004202.example,0.79,"PROD-01,PROD-01"
+CNT-9004203,ACME-EU-90042,Clara Rossi,Head of Ops,Director,clara.rossi@acmeCNT-9004203.example,0.72,PROD-01
+CNT-9004204,ACME-EU-90042,Luca Lopez,Compliance,Individual Contributor,luca.lopez@acmeCNT-9004204.example,0.34,"PROD-02,PROD-01"
+CNT-9004300,ACME-EU-90043,Marta Rossi,IT,C-Level,marta.rossi@acmeCNT-9004300.example,0.85,"PROD-03,PROD-01"
+CNT-9004301,ACME-EU-90043,Elena Bianchi,COO,Director,elena.bianchi@acmeCNT-9004301.example,0.38,"PROD-02,PROD-01"
+CNT-9004302,ACME-EU-90043,Sven Lopez,Head of Ops,Individual Contributor,sven.lopez@acmeCNT-9004302.example,0.93,"PROD-02,PROD-02"
+CNT-9004303,ACME-EU-90043,Sven De Vries,IT,Manager,sven.de vries@acmeCNT-9004303.example,0.29,"PROD-01,PROD-03"
+CNT-9004304,ACME-EU-90043,Anna Garcia,CFO,Director,anna.garcia@acmeCNT-9004304.example,0.44,PROD-03
+CNT-9004400,ACME-EU-90044,Clara Lopez,Head of Ops,VP,clara.lopez@acmeCNT-9004400.example,0.71,"PROD-02,PROD-02"
+CNT-9004401,ACME-EU-90044,Elena Rossi,IT,Individual Contributor,elena.rossi@acmeCNT-9004401.example,0.26,PROD-02
+CNT-9004402,ACME-EU-90044,Marta Rossi,Head of Ops,Manager,marta.rossi@acmeCNT-9004402.example,0.58,PROD-02
+CNT-9004403,ACME-EU-90044,Elena Schmidt,COO,Individual Contributor,elena.schmidt@acmeCNT-9004403.example,0.37,PROD-03
+CNT-9004404,ACME-EU-90044,Lars De Vries,CEO,VP,lars.de vries@acmeCNT-9004404.example,0.31,"PROD-01,PROD-03"
+CNT-9004500,ACME-EU-90045,Sofia Muller,Other,VP,sofia.muller@acmeCNT-9004500.example,0.59,PROD-01
+CNT-9004501,ACME-EU-90045,Elena Rossi,Head of Ops,C-Level,elena.rossi@acmeCNT-9004501.example,0.87,"PROD-01,PROD-03"
+CNT-9004502,ACME-EU-90045,Elena Rossi,Other,VP,elena.rossi@acmeCNT-9004502.example,0.16,PROD-02
+CNT-9004600,ACME-EU-90046,Anna De Vries,Portfolio Manager,C-Level,anna.de vries@acmeCNT-9004600.example,0.72,"PROD-02,PROD-01"
+CNT-9004601,ACME-EU-90046,Luca Garcia,Portfolio Manager,Director,luca.garcia@acmeCNT-9004601.example,0.25,"PROD-02,PROD-02"
+CNT-9004602,ACME-EU-90046,Sofia Lefebvre,Portfolio Manager,VP,sofia.lefebvre@acmeCNT-9004602.example,0.58,"PROD-01,PROD-03"
+CNT-9004700,ACME-EU-90047,Clara Rossi,Other,C-Level,clara.rossi@acmeCNT-9004700.example,0.8,PROD-01
+CNT-9004701,ACME-EU-90047,Anna Lopez,Head of Ops,Manager,anna.lopez@acmeCNT-9004701.example,0.14,PROD-02
+CNT-9004702,ACME-EU-90047,Dieter De Vries,CEO,Manager,dieter.de vries@acmeCNT-9004702.example,0.79,PROD-03
+CNT-9004703,ACME-EU-90047,Sven De Vries,Portfolio Manager,Director,sven.de vries@acmeCNT-9004703.example,0.76,PROD-02
+CNT-9004800,ACME-EU-90048,Elena Garcia,Compliance,C-Level,elena.garcia@acmeCNT-9004800.example,0.65,"PROD-03,PROD-02"
+CNT-9004801,ACME-EU-90048,Sofia Lefebvre,CEO,Manager,sofia.lefebvre@acmeCNT-9004801.example,0.22,PROD-03
+CNT-9004802,ACME-EU-90048,Luca Rossi,Portfolio Manager,Manager,luca.rossi@acmeCNT-9004802.example,0.36,"PROD-02,PROD-03"
+CNT-9004900,ACME-EU-90049,Dieter De Vries,IT,C-Level,dieter.de vries@acmeCNT-9004900.example,0.37,PROD-03
+CNT-9004901,ACME-EU-90049,Elena Dubois,CFO,Manager,elena.dubois@acmeCNT-9004901.example,0.31,PROD-02
+CNT-9004902,ACME-EU-90049,Dieter Garcia,IT,Manager,dieter.garcia@acmeCNT-9004902.example,0.3,"PROD-03,PROD-03"
+CNT-9004903,ACME-EU-90049,Dieter Rossi,Portfolio Manager,C-Level,dieter.rossi@acmeCNT-9004903.example,0.71,PROD-02
+CNT-9005000,ACME-EU-90050,Anna Schmidt,Compliance,C-Level,anna.schmidt@acmeCNT-9005000.example,0.71,"PROD-01,PROD-02"
+CNT-9005001,ACME-EU-90050,Sofia Garcia,CEO,VP,sofia.garcia@acmeCNT-9005001.example,0.9,PROD-01
+CNT-9005002,ACME-EU-90050,Anna Dubois,CFO,VP,anna.dubois@acmeCNT-9005002.example,0.21,PROD-01
